@@ -615,6 +615,7 @@ export type ReceiptCreateOrConnectWithoutKitchenInput = {
 
 export type ReceiptCreateManyKitchenInputEnvelope = {
   data: Prisma.ReceiptCreateManyKitchenInput | Prisma.ReceiptCreateManyKitchenInput[]
+  skipDuplicates?: boolean
 }
 
 export type ReceiptUpsertWithWhereUniqueWithoutKitchenInput = {
@@ -677,6 +678,7 @@ export type ReceiptCreateOrConnectWithoutRestaurantInput = {
 
 export type ReceiptCreateManyRestaurantInputEnvelope = {
   data: Prisma.ReceiptCreateManyRestaurantInput | Prisma.ReceiptCreateManyRestaurantInput[]
+  skipDuplicates?: boolean
 }
 
 export type ReceiptUpsertWithWhereUniqueWithoutRestaurantInput = {
@@ -1605,6 +1607,7 @@ export type ReceiptCreateManyArgs<ExtArgs extends runtime.Types.Extensions.Inter
    * The data used to create many Receipts.
    */
   data: Prisma.ReceiptCreateManyInput | Prisma.ReceiptCreateManyInput[]
+  skipDuplicates?: boolean
 }
 
 /**
@@ -1623,6 +1626,7 @@ export type ReceiptCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensi
    * The data used to create many Receipts.
    */
   data: Prisma.ReceiptCreateManyInput | Prisma.ReceiptCreateManyInput[]
+  skipDuplicates?: boolean
   /**
    * Choose, which related nodes to fetch as well
    */

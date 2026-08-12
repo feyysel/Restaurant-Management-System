@@ -73,7 +73,7 @@ export async function POST(req: Request) {
       });
     }
 
-    emitToTable(table.code, "BELL", {
+    await emitToTable(table.code, "BELL", {
       id: bellCall.id,
       tableNumber: table.number,
       status: "RINGING",

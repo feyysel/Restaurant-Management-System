@@ -16,6 +16,25 @@ export type RealtimeEvent<T = unknown> = {
   createdAt: number;
 };
 
+type PollEvent = {
+  id: string;
+  scope: "restaurant" | "user" | "table" | "admin";
+  scopeId: string | null;
+  type: string;
+  payload: unknown;
+  createdAt: string;
+};
+
+const POLL_INTERVAL = 3000;
+
+function toChannel(evt: PollEvent): RealtimeChannel {
+  if (evt.scope === "restaurant")
+    return { scope: "restaurant", id: evt.scopeId ?? "" };
+  if (evt.scope === "user") return { scope: "user", id: evt.scopeId ?? "" };
+  if (evt.scope === "table") return { scope: "table", code: evt.scopeId ?? "" };
+  return { scope: "admin" };
+}
+
 export function useRealtime(
   channels: RealtimeChannel[],
   onEvent?: (event: RealtimeEvent) => void
@@ -39,6 +58,8 @@ export function useRealtime(
     .join("|");
 
   React.useEffect(() => {
+    if (channels.length === 0) return;
+
     const params = new URLSearchParams();
     const scopes = new Set(channels.map((c) => c.scope));
     if (scopes.has("admin")) params.set("admin", "1");
@@ -55,19 +76,49 @@ export function useRealtime(
       if (id) params.set("restaurant", id);
     }
 
-    const es = new EventSource(`/api/events?${params.toString()}`);
-    es.onopen = () => setConnected(true);
-    es.onerror = () => setConnected(false);
-    es.onmessage = (msg) => {
+    let cancelled = false;
+    let since = new Date(Date.now() - 1000).toISOString();
+    const seen = new Set<string>();
+
+    async function poll() {
       try {
-        const evt = JSON.parse(msg.data) as RealtimeEvent;
-        setLastEvent(evt);
-        handlerRef.current?.(evt);
+        params.set("since", since);
+        const res = await fetch(`/api/events?${params.toString()}`);
+        if (!res.ok) {
+          setConnected(false);
+          return;
+        }
+        const data = (await res.json()) as {
+          now: string;
+          events: PollEvent[];
+        };
+        setConnected(true);
+        since = data.now;
+
+        for (const raw of data.events) {
+          if (cancelled || seen.has(raw.id)) continue;
+          seen.add(raw.id);
+          const evt: RealtimeEvent = {
+            id: raw.id,
+            channel: toChannel(raw),
+            type: raw.type,
+            payload: raw.payload,
+            createdAt: Date.parse(raw.createdAt),
+          };
+          setLastEvent(evt);
+          handlerRef.current?.(evt);
+        }
       } catch {
-        /* ignore malformed */
+        setConnected(false);
       }
+    }
+
+    poll();
+    const interval = setInterval(poll, POLL_INTERVAL);
+    return () => {
+      cancelled = true;
+      clearInterval(interval);
     };
-    return () => es.close();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [channelKey]);
 

@@ -1,6 +1,6 @@
 import type { Role } from "@/generated/prisma/client";
 import { prisma } from "@/lib/prisma";
-import { emit } from "@/lib/realtime";
+import { persistEvent } from "@/lib/realtime";
 
 type NotifyInput = {
   userId?: string;
@@ -27,11 +27,9 @@ export async function notify(input: NotifyInput) {
 
   const channel = userId
     ? ({ scope: "user", userId } as const)
-    : role
-      ? ({ scope: "restaurant", restaurantId } as const)
-      : ({ scope: "restaurant", restaurantId } as const);
+    : ({ scope: "restaurant", restaurantId } as const);
 
-  emit(channel, input.type, {
+  await persistEvent(channel, input.type, {
     id: notif.id,
     title: notif.title,
     body: notif.body,
@@ -44,14 +42,14 @@ export async function notify(input: NotifyInput) {
   return notif;
 }
 
-export function emitToTable(
+export async function emitToTable(
   code: string,
   type: string,
   payload: unknown
 ) {
-  emit({ scope: "table", code }, type, payload);
+  await persistEvent({ scope: "table", code }, type, payload);
 }
 
-export function emitAdmin(type: string, payload: unknown) {
-  emit({ scope: "admin" }, type, payload);
+export async function emitAdmin(type: string, payload: unknown) {
+  await persistEvent({ scope: "admin" }, type, payload);
 }

@@ -412,6 +412,7 @@ export type BellCallCreateOrConnectWithoutTableInput = {
 
 export type BellCallCreateManyTableInputEnvelope = {
   data: Prisma.BellCallCreateManyTableInput | Prisma.BellCallCreateManyTableInput[]
+  skipDuplicates?: boolean
 }
 
 export type BellCallUpsertWithWhereUniqueWithoutTableInput = {
@@ -1202,6 +1203,7 @@ export type BellCallCreateManyArgs<ExtArgs extends runtime.Types.Extensions.Inte
    * The data used to create many BellCalls.
    */
   data: Prisma.BellCallCreateManyInput | Prisma.BellCallCreateManyInput[]
+  skipDuplicates?: boolean
 }
 
 /**
@@ -1220,6 +1222,7 @@ export type BellCallCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extens
    * The data used to create many BellCalls.
    */
   data: Prisma.BellCallCreateManyInput | Prisma.BellCallCreateManyInput[]
+  skipDuplicates?: boolean
   /**
    * Choose, which related nodes to fetch as well
    */

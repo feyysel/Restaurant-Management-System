@@ -35,7 +35,7 @@ export async function PATCH(req: Request, ctx: Ctx) {
 
     const user = await prisma.user.update({ where: { id }, data });
 
-    emitAdmin("USER_UPDATED", { id: user.id, isActive: user.isActive });
+    await emitAdmin("USER_UPDATED", { id: user.id, isActive: user.isActive });
     return NextResponse.json({ user });
   } catch (err) {
     console.error("update user error", err);
@@ -61,7 +61,7 @@ export async function DELETE(req: Request, ctx: Ctx) {
     }
 
     await prisma.user.delete({ where: { id } });
-    emitAdmin("USER_DELETED", { id });
+    await emitAdmin("USER_DELETED", { id });
     return NextResponse.json({ ok: true });
   } catch (err) {
     console.error("delete user error", err);

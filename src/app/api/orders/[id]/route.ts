@@ -174,7 +174,7 @@ export async function PATCH(req: Request, ctx: Ctx) {
         });
       }
       if (tableCode) {
-        emitToTable(tableCode, "ORDER_UPDATE", {
+        await emitToTable(tableCode, "ORDER_UPDATE", {
           id,
           orderNumber: updated.orderNumber,
           status: "READY",
@@ -189,7 +189,7 @@ export async function PATCH(req: Request, ctx: Ctx) {
         });
       }
     } else if (tableCode) {
-      emitToTable(tableCode, "ORDER_UPDATE", {
+      await emitToTable(tableCode, "ORDER_UPDATE", {
         id,
         orderNumber: updated.orderNumber,
         status: updated.status,

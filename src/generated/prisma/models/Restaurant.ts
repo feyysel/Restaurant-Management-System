@@ -1849,6 +1849,7 @@ export type RestaurantCreateManyArgs<ExtArgs extends runtime.Types.Extensions.In
    * The data used to create many Restaurants.
    */
   data: Prisma.RestaurantCreateManyInput | Prisma.RestaurantCreateManyInput[]
+  skipDuplicates?: boolean
 }
 
 /**
@@ -1867,6 +1868,7 @@ export type RestaurantCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Exte
    * The data used to create many Restaurants.
    */
   data: Prisma.RestaurantCreateManyInput | Prisma.RestaurantCreateManyInput[]
+  skipDuplicates?: boolean
 }
 
 /**

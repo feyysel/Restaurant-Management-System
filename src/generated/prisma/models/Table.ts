@@ -564,6 +564,7 @@ export type TableCreateOrConnectWithoutWaiterInput = {
 
 export type TableCreateManyWaiterInputEnvelope = {
   data: Prisma.TableCreateManyWaiterInput | Prisma.TableCreateManyWaiterInput[]
+  skipDuplicates?: boolean
 }
 
 export type TableUpsertWithWhereUniqueWithoutWaiterInput = {
@@ -621,6 +622,7 @@ export type TableCreateOrConnectWithoutRestaurantInput = {
 
 export type TableCreateManyRestaurantInputEnvelope = {
   data: Prisma.TableCreateManyRestaurantInput | Prisma.TableCreateManyRestaurantInput[]
+  skipDuplicates?: boolean
 }
 
 export type TableUpsertWithWhereUniqueWithoutRestaurantInput = {
@@ -1607,6 +1609,7 @@ export type TableCreateManyArgs<ExtArgs extends runtime.Types.Extensions.Interna
    * The data used to create many Tables.
    */
   data: Prisma.TableCreateManyInput | Prisma.TableCreateManyInput[]
+  skipDuplicates?: boolean
 }
 
 /**
@@ -1625,6 +1628,7 @@ export type TableCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extension
    * The data used to create many Tables.
    */
   data: Prisma.TableCreateManyInput | Prisma.TableCreateManyInput[]
+  skipDuplicates?: boolean
   /**
    * Choose, which related nodes to fetch as well
    */

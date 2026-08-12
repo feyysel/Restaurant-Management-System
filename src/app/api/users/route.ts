@@ -58,7 +58,7 @@ export async function POST(req: Request) {
       },
     });
 
-    emitAdmin("USER_CREATED", { id: user.id, name: user.name, role: user.role });
+    await emitAdmin("USER_CREATED", { id: user.id, name: user.name, role: user.role });
 
     return NextResponse.json({ user });
   } catch (err) {

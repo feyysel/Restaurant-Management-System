@@ -1,22 +1,16 @@
-import path from "node:path";
 import { PrismaClient } from "@/generated/prisma/client";
-import { PrismaBetterSqlite3 } from "@prisma/adapter-better-sqlite3";
+import { PrismaPg } from "@prisma/adapter-pg";
 
 const globalForPrisma = globalThis as unknown as {
   prisma?: PrismaClient;
-  adapter?: PrismaBetterSqlite3;
+  adapter?: PrismaPg;
 };
-
-function resolveDbUrl() {
-  const url = process.env.DATABASE_URL ?? "file:./dev.db";
-  if (url === ":memory:") return url;
-  const bare = url.replace(/^file:/, "");
-  return path.isAbsolute(bare) ? bare : path.join(/*turbopackIgnore: true*/ process.cwd(), bare);
-}
 
 const adapter =
   globalForPrisma.adapter ??
-  new PrismaBetterSqlite3({ url: resolveDbUrl(), timeout: 10_000 });
+  new PrismaPg({
+    connectionString: process.env.DATABASE_URL ?? "",
+  });
 
 export const prisma = globalForPrisma.prisma ?? new PrismaClient({ adapter });
 

@@ -118,7 +118,7 @@ export async function POST(req: Request) {
     }
 
     if (table?.code) {
-      emitToTable(table.code, "ORDER_UPDATE", {
+      await emitToTable(table.code, "ORDER_UPDATE", {
         id: order.id,
         orderNumber: order.orderNumber,
         status: order.status,

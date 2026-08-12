@@ -31,7 +31,7 @@ export async function POST(req: Request) {
       data: { name, address: address ?? null, phone: phone ?? null },
     });
 
-    emitAdmin("RESTAURANT_CREATED", { id: restaurant.id, name: restaurant.name });
+    await emitAdmin("RESTAURANT_CREATED", { id: restaurant.id, name: restaurant.name });
     return NextResponse.json({ restaurant });
   } catch (err) {
     console.error("create restaurant error", err);

@@ -20,7 +20,7 @@ export async function PATCH(req: Request, ctx: Ctx) {
     if (typeof body.phone === "string") data.phone = body.phone;
 
     const restaurant = await prisma.restaurant.update({ where: { id }, data });
-    emitAdmin("RESTAURANT_UPDATED", { id });
+    await emitAdmin("RESTAURANT_UPDATED", { id });
     return NextResponse.json({ restaurant });
   } catch (err) {
     console.error("update restaurant error", err);
@@ -35,7 +35,7 @@ export async function DELETE(req: Request, ctx: Ctx) {
 
   try {
     await prisma.restaurant.delete({ where: { id } });
-    emitAdmin("RESTAURANT_DELETED", { id });
+    await emitAdmin("RESTAURANT_DELETED", { id });
     return NextResponse.json({ ok: true });
   } catch (err) {
     console.error("delete restaurant error", err);

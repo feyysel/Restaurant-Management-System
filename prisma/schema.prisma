@@ -4,7 +4,7 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
 }
 
 enum Role {
@@ -212,4 +212,16 @@ model Notification {
 
   @@index([restaurantId, createdAt])
   @@index([userId])
+}
+
+model EventLog {
+  id        String   @id @default(cuid())
+  scope     String
+  scopeId   String?
+  type      String
+  payload   Json?
+  createdAt DateTime @default(now())
+
+  @@index([scope, scopeId, createdAt])
+  @@index([createdAt])
 }

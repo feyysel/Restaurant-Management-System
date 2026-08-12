@@ -67,3 +67,8 @@ export type BellCall = Prisma.BellCallModel
  * 
  */
 export type Notification = Prisma.NotificationModel
+/**
+ * Model EventLog
+ * 
+ */
+export type EventLog = Prisma.EventLogModel

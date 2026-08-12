@@ -843,6 +843,7 @@ export type OrderCreateOrConnectWithoutWaiterInput = {
 
 export type OrderCreateManyWaiterInputEnvelope = {
   data: Prisma.OrderCreateManyWaiterInput | Prisma.OrderCreateManyWaiterInput[]
+  skipDuplicates?: boolean
 }
 
 export type OrderUpsertWithWhereUniqueWithoutWaiterInput = {
@@ -927,6 +928,7 @@ export type OrderCreateOrConnectWithoutRestaurantInput = {
 
 export type OrderCreateManyRestaurantInputEnvelope = {
   data: Prisma.OrderCreateManyRestaurantInput | Prisma.OrderCreateManyRestaurantInput[]
+  skipDuplicates?: boolean
 }
 
 export type OrderUpsertWithWhereUniqueWithoutRestaurantInput = {
@@ -990,6 +992,7 @@ export type OrderCreateOrConnectWithoutTableInput = {
 
 export type OrderCreateManyTableInputEnvelope = {
   data: Prisma.OrderCreateManyTableInput | Prisma.OrderCreateManyTableInput[]
+  skipDuplicates?: boolean
 }
 
 export type OrderUpsertWithWhereUniqueWithoutTableInput = {
@@ -2245,6 +2248,7 @@ export type OrderCreateManyArgs<ExtArgs extends runtime.Types.Extensions.Interna
    * The data used to create many Orders.
    */
   data: Prisma.OrderCreateManyInput | Prisma.OrderCreateManyInput[]
+  skipDuplicates?: boolean
 }
 
 /**
@@ -2263,6 +2267,7 @@ export type OrderCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extension
    * The data used to create many Orders.
    */
   data: Prisma.OrderCreateManyInput | Prisma.OrderCreateManyInput[]
+  skipDuplicates?: boolean
   /**
    * Choose, which related nodes to fetch as well
    */
