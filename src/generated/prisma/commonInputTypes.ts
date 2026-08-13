@@ -382,6 +382,23 @@ export type JsonNullableWithAggregatesFilterBase<$PrismaModel = never> = {
   _max?: Prisma.NestedJsonNullableFilter<$PrismaModel>
 }
 
+export type EnumBranchRequestStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.BranchRequestStatus | Prisma.EnumBranchRequestStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.BranchRequestStatus[] | Prisma.ListEnumBranchRequestStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.BranchRequestStatus[] | Prisma.ListEnumBranchRequestStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumBranchRequestStatusFilter<$PrismaModel> | $Enums.BranchRequestStatus
+}
+
+export type EnumBranchRequestStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.BranchRequestStatus | Prisma.EnumBranchRequestStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.BranchRequestStatus[] | Prisma.ListEnumBranchRequestStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.BranchRequestStatus[] | Prisma.ListEnumBranchRequestStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumBranchRequestStatusWithAggregatesFilter<$PrismaModel> | $Enums.BranchRequestStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumBranchRequestStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumBranchRequestStatusFilter<$PrismaModel>
+}
+
 export type NestedStringFilter<$PrismaModel = never> = {
   equals?: string | Prisma.StringFieldRefInput<$PrismaModel>
   in?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel>
@@ -723,6 +740,23 @@ export type NestedJsonNullableFilterBase<$PrismaModel = never> = {
   gt?: runtime.InputJsonValue | Prisma.JsonFieldRefInput<$PrismaModel>
   gte?: runtime.InputJsonValue | Prisma.JsonFieldRefInput<$PrismaModel>
   not?: runtime.InputJsonValue | Prisma.JsonFieldRefInput<$PrismaModel> | Prisma.JsonNullValueFilter
+}
+
+export type NestedEnumBranchRequestStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.BranchRequestStatus | Prisma.EnumBranchRequestStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.BranchRequestStatus[] | Prisma.ListEnumBranchRequestStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.BranchRequestStatus[] | Prisma.ListEnumBranchRequestStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumBranchRequestStatusFilter<$PrismaModel> | $Enums.BranchRequestStatus
+}
+
+export type NestedEnumBranchRequestStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.BranchRequestStatus | Prisma.EnumBranchRequestStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.BranchRequestStatus[] | Prisma.ListEnumBranchRequestStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.BranchRequestStatus[] | Prisma.ListEnumBranchRequestStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumBranchRequestStatusWithAggregatesFilter<$PrismaModel> | $Enums.BranchRequestStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumBranchRequestStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumBranchRequestStatusFilter<$PrismaModel>
 }
 
 

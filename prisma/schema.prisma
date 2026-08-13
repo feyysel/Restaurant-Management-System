@@ -20,16 +20,22 @@ model User {
   orders        Order[]        @relation("OrderWaiter")
   receipts      Receipt[]      @relation("ReceiptKitchen")
   tables        Table[]        @relation("TableWaiter")
+  branchRequests BranchRequest[] @relation("BranchRequestRequester")
+  branchReviews  BranchRequest[] @relation("BranchRequestReviewer")
   restaurant    Restaurant?    @relation(fields: [restaurantId], references: [id], onDelete: Cascade)
 }
 
 model Restaurant {
-  id            String         @id @default(cuid())
+  id            String           @id @default(cuid())
   name          String
   address       String?
   phone         String?
   theme         String?
-  createdAt     DateTime       @default(now())
+  parentId      String?
+  parent        Restaurant?      @relation("RestaurantBranches", fields: [parentId], references: [id], onDelete: SetNull)
+  branches      Restaurant[]     @relation("RestaurantBranches")
+  branchRequests BranchRequest[] @relation("BranchRequestParent")
+  createdAt     DateTime         @default(now())
   categories    Category[]
   menuItems     MenuItem[]
   notifications Notification[]
@@ -190,6 +196,27 @@ model EventLog {
   @@index([createdAt])
 }
 
+model BranchRequest {
+  id                 String               @id @default(cuid())
+  name               String
+  address            String?
+  phone              String?
+  status             BranchRequestStatus   @default(PENDING)
+  requestedById      String
+  parentRestaurantId String
+  branchId           String?
+  reviewedById       String?
+  reviewedAt         DateTime?
+  createdAt          DateTime             @default(now())
+  requestedBy        User                 @relation("BranchRequestRequester", fields: [requestedById], references: [id], onDelete: Cascade)
+  parentRestaurant   Restaurant           @relation("BranchRequestParent", fields: [parentRestaurantId], references: [id], onDelete: Cascade)
+  reviewedBy         User?                @relation("BranchRequestReviewer", fields: [reviewedById], references: [id], onDelete: SetNull)
+
+  @@index([parentRestaurantId])
+  @@index([requestedById])
+  @@index([status])
+}
+
 enum Role {
   ADMIN
   MANAGER
@@ -224,4 +251,10 @@ enum BellStatus {
   RINGING
   RESPONDED
   DISMISSED
+}
+
+enum BranchRequestStatus {
+  PENDING
+  APPROVED
+  REJECTED
 }

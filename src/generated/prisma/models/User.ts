@@ -210,6 +210,8 @@ export type UserWhereInput = {
   orders?: Prisma.OrderListRelationFilter
   receipts?: Prisma.ReceiptListRelationFilter
   tables?: Prisma.TableListRelationFilter
+  branchRequests?: Prisma.BranchRequestListRelationFilter
+  branchReviews?: Prisma.BranchRequestListRelationFilter
   restaurant?: Prisma.XOR<Prisma.RestaurantNullableScalarRelationFilter, Prisma.RestaurantWhereInput> | null
 }
 
@@ -226,6 +228,8 @@ export type UserOrderByWithRelationInput = {
   orders?: Prisma.OrderOrderByRelationAggregateInput
   receipts?: Prisma.ReceiptOrderByRelationAggregateInput
   tables?: Prisma.TableOrderByRelationAggregateInput
+  branchRequests?: Prisma.BranchRequestOrderByRelationAggregateInput
+  branchReviews?: Prisma.BranchRequestOrderByRelationAggregateInput
   restaurant?: Prisma.RestaurantOrderByWithRelationInput
 }
 
@@ -245,6 +249,8 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   orders?: Prisma.OrderListRelationFilter
   receipts?: Prisma.ReceiptListRelationFilter
   tables?: Prisma.TableListRelationFilter
+  branchRequests?: Prisma.BranchRequestListRelationFilter
+  branchReviews?: Prisma.BranchRequestListRelationFilter
   restaurant?: Prisma.XOR<Prisma.RestaurantNullableScalarRelationFilter, Prisma.RestaurantWhereInput> | null
 }, "id" | "phone">
 
@@ -288,6 +294,8 @@ export type UserCreateInput = {
   orders?: Prisma.OrderCreateNestedManyWithoutWaiterInput
   receipts?: Prisma.ReceiptCreateNestedManyWithoutKitchenInput
   tables?: Prisma.TableCreateNestedManyWithoutWaiterInput
+  branchRequests?: Prisma.BranchRequestCreateNestedManyWithoutRequestedByInput
+  branchReviews?: Prisma.BranchRequestCreateNestedManyWithoutReviewedByInput
   restaurant?: Prisma.RestaurantCreateNestedOneWithoutUsersInput
 }
 
@@ -304,6 +312,8 @@ export type UserUncheckedCreateInput = {
   orders?: Prisma.OrderUncheckedCreateNestedManyWithoutWaiterInput
   receipts?: Prisma.ReceiptUncheckedCreateNestedManyWithoutKitchenInput
   tables?: Prisma.TableUncheckedCreateNestedManyWithoutWaiterInput
+  branchRequests?: Prisma.BranchRequestUncheckedCreateNestedManyWithoutRequestedByInput
+  branchReviews?: Prisma.BranchRequestUncheckedCreateNestedManyWithoutReviewedByInput
 }
 
 export type UserUpdateInput = {
@@ -318,6 +328,8 @@ export type UserUpdateInput = {
   orders?: Prisma.OrderUpdateManyWithoutWaiterNestedInput
   receipts?: Prisma.ReceiptUpdateManyWithoutKitchenNestedInput
   tables?: Prisma.TableUpdateManyWithoutWaiterNestedInput
+  branchRequests?: Prisma.BranchRequestUpdateManyWithoutRequestedByNestedInput
+  branchReviews?: Prisma.BranchRequestUpdateManyWithoutReviewedByNestedInput
   restaurant?: Prisma.RestaurantUpdateOneWithoutUsersNestedInput
 }
 
@@ -334,6 +346,8 @@ export type UserUncheckedUpdateInput = {
   orders?: Prisma.OrderUncheckedUpdateManyWithoutWaiterNestedInput
   receipts?: Prisma.ReceiptUncheckedUpdateManyWithoutKitchenNestedInput
   tables?: Prisma.TableUncheckedUpdateManyWithoutWaiterNestedInput
+  branchRequests?: Prisma.BranchRequestUncheckedUpdateManyWithoutRequestedByNestedInput
+  branchReviews?: Prisma.BranchRequestUncheckedUpdateManyWithoutReviewedByNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -414,6 +428,11 @@ export type UserOrderByRelationAggregateInput = {
 export type UserNullableScalarRelationFilter = {
   is?: Prisma.UserWhereInput | null
   isNot?: Prisma.UserWhereInput | null
+}
+
+export type UserScalarRelationFilter = {
+  is?: Prisma.UserWhereInput
+  isNot?: Prisma.UserWhereInput
 }
 
 export type StringFieldUpdateOperationsInput = {
@@ -542,6 +561,36 @@ export type UserUpdateOneWithoutNotificationsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutNotificationsInput, Prisma.UserUpdateWithoutNotificationsInput>, Prisma.UserUncheckedUpdateWithoutNotificationsInput>
 }
 
+export type UserCreateNestedOneWithoutBranchRequestsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutBranchRequestsInput, Prisma.UserUncheckedCreateWithoutBranchRequestsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutBranchRequestsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserCreateNestedOneWithoutBranchReviewsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutBranchReviewsInput, Prisma.UserUncheckedCreateWithoutBranchReviewsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutBranchReviewsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutBranchRequestsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutBranchRequestsInput, Prisma.UserUncheckedCreateWithoutBranchRequestsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutBranchRequestsInput
+  upsert?: Prisma.UserUpsertWithoutBranchRequestsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutBranchRequestsInput, Prisma.UserUpdateWithoutBranchRequestsInput>, Prisma.UserUncheckedUpdateWithoutBranchRequestsInput>
+}
+
+export type UserUpdateOneWithoutBranchReviewsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutBranchReviewsInput, Prisma.UserUncheckedCreateWithoutBranchReviewsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutBranchReviewsInput
+  upsert?: Prisma.UserUpsertWithoutBranchReviewsInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutBranchReviewsInput, Prisma.UserUpdateWithoutBranchReviewsInput>, Prisma.UserUncheckedUpdateWithoutBranchReviewsInput>
+}
+
 export type UserCreateWithoutRestaurantInput = {
   id?: string
   name: string
@@ -554,6 +603,8 @@ export type UserCreateWithoutRestaurantInput = {
   orders?: Prisma.OrderCreateNestedManyWithoutWaiterInput
   receipts?: Prisma.ReceiptCreateNestedManyWithoutKitchenInput
   tables?: Prisma.TableCreateNestedManyWithoutWaiterInput
+  branchRequests?: Prisma.BranchRequestCreateNestedManyWithoutRequestedByInput
+  branchReviews?: Prisma.BranchRequestCreateNestedManyWithoutReviewedByInput
 }
 
 export type UserUncheckedCreateWithoutRestaurantInput = {
@@ -568,6 +619,8 @@ export type UserUncheckedCreateWithoutRestaurantInput = {
   orders?: Prisma.OrderUncheckedCreateNestedManyWithoutWaiterInput
   receipts?: Prisma.ReceiptUncheckedCreateNestedManyWithoutKitchenInput
   tables?: Prisma.TableUncheckedCreateNestedManyWithoutWaiterInput
+  branchRequests?: Prisma.BranchRequestUncheckedCreateNestedManyWithoutRequestedByInput
+  branchReviews?: Prisma.BranchRequestUncheckedCreateNestedManyWithoutReviewedByInput
 }
 
 export type UserCreateOrConnectWithoutRestaurantInput = {
@@ -621,6 +674,8 @@ export type UserCreateWithoutTablesInput = {
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   orders?: Prisma.OrderCreateNestedManyWithoutWaiterInput
   receipts?: Prisma.ReceiptCreateNestedManyWithoutKitchenInput
+  branchRequests?: Prisma.BranchRequestCreateNestedManyWithoutRequestedByInput
+  branchReviews?: Prisma.BranchRequestCreateNestedManyWithoutReviewedByInput
   restaurant?: Prisma.RestaurantCreateNestedOneWithoutUsersInput
 }
 
@@ -636,6 +691,8 @@ export type UserUncheckedCreateWithoutTablesInput = {
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   orders?: Prisma.OrderUncheckedCreateNestedManyWithoutWaiterInput
   receipts?: Prisma.ReceiptUncheckedCreateNestedManyWithoutKitchenInput
+  branchRequests?: Prisma.BranchRequestUncheckedCreateNestedManyWithoutRequestedByInput
+  branchReviews?: Prisma.BranchRequestUncheckedCreateNestedManyWithoutReviewedByInput
 }
 
 export type UserCreateOrConnectWithoutTablesInput = {
@@ -665,6 +722,8 @@ export type UserUpdateWithoutTablesInput = {
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   orders?: Prisma.OrderUpdateManyWithoutWaiterNestedInput
   receipts?: Prisma.ReceiptUpdateManyWithoutKitchenNestedInput
+  branchRequests?: Prisma.BranchRequestUpdateManyWithoutRequestedByNestedInput
+  branchReviews?: Prisma.BranchRequestUpdateManyWithoutReviewedByNestedInput
   restaurant?: Prisma.RestaurantUpdateOneWithoutUsersNestedInput
 }
 
@@ -680,6 +739,8 @@ export type UserUncheckedUpdateWithoutTablesInput = {
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   orders?: Prisma.OrderUncheckedUpdateManyWithoutWaiterNestedInput
   receipts?: Prisma.ReceiptUncheckedUpdateManyWithoutKitchenNestedInput
+  branchRequests?: Prisma.BranchRequestUncheckedUpdateManyWithoutRequestedByNestedInput
+  branchReviews?: Prisma.BranchRequestUncheckedUpdateManyWithoutReviewedByNestedInput
 }
 
 export type UserCreateWithoutOrdersInput = {
@@ -693,6 +754,8 @@ export type UserCreateWithoutOrdersInput = {
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   receipts?: Prisma.ReceiptCreateNestedManyWithoutKitchenInput
   tables?: Prisma.TableCreateNestedManyWithoutWaiterInput
+  branchRequests?: Prisma.BranchRequestCreateNestedManyWithoutRequestedByInput
+  branchReviews?: Prisma.BranchRequestCreateNestedManyWithoutReviewedByInput
   restaurant?: Prisma.RestaurantCreateNestedOneWithoutUsersInput
 }
 
@@ -708,6 +771,8 @@ export type UserUncheckedCreateWithoutOrdersInput = {
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   receipts?: Prisma.ReceiptUncheckedCreateNestedManyWithoutKitchenInput
   tables?: Prisma.TableUncheckedCreateNestedManyWithoutWaiterInput
+  branchRequests?: Prisma.BranchRequestUncheckedCreateNestedManyWithoutRequestedByInput
+  branchReviews?: Prisma.BranchRequestUncheckedCreateNestedManyWithoutReviewedByInput
 }
 
 export type UserCreateOrConnectWithoutOrdersInput = {
@@ -737,6 +802,8 @@ export type UserUpdateWithoutOrdersInput = {
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   receipts?: Prisma.ReceiptUpdateManyWithoutKitchenNestedInput
   tables?: Prisma.TableUpdateManyWithoutWaiterNestedInput
+  branchRequests?: Prisma.BranchRequestUpdateManyWithoutRequestedByNestedInput
+  branchReviews?: Prisma.BranchRequestUpdateManyWithoutReviewedByNestedInput
   restaurant?: Prisma.RestaurantUpdateOneWithoutUsersNestedInput
 }
 
@@ -752,6 +819,8 @@ export type UserUncheckedUpdateWithoutOrdersInput = {
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   receipts?: Prisma.ReceiptUncheckedUpdateManyWithoutKitchenNestedInput
   tables?: Prisma.TableUncheckedUpdateManyWithoutWaiterNestedInput
+  branchRequests?: Prisma.BranchRequestUncheckedUpdateManyWithoutRequestedByNestedInput
+  branchReviews?: Prisma.BranchRequestUncheckedUpdateManyWithoutReviewedByNestedInput
 }
 
 export type UserCreateWithoutReceiptsInput = {
@@ -765,6 +834,8 @@ export type UserCreateWithoutReceiptsInput = {
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   orders?: Prisma.OrderCreateNestedManyWithoutWaiterInput
   tables?: Prisma.TableCreateNestedManyWithoutWaiterInput
+  branchRequests?: Prisma.BranchRequestCreateNestedManyWithoutRequestedByInput
+  branchReviews?: Prisma.BranchRequestCreateNestedManyWithoutReviewedByInput
   restaurant?: Prisma.RestaurantCreateNestedOneWithoutUsersInput
 }
 
@@ -780,6 +851,8 @@ export type UserUncheckedCreateWithoutReceiptsInput = {
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   orders?: Prisma.OrderUncheckedCreateNestedManyWithoutWaiterInput
   tables?: Prisma.TableUncheckedCreateNestedManyWithoutWaiterInput
+  branchRequests?: Prisma.BranchRequestUncheckedCreateNestedManyWithoutRequestedByInput
+  branchReviews?: Prisma.BranchRequestUncheckedCreateNestedManyWithoutReviewedByInput
 }
 
 export type UserCreateOrConnectWithoutReceiptsInput = {
@@ -809,6 +882,8 @@ export type UserUpdateWithoutReceiptsInput = {
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   orders?: Prisma.OrderUpdateManyWithoutWaiterNestedInput
   tables?: Prisma.TableUpdateManyWithoutWaiterNestedInput
+  branchRequests?: Prisma.BranchRequestUpdateManyWithoutRequestedByNestedInput
+  branchReviews?: Prisma.BranchRequestUpdateManyWithoutReviewedByNestedInput
   restaurant?: Prisma.RestaurantUpdateOneWithoutUsersNestedInput
 }
 
@@ -824,6 +899,8 @@ export type UserUncheckedUpdateWithoutReceiptsInput = {
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   orders?: Prisma.OrderUncheckedUpdateManyWithoutWaiterNestedInput
   tables?: Prisma.TableUncheckedUpdateManyWithoutWaiterNestedInput
+  branchRequests?: Prisma.BranchRequestUncheckedUpdateManyWithoutRequestedByNestedInput
+  branchReviews?: Prisma.BranchRequestUncheckedUpdateManyWithoutReviewedByNestedInput
 }
 
 export type UserCreateWithoutNotificationsInput = {
@@ -837,6 +914,8 @@ export type UserCreateWithoutNotificationsInput = {
   orders?: Prisma.OrderCreateNestedManyWithoutWaiterInput
   receipts?: Prisma.ReceiptCreateNestedManyWithoutKitchenInput
   tables?: Prisma.TableCreateNestedManyWithoutWaiterInput
+  branchRequests?: Prisma.BranchRequestCreateNestedManyWithoutRequestedByInput
+  branchReviews?: Prisma.BranchRequestCreateNestedManyWithoutReviewedByInput
   restaurant?: Prisma.RestaurantCreateNestedOneWithoutUsersInput
 }
 
@@ -852,6 +931,8 @@ export type UserUncheckedCreateWithoutNotificationsInput = {
   orders?: Prisma.OrderUncheckedCreateNestedManyWithoutWaiterInput
   receipts?: Prisma.ReceiptUncheckedCreateNestedManyWithoutKitchenInput
   tables?: Prisma.TableUncheckedCreateNestedManyWithoutWaiterInput
+  branchRequests?: Prisma.BranchRequestUncheckedCreateNestedManyWithoutRequestedByInput
+  branchReviews?: Prisma.BranchRequestUncheckedCreateNestedManyWithoutReviewedByInput
 }
 
 export type UserCreateOrConnectWithoutNotificationsInput = {
@@ -881,6 +962,8 @@ export type UserUpdateWithoutNotificationsInput = {
   orders?: Prisma.OrderUpdateManyWithoutWaiterNestedInput
   receipts?: Prisma.ReceiptUpdateManyWithoutKitchenNestedInput
   tables?: Prisma.TableUpdateManyWithoutWaiterNestedInput
+  branchRequests?: Prisma.BranchRequestUpdateManyWithoutRequestedByNestedInput
+  branchReviews?: Prisma.BranchRequestUpdateManyWithoutReviewedByNestedInput
   restaurant?: Prisma.RestaurantUpdateOneWithoutUsersNestedInput
 }
 
@@ -896,6 +979,168 @@ export type UserUncheckedUpdateWithoutNotificationsInput = {
   orders?: Prisma.OrderUncheckedUpdateManyWithoutWaiterNestedInput
   receipts?: Prisma.ReceiptUncheckedUpdateManyWithoutKitchenNestedInput
   tables?: Prisma.TableUncheckedUpdateManyWithoutWaiterNestedInput
+  branchRequests?: Prisma.BranchRequestUncheckedUpdateManyWithoutRequestedByNestedInput
+  branchReviews?: Prisma.BranchRequestUncheckedUpdateManyWithoutReviewedByNestedInput
+}
+
+export type UserCreateWithoutBranchRequestsInput = {
+  id?: string
+  name: string
+  phone: string
+  passwordHash: string
+  role: $Enums.Role
+  isActive?: boolean
+  createdAt?: Date | string
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  orders?: Prisma.OrderCreateNestedManyWithoutWaiterInput
+  receipts?: Prisma.ReceiptCreateNestedManyWithoutKitchenInput
+  tables?: Prisma.TableCreateNestedManyWithoutWaiterInput
+  branchReviews?: Prisma.BranchRequestCreateNestedManyWithoutReviewedByInput
+  restaurant?: Prisma.RestaurantCreateNestedOneWithoutUsersInput
+}
+
+export type UserUncheckedCreateWithoutBranchRequestsInput = {
+  id?: string
+  name: string
+  phone: string
+  passwordHash: string
+  role: $Enums.Role
+  isActive?: boolean
+  createdAt?: Date | string
+  restaurantId?: string | null
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutWaiterInput
+  receipts?: Prisma.ReceiptUncheckedCreateNestedManyWithoutKitchenInput
+  tables?: Prisma.TableUncheckedCreateNestedManyWithoutWaiterInput
+  branchReviews?: Prisma.BranchRequestUncheckedCreateNestedManyWithoutReviewedByInput
+}
+
+export type UserCreateOrConnectWithoutBranchRequestsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutBranchRequestsInput, Prisma.UserUncheckedCreateWithoutBranchRequestsInput>
+}
+
+export type UserCreateWithoutBranchReviewsInput = {
+  id?: string
+  name: string
+  phone: string
+  passwordHash: string
+  role: $Enums.Role
+  isActive?: boolean
+  createdAt?: Date | string
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  orders?: Prisma.OrderCreateNestedManyWithoutWaiterInput
+  receipts?: Prisma.ReceiptCreateNestedManyWithoutKitchenInput
+  tables?: Prisma.TableCreateNestedManyWithoutWaiterInput
+  branchRequests?: Prisma.BranchRequestCreateNestedManyWithoutRequestedByInput
+  restaurant?: Prisma.RestaurantCreateNestedOneWithoutUsersInput
+}
+
+export type UserUncheckedCreateWithoutBranchReviewsInput = {
+  id?: string
+  name: string
+  phone: string
+  passwordHash: string
+  role: $Enums.Role
+  isActive?: boolean
+  createdAt?: Date | string
+  restaurantId?: string | null
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutWaiterInput
+  receipts?: Prisma.ReceiptUncheckedCreateNestedManyWithoutKitchenInput
+  tables?: Prisma.TableUncheckedCreateNestedManyWithoutWaiterInput
+  branchRequests?: Prisma.BranchRequestUncheckedCreateNestedManyWithoutRequestedByInput
+}
+
+export type UserCreateOrConnectWithoutBranchReviewsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutBranchReviewsInput, Prisma.UserUncheckedCreateWithoutBranchReviewsInput>
+}
+
+export type UserUpsertWithoutBranchRequestsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutBranchRequestsInput, Prisma.UserUncheckedUpdateWithoutBranchRequestsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutBranchRequestsInput, Prisma.UserUncheckedCreateWithoutBranchRequestsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutBranchRequestsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutBranchRequestsInput, Prisma.UserUncheckedUpdateWithoutBranchRequestsInput>
+}
+
+export type UserUpdateWithoutBranchRequestsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutWaiterNestedInput
+  receipts?: Prisma.ReceiptUpdateManyWithoutKitchenNestedInput
+  tables?: Prisma.TableUpdateManyWithoutWaiterNestedInput
+  branchReviews?: Prisma.BranchRequestUpdateManyWithoutReviewedByNestedInput
+  restaurant?: Prisma.RestaurantUpdateOneWithoutUsersNestedInput
+}
+
+export type UserUncheckedUpdateWithoutBranchRequestsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  restaurantId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutWaiterNestedInput
+  receipts?: Prisma.ReceiptUncheckedUpdateManyWithoutKitchenNestedInput
+  tables?: Prisma.TableUncheckedUpdateManyWithoutWaiterNestedInput
+  branchReviews?: Prisma.BranchRequestUncheckedUpdateManyWithoutReviewedByNestedInput
+}
+
+export type UserUpsertWithoutBranchReviewsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutBranchReviewsInput, Prisma.UserUncheckedUpdateWithoutBranchReviewsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutBranchReviewsInput, Prisma.UserUncheckedCreateWithoutBranchReviewsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutBranchReviewsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutBranchReviewsInput, Prisma.UserUncheckedUpdateWithoutBranchReviewsInput>
+}
+
+export type UserUpdateWithoutBranchReviewsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutWaiterNestedInput
+  receipts?: Prisma.ReceiptUpdateManyWithoutKitchenNestedInput
+  tables?: Prisma.TableUpdateManyWithoutWaiterNestedInput
+  branchRequests?: Prisma.BranchRequestUpdateManyWithoutRequestedByNestedInput
+  restaurant?: Prisma.RestaurantUpdateOneWithoutUsersNestedInput
+}
+
+export type UserUncheckedUpdateWithoutBranchReviewsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  restaurantId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutWaiterNestedInput
+  receipts?: Prisma.ReceiptUncheckedUpdateManyWithoutKitchenNestedInput
+  tables?: Prisma.TableUncheckedUpdateManyWithoutWaiterNestedInput
+  branchRequests?: Prisma.BranchRequestUncheckedUpdateManyWithoutRequestedByNestedInput
 }
 
 export type UserCreateManyRestaurantInput = {
@@ -920,6 +1165,8 @@ export type UserUpdateWithoutRestaurantInput = {
   orders?: Prisma.OrderUpdateManyWithoutWaiterNestedInput
   receipts?: Prisma.ReceiptUpdateManyWithoutKitchenNestedInput
   tables?: Prisma.TableUpdateManyWithoutWaiterNestedInput
+  branchRequests?: Prisma.BranchRequestUpdateManyWithoutRequestedByNestedInput
+  branchReviews?: Prisma.BranchRequestUpdateManyWithoutReviewedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutRestaurantInput = {
@@ -934,6 +1181,8 @@ export type UserUncheckedUpdateWithoutRestaurantInput = {
   orders?: Prisma.OrderUncheckedUpdateManyWithoutWaiterNestedInput
   receipts?: Prisma.ReceiptUncheckedUpdateManyWithoutKitchenNestedInput
   tables?: Prisma.TableUncheckedUpdateManyWithoutWaiterNestedInput
+  branchRequests?: Prisma.BranchRequestUncheckedUpdateManyWithoutRequestedByNestedInput
+  branchReviews?: Prisma.BranchRequestUncheckedUpdateManyWithoutReviewedByNestedInput
 }
 
 export type UserUncheckedUpdateManyWithoutRestaurantInput = {
@@ -956,6 +1205,8 @@ export type UserCountOutputType = {
   orders: number
   receipts: number
   tables: number
+  branchRequests: number
+  branchReviews: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -963,6 +1214,8 @@ export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   orders?: boolean | UserCountOutputTypeCountOrdersArgs
   receipts?: boolean | UserCountOutputTypeCountReceiptsArgs
   tables?: boolean | UserCountOutputTypeCountTablesArgs
+  branchRequests?: boolean | UserCountOutputTypeCountBranchRequestsArgs
+  branchReviews?: boolean | UserCountOutputTypeCountBranchReviewsArgs
 }
 
 /**
@@ -1003,6 +1256,20 @@ export type UserCountOutputTypeCountTablesArgs<ExtArgs extends runtime.Types.Ext
   where?: Prisma.TableWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountBranchRequestsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.BranchRequestWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountBranchReviewsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.BranchRequestWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1017,6 +1284,8 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   orders?: boolean | Prisma.User$ordersArgs<ExtArgs>
   receipts?: boolean | Prisma.User$receiptsArgs<ExtArgs>
   tables?: boolean | Prisma.User$tablesArgs<ExtArgs>
+  branchRequests?: boolean | Prisma.User$branchRequestsArgs<ExtArgs>
+  branchReviews?: boolean | Prisma.User$branchReviewsArgs<ExtArgs>
   restaurant?: boolean | Prisma.User$restaurantArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
@@ -1062,6 +1331,8 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   orders?: boolean | Prisma.User$ordersArgs<ExtArgs>
   receipts?: boolean | Prisma.User$receiptsArgs<ExtArgs>
   tables?: boolean | Prisma.User$tablesArgs<ExtArgs>
+  branchRequests?: boolean | Prisma.User$branchRequestsArgs<ExtArgs>
+  branchReviews?: boolean | Prisma.User$branchReviewsArgs<ExtArgs>
   restaurant?: boolean | Prisma.User$restaurantArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
@@ -1079,6 +1350,8 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     orders: Prisma.$OrderPayload<ExtArgs>[]
     receipts: Prisma.$ReceiptPayload<ExtArgs>[]
     tables: Prisma.$TablePayload<ExtArgs>[]
+    branchRequests: Prisma.$BranchRequestPayload<ExtArgs>[]
+    branchReviews: Prisma.$BranchRequestPayload<ExtArgs>[]
     restaurant: Prisma.$RestaurantPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
@@ -1488,6 +1761,8 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   orders<T extends Prisma.User$ordersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$ordersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OrderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   receipts<T extends Prisma.User$receiptsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$receiptsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ReceiptPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   tables<T extends Prisma.User$tablesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$tablesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TablePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  branchRequests<T extends Prisma.User$branchRequestsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$branchRequestsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BranchRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  branchReviews<T extends Prisma.User$branchReviewsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$branchReviewsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BranchRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   restaurant<T extends Prisma.User$restaurantArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$restaurantArgs<ExtArgs>>): Prisma.Prisma__RestaurantClient<runtime.Types.Result.GetResult<Prisma.$RestaurantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -2020,6 +2295,54 @@ export type User$tablesArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
   take?: number
   skip?: number
   distinct?: Prisma.TableScalarFieldEnum | Prisma.TableScalarFieldEnum[]
+}
+
+/**
+ * User.branchRequests
+ */
+export type User$branchRequestsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the BranchRequest
+   */
+  select?: Prisma.BranchRequestSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the BranchRequest
+   */
+  omit?: Prisma.BranchRequestOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.BranchRequestInclude<ExtArgs> | null
+  where?: Prisma.BranchRequestWhereInput
+  orderBy?: Prisma.BranchRequestOrderByWithRelationInput | Prisma.BranchRequestOrderByWithRelationInput[]
+  cursor?: Prisma.BranchRequestWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.BranchRequestScalarFieldEnum | Prisma.BranchRequestScalarFieldEnum[]
+}
+
+/**
+ * User.branchReviews
+ */
+export type User$branchReviewsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the BranchRequest
+   */
+  select?: Prisma.BranchRequestSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the BranchRequest
+   */
+  omit?: Prisma.BranchRequestOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.BranchRequestInclude<ExtArgs> | null
+  where?: Prisma.BranchRequestWhereInput
+  orderBy?: Prisma.BranchRequestOrderByWithRelationInput | Prisma.BranchRequestOrderByWithRelationInput[]
+  cursor?: Prisma.BranchRequestWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.BranchRequestScalarFieldEnum | Prisma.BranchRequestScalarFieldEnum[]
 }
 
 /**

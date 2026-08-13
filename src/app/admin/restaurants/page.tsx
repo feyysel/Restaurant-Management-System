@@ -18,7 +18,9 @@ type Restaurant = {
   name: string;
   address: string | null;
   phone: string | null;
+  parentId: string | null;
   createdAt: string;
+  parent: { id: string; name: string } | null;
   _count: { users: number; tables: number; menuItems: number };
 };
 
@@ -120,14 +122,20 @@ export default function AdminRestaurants() {
                 <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-gold/20 to-gold/5 text-gold-light ring-1 ring-gold/25">
                   <Store className="h-6 w-6" />
                 </div>
-                <Badge tone="emerald" className="opacity-0 transition-opacity group-hover:opacity-100">
-                  Active
-                </Badge>
+                <div className="flex gap-1.5">
+                  {r.parentId && <Badge tone="violet">Branch</Badge>}
+                  {!r.parentId && <Badge tone="gold">Main</Badge>}
+                </div>
               </div>
               <h3 className="font-display text-xl font-semibold text-zinc-50">{r.name}</h3>
               <p className="mt-1 line-clamp-1 text-sm text-zinc-500">
                 {r.address ?? "No address"} {r.phone ? `· ${r.phone}` : ""}
               </p>
+              {r.parentId && (
+                <p className="mt-1 text-xs text-zinc-500">
+                  Branch of <span className="font-medium text-gold-light/90">{r.parent?.name ?? "…"}</span>
+                </p>
+              )}
 
               <div className="mt-5 grid grid-cols-3 gap-2">
                 {[

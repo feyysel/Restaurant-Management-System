@@ -407,7 +407,8 @@ export const ModelName = {
   Receipt: 'Receipt',
   BellCall: 'BellCall',
   Notification: 'Notification',
-  EventLog: 'EventLog'
+  EventLog: 'EventLog',
+  BranchRequest: 'BranchRequest'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -423,7 +424,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "restaurant" | "table" | "category" | "menuItem" | "order" | "orderItem" | "receipt" | "bellCall" | "notification" | "eventLog"
+    modelProps: "user" | "restaurant" | "table" | "category" | "menuItem" | "order" | "orderItem" | "receipt" | "bellCall" | "notification" | "eventLog" | "branchRequest"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1241,6 +1242,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    BranchRequest: {
+      payload: Prisma.$BranchRequestPayload<ExtArgs>
+      fields: Prisma.BranchRequestFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.BranchRequestFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BranchRequestPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.BranchRequestFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BranchRequestPayload>
+        }
+        findFirst: {
+          args: Prisma.BranchRequestFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BranchRequestPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.BranchRequestFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BranchRequestPayload>
+        }
+        findMany: {
+          args: Prisma.BranchRequestFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BranchRequestPayload>[]
+        }
+        create: {
+          args: Prisma.BranchRequestCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BranchRequestPayload>
+        }
+        createMany: {
+          args: Prisma.BranchRequestCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.BranchRequestCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BranchRequestPayload>[]
+        }
+        delete: {
+          args: Prisma.BranchRequestDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BranchRequestPayload>
+        }
+        update: {
+          args: Prisma.BranchRequestUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BranchRequestPayload>
+        }
+        deleteMany: {
+          args: Prisma.BranchRequestDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.BranchRequestUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.BranchRequestUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BranchRequestPayload>[]
+        }
+        upsert: {
+          args: Prisma.BranchRequestUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BranchRequestPayload>
+        }
+        aggregate: {
+          args: Prisma.BranchRequestAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateBranchRequest>
+        }
+        groupBy: {
+          args: Prisma.BranchRequestGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.BranchRequestGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.BranchRequestCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.BranchRequestCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -1300,6 +1375,7 @@ export const RestaurantScalarFieldEnum = {
   address: 'address',
   phone: 'phone',
   theme: 'theme',
+  parentId: 'parentId',
   createdAt: 'createdAt'
 } as const
 
@@ -1433,6 +1509,23 @@ export const EventLogScalarFieldEnum = {
 } as const
 
 export type EventLogScalarFieldEnum = (typeof EventLogScalarFieldEnum)[keyof typeof EventLogScalarFieldEnum]
+
+
+export const BranchRequestScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  address: 'address',
+  phone: 'phone',
+  status: 'status',
+  requestedById: 'requestedById',
+  parentRestaurantId: 'parentRestaurantId',
+  branchId: 'branchId',
+  reviewedById: 'reviewedById',
+  reviewedAt: 'reviewedAt',
+  createdAt: 'createdAt'
+} as const
+
+export type BranchRequestScalarFieldEnum = (typeof BranchRequestScalarFieldEnum)[keyof typeof BranchRequestScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -1628,6 +1721,20 @@ export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'J
 export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
     
 
+
+/**
+ * Reference to a field of type 'BranchRequestStatus'
+ */
+export type EnumBranchRequestStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'BranchRequestStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'BranchRequestStatus[]'
+ */
+export type ListEnumBranchRequestStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'BranchRequestStatus[]'>
+    
+
 /**
  * Batch Payload for updateMany & deleteMany & createMany
  */
@@ -1790,6 +1897,7 @@ export type GlobalOmitConfig = {
   bellCall?: Prisma.BellCallOmit
   notification?: Prisma.NotificationOmit
   eventLog?: Prisma.EventLogOmit
+  branchRequest?: Prisma.BranchRequestOmit
 }
 
 /* Types for Logging */

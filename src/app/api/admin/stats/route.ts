@@ -1,12 +1,21 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { requireRoles } from "@/lib/guard";
+import type { OrderStatus } from "@/generated/prisma/client";
 
 export const runtime = "nodejs";
 
 export async function GET(req: Request) {
   const guard = await requireRoles(req, ["ADMIN"]);
   if ("response" in guard) return guard.response;
+
+  const url = new URL(req.url);
+  const restaurantId = url.searchParams.get("restaurantId");
+
+  const orderWhere = {
+    status: { notIn: ["CANCELLED"] as OrderStatus[] },
+    ...(restaurantId ? { restaurantId } : {}),
+  };
 
   const sevenDaysAgo = new Date(Date.now() - 6 * 24 * 60 * 60 * 1000);
   sevenDaysAgo.setHours(0, 0, 0, 0);
@@ -23,17 +32,19 @@ export async function GET(req: Request) {
     trendOrders,
   ] = await Promise.all([
     prisma.restaurant.count(),
-    prisma.user.count(),
-    prisma.order.count(),
+    prisma.user.count({ where: restaurantId ? { restaurantId } : {} }),
+    prisma.order.count({ where: restaurantId ? { restaurantId } : {} }),
     prisma.order.aggregate({
       _sum: { total: true },
-      where: { status: { notIn: ["CANCELLED"] } },
+      where: orderWhere,
     }),
     prisma.order.groupBy({
       by: ["status"],
+      where: restaurantId ? { restaurantId } : {},
       _count: true,
     }),
     prisma.order.findMany({
+      where: restaurantId ? { restaurantId } : {},
       orderBy: { createdAt: "desc" },
       take: 8,
       include: { restaurant: { select: { name: true } }, items: true },
@@ -42,15 +53,16 @@ export async function GET(req: Request) {
       orderBy: { createdAt: "desc" },
       include: {
         _count: { select: { users: true, tables: true, menuItems: true, orders: true } },
+        parent: { select: { id: true, name: true } },
       },
     }),
     prisma.order.groupBy({
       by: ["restaurantId"],
-      where: { status: { notIn: ["CANCELLED"] } },
+      where: orderWhere,
       _sum: { total: true },
     }),
     prisma.order.findMany({
-      where: { createdAt: { gte: sevenDaysAgo }, status: { notIn: ["CANCELLED"] } },
+      where: { createdAt: { gte: sevenDaysAgo }, ...orderWhere },
       select: { createdAt: true, total: true },
     }),
   ]);
@@ -84,6 +96,8 @@ export async function GET(req: Request) {
     restaurants: restaurants.map((r) => ({
       id: r.id,
       name: r.name,
+      parentId: r.parentId,
+      parentName: r.parent?.name ?? null,
       users: r._count.users,
       tables: r._count.tables,
       menuItems: r._count.menuItems,

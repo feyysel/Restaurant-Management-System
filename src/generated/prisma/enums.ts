@@ -58,3 +58,12 @@ export const BellStatus = {
 } as const
 
 export type BellStatus = (typeof BellStatus)[keyof typeof BellStatus]
+
+
+export const BranchRequestStatus = {
+  PENDING: 'PENDING',
+  APPROVED: 'APPROVED',
+  REJECTED: 'REJECTED'
+} as const
+
+export type BranchRequestStatus = (typeof BranchRequestStatus)[keyof typeof BranchRequestStatus]

@@ -61,7 +61,8 @@ export const ModelName = {
   Receipt: 'Receipt',
   BellCall: 'BellCall',
   Notification: 'Notification',
-  EventLog: 'EventLog'
+  EventLog: 'EventLog',
+  BranchRequest: 'BranchRequest'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -100,6 +101,7 @@ export const RestaurantScalarFieldEnum = {
   address: 'address',
   phone: 'phone',
   theme: 'theme',
+  parentId: 'parentId',
   createdAt: 'createdAt'
 } as const
 
@@ -233,6 +235,23 @@ export const EventLogScalarFieldEnum = {
 } as const
 
 export type EventLogScalarFieldEnum = (typeof EventLogScalarFieldEnum)[keyof typeof EventLogScalarFieldEnum]
+
+
+export const BranchRequestScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  address: 'address',
+  phone: 'phone',
+  status: 'status',
+  requestedById: 'requestedById',
+  parentRestaurantId: 'parentRestaurantId',
+  branchId: 'branchId',
+  reviewedById: 'reviewedById',
+  reviewedAt: 'reviewedAt',
+  createdAt: 'createdAt'
+} as const
+
+export type BranchRequestScalarFieldEnum = (typeof BranchRequestScalarFieldEnum)[keyof typeof BranchRequestScalarFieldEnum]
 
 
 export const SortOrder = {

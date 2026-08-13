@@ -6,6 +6,8 @@ import { PageHeader } from "@/components/ui/stat-card";
 import { TrendChart, StatusBreakdown } from "@/components/ui/chart";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
+import { Select } from "@/components/ui/input";
+import { Badge } from "@/components/ui/badge";
 import { formatCurrency } from "@/lib/utils";
 import { useFetch } from "@/lib/use-fetch";
 
@@ -15,6 +17,8 @@ type InsightData = {
   restaurants: {
     id: string;
     name: string;
+    parentId: string | null;
+    parentName: string | null;
     users: number;
     tables: number;
     menuItems: number;
@@ -26,7 +30,12 @@ type InsightData = {
 };
 
 export default function AdminInsights() {
-  const { data, loading } = useFetch<InsightData>("/api/admin/stats");
+  const [restaurantId, setRestaurantId] = React.useState<string>("");
+  const url = React.useMemo(
+    () => `/api/admin/stats${restaurantId ? `?restaurantId=${encodeURIComponent(restaurantId)}` : ""}`,
+    [restaurantId]
+  );
+  const { data, loading } = useFetch<InsightData>(url, [restaurantId]);
 
   if (loading || !data) {
     return (
@@ -37,6 +46,7 @@ export default function AdminInsights() {
     );
   }
 
+  const selected = data.restaurants.find((r) => r.id === restaurantId) ?? null;
   const best = [...data.restaurants].sort((a, b) => b.revenue - a.revenue)[0];
   const avgOrder =
     data.stats.orderCount > 0 ? data.stats.revenue / data.stats.orderCount : 0;
@@ -45,7 +55,26 @@ export default function AdminInsights() {
     <div>
       <PageHeader
         title="System Insights"
-        description="Deep analytics across the entire platform."
+        description={
+          selected
+            ? `Analytics for ${selected.name}.`
+            : "Deep analytics across the entire platform."
+        }
+        action={
+          <Select
+            value={restaurantId}
+            onChange={(e) => setRestaurantId(e.target.value)}
+            className="w-64"
+            aria-label="Filter by venue"
+          >
+            <option value="">All venues</option>
+            {data.restaurants.map((r) => (
+              <option key={r.id} value={r.id}>
+                {r.parentId ? `Branch · ${r.name}` : `Main · ${r.name}`}
+              </option>
+            ))}
+          </Select>
+        }
       />
 
       <div className="mb-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -78,14 +107,18 @@ export default function AdminInsights() {
         </Card>
         <Card className="border-emerald-500/20">
           <div className="flex items-center justify-between">
-            <p className="text-xs uppercase tracking-wider text-emerald-300">Top venue</p>
+            <p className="text-xs uppercase tracking-wider text-emerald-300">
+              {selected ? "Selected venue" : "Top venue"}
+            </p>
             <Crown className="h-4 w-4 text-emerald-300" />
           </div>
           <p className="mt-2 truncate font-display text-2xl font-semibold text-zinc-50">
-            {best ? best.name : "—"}
+            {(selected ?? best)?.name ?? "—"}
           </p>
           <p className="mt-1 text-xs text-zinc-500">
-            {best ? `${formatCurrency(best.revenue)} · ${best.orders} orders` : "No data"}
+            {(selected ?? best)
+              ? `${formatCurrency((selected ?? best)!.revenue)} · ${(selected ?? best)!.orders} orders`
+              : "No data"}
           </p>
         </Card>
       </div>
@@ -120,8 +153,22 @@ export default function AdminInsights() {
             </thead>
             <tbody>
               {data.restaurants.map((r) => (
-                <tr key={r.id} className="border-b border-white/[0.04] transition-colors hover:bg-white/[0.02]">
-                  <td className="px-5 py-3.5 font-medium text-zinc-100">{r.name}</td>
+                <tr
+                  key={r.id}
+                  className={`border-b border-white/[0.04] transition-colors hover:bg-white/[0.02] ${
+                    r.id === restaurantId ? "bg-gold/[0.06]" : ""
+                  }`}
+                >
+                  <td className="px-5 py-3.5">
+                    <div className="flex items-center gap-2">
+                      <p className="font-medium text-zinc-100">{r.name}</p>
+                      {r.parentId && <Badge tone="violet">Branch</Badge>}
+                      {!r.parentId && <Badge tone="gold">Main</Badge>}
+                    </div>
+                    {r.parentId && (
+                      <p className="mt-0.5 text-xs text-zinc-500">under {r.parentName}</p>
+                    )}
+                  </td>
                   <td className="px-3 py-3.5 text-zinc-400">{r.users}</td>
                   <td className="px-3 py-3.5 text-zinc-400">{r.tables}</td>
                   <td className="px-3 py-3.5 text-zinc-400">{r.menuItems}</td>
