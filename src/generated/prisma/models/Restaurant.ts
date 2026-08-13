@@ -190,13 +190,13 @@ export type RestaurantWhereInput = {
   phone?: Prisma.StringNullableFilter<"Restaurant"> | string | null
   theme?: Prisma.StringNullableFilter<"Restaurant"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Restaurant"> | Date | string
-  users?: Prisma.UserListRelationFilter
-  tables?: Prisma.TableListRelationFilter
   categories?: Prisma.CategoryListRelationFilter
   menuItems?: Prisma.MenuItemListRelationFilter
+  notifications?: Prisma.NotificationListRelationFilter
   orders?: Prisma.OrderListRelationFilter
   receipts?: Prisma.ReceiptListRelationFilter
-  notifications?: Prisma.NotificationListRelationFilter
+  tables?: Prisma.TableListRelationFilter
+  users?: Prisma.UserListRelationFilter
 }
 
 export type RestaurantOrderByWithRelationInput = {
@@ -206,13 +206,13 @@ export type RestaurantOrderByWithRelationInput = {
   phone?: Prisma.SortOrderInput | Prisma.SortOrder
   theme?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
-  users?: Prisma.UserOrderByRelationAggregateInput
-  tables?: Prisma.TableOrderByRelationAggregateInput
   categories?: Prisma.CategoryOrderByRelationAggregateInput
   menuItems?: Prisma.MenuItemOrderByRelationAggregateInput
+  notifications?: Prisma.NotificationOrderByRelationAggregateInput
   orders?: Prisma.OrderOrderByRelationAggregateInput
   receipts?: Prisma.ReceiptOrderByRelationAggregateInput
-  notifications?: Prisma.NotificationOrderByRelationAggregateInput
+  tables?: Prisma.TableOrderByRelationAggregateInput
+  users?: Prisma.UserOrderByRelationAggregateInput
 }
 
 export type RestaurantWhereUniqueInput = Prisma.AtLeast<{
@@ -225,13 +225,13 @@ export type RestaurantWhereUniqueInput = Prisma.AtLeast<{
   phone?: Prisma.StringNullableFilter<"Restaurant"> | string | null
   theme?: Prisma.StringNullableFilter<"Restaurant"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Restaurant"> | Date | string
-  users?: Prisma.UserListRelationFilter
-  tables?: Prisma.TableListRelationFilter
   categories?: Prisma.CategoryListRelationFilter
   menuItems?: Prisma.MenuItemListRelationFilter
+  notifications?: Prisma.NotificationListRelationFilter
   orders?: Prisma.OrderListRelationFilter
   receipts?: Prisma.ReceiptListRelationFilter
-  notifications?: Prisma.NotificationListRelationFilter
+  tables?: Prisma.TableListRelationFilter
+  users?: Prisma.UserListRelationFilter
 }, "id">
 
 export type RestaurantOrderByWithAggregationInput = {
@@ -265,13 +265,13 @@ export type RestaurantCreateInput = {
   phone?: string | null
   theme?: string | null
   createdAt?: Date | string
-  users?: Prisma.UserCreateNestedManyWithoutRestaurantInput
-  tables?: Prisma.TableCreateNestedManyWithoutRestaurantInput
   categories?: Prisma.CategoryCreateNestedManyWithoutRestaurantInput
   menuItems?: Prisma.MenuItemCreateNestedManyWithoutRestaurantInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutRestaurantInput
   orders?: Prisma.OrderCreateNestedManyWithoutRestaurantInput
   receipts?: Prisma.ReceiptCreateNestedManyWithoutRestaurantInput
-  notifications?: Prisma.NotificationCreateNestedManyWithoutRestaurantInput
+  tables?: Prisma.TableCreateNestedManyWithoutRestaurantInput
+  users?: Prisma.UserCreateNestedManyWithoutRestaurantInput
 }
 
 export type RestaurantUncheckedCreateInput = {
@@ -281,13 +281,13 @@ export type RestaurantUncheckedCreateInput = {
   phone?: string | null
   theme?: string | null
   createdAt?: Date | string
-  users?: Prisma.UserUncheckedCreateNestedManyWithoutRestaurantInput
-  tables?: Prisma.TableUncheckedCreateNestedManyWithoutRestaurantInput
   categories?: Prisma.CategoryUncheckedCreateNestedManyWithoutRestaurantInput
   menuItems?: Prisma.MenuItemUncheckedCreateNestedManyWithoutRestaurantInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutRestaurantInput
   orders?: Prisma.OrderUncheckedCreateNestedManyWithoutRestaurantInput
   receipts?: Prisma.ReceiptUncheckedCreateNestedManyWithoutRestaurantInput
-  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutRestaurantInput
+  tables?: Prisma.TableUncheckedCreateNestedManyWithoutRestaurantInput
+  users?: Prisma.UserUncheckedCreateNestedManyWithoutRestaurantInput
 }
 
 export type RestaurantUpdateInput = {
@@ -297,13 +297,13 @@ export type RestaurantUpdateInput = {
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   theme?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  users?: Prisma.UserUpdateManyWithoutRestaurantNestedInput
-  tables?: Prisma.TableUpdateManyWithoutRestaurantNestedInput
   categories?: Prisma.CategoryUpdateManyWithoutRestaurantNestedInput
   menuItems?: Prisma.MenuItemUpdateManyWithoutRestaurantNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutRestaurantNestedInput
   orders?: Prisma.OrderUpdateManyWithoutRestaurantNestedInput
   receipts?: Prisma.ReceiptUpdateManyWithoutRestaurantNestedInput
-  notifications?: Prisma.NotificationUpdateManyWithoutRestaurantNestedInput
+  tables?: Prisma.TableUpdateManyWithoutRestaurantNestedInput
+  users?: Prisma.UserUpdateManyWithoutRestaurantNestedInput
 }
 
 export type RestaurantUncheckedUpdateInput = {
@@ -313,13 +313,13 @@ export type RestaurantUncheckedUpdateInput = {
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   theme?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  users?: Prisma.UserUncheckedUpdateManyWithoutRestaurantNestedInput
-  tables?: Prisma.TableUncheckedUpdateManyWithoutRestaurantNestedInput
   categories?: Prisma.CategoryUncheckedUpdateManyWithoutRestaurantNestedInput
   menuItems?: Prisma.MenuItemUncheckedUpdateManyWithoutRestaurantNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutRestaurantNestedInput
   orders?: Prisma.OrderUncheckedUpdateManyWithoutRestaurantNestedInput
   receipts?: Prisma.ReceiptUncheckedUpdateManyWithoutRestaurantNestedInput
-  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutRestaurantNestedInput
+  tables?: Prisma.TableUncheckedUpdateManyWithoutRestaurantNestedInput
+  users?: Prisma.UserUncheckedUpdateManyWithoutRestaurantNestedInput
 }
 
 export type RestaurantCreateManyInput = {
@@ -493,12 +493,12 @@ export type RestaurantCreateWithoutUsersInput = {
   phone?: string | null
   theme?: string | null
   createdAt?: Date | string
-  tables?: Prisma.TableCreateNestedManyWithoutRestaurantInput
   categories?: Prisma.CategoryCreateNestedManyWithoutRestaurantInput
   menuItems?: Prisma.MenuItemCreateNestedManyWithoutRestaurantInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutRestaurantInput
   orders?: Prisma.OrderCreateNestedManyWithoutRestaurantInput
   receipts?: Prisma.ReceiptCreateNestedManyWithoutRestaurantInput
-  notifications?: Prisma.NotificationCreateNestedManyWithoutRestaurantInput
+  tables?: Prisma.TableCreateNestedManyWithoutRestaurantInput
 }
 
 export type RestaurantUncheckedCreateWithoutUsersInput = {
@@ -508,12 +508,12 @@ export type RestaurantUncheckedCreateWithoutUsersInput = {
   phone?: string | null
   theme?: string | null
   createdAt?: Date | string
-  tables?: Prisma.TableUncheckedCreateNestedManyWithoutRestaurantInput
   categories?: Prisma.CategoryUncheckedCreateNestedManyWithoutRestaurantInput
   menuItems?: Prisma.MenuItemUncheckedCreateNestedManyWithoutRestaurantInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutRestaurantInput
   orders?: Prisma.OrderUncheckedCreateNestedManyWithoutRestaurantInput
   receipts?: Prisma.ReceiptUncheckedCreateNestedManyWithoutRestaurantInput
-  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutRestaurantInput
+  tables?: Prisma.TableUncheckedCreateNestedManyWithoutRestaurantInput
 }
 
 export type RestaurantCreateOrConnectWithoutUsersInput = {
@@ -539,12 +539,12 @@ export type RestaurantUpdateWithoutUsersInput = {
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   theme?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  tables?: Prisma.TableUpdateManyWithoutRestaurantNestedInput
   categories?: Prisma.CategoryUpdateManyWithoutRestaurantNestedInput
   menuItems?: Prisma.MenuItemUpdateManyWithoutRestaurantNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutRestaurantNestedInput
   orders?: Prisma.OrderUpdateManyWithoutRestaurantNestedInput
   receipts?: Prisma.ReceiptUpdateManyWithoutRestaurantNestedInput
-  notifications?: Prisma.NotificationUpdateManyWithoutRestaurantNestedInput
+  tables?: Prisma.TableUpdateManyWithoutRestaurantNestedInput
 }
 
 export type RestaurantUncheckedUpdateWithoutUsersInput = {
@@ -554,12 +554,12 @@ export type RestaurantUncheckedUpdateWithoutUsersInput = {
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   theme?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  tables?: Prisma.TableUncheckedUpdateManyWithoutRestaurantNestedInput
   categories?: Prisma.CategoryUncheckedUpdateManyWithoutRestaurantNestedInput
   menuItems?: Prisma.MenuItemUncheckedUpdateManyWithoutRestaurantNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutRestaurantNestedInput
   orders?: Prisma.OrderUncheckedUpdateManyWithoutRestaurantNestedInput
   receipts?: Prisma.ReceiptUncheckedUpdateManyWithoutRestaurantNestedInput
-  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutRestaurantNestedInput
+  tables?: Prisma.TableUncheckedUpdateManyWithoutRestaurantNestedInput
 }
 
 export type RestaurantCreateWithoutTablesInput = {
@@ -569,12 +569,12 @@ export type RestaurantCreateWithoutTablesInput = {
   phone?: string | null
   theme?: string | null
   createdAt?: Date | string
-  users?: Prisma.UserCreateNestedManyWithoutRestaurantInput
   categories?: Prisma.CategoryCreateNestedManyWithoutRestaurantInput
   menuItems?: Prisma.MenuItemCreateNestedManyWithoutRestaurantInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutRestaurantInput
   orders?: Prisma.OrderCreateNestedManyWithoutRestaurantInput
   receipts?: Prisma.ReceiptCreateNestedManyWithoutRestaurantInput
-  notifications?: Prisma.NotificationCreateNestedManyWithoutRestaurantInput
+  users?: Prisma.UserCreateNestedManyWithoutRestaurantInput
 }
 
 export type RestaurantUncheckedCreateWithoutTablesInput = {
@@ -584,12 +584,12 @@ export type RestaurantUncheckedCreateWithoutTablesInput = {
   phone?: string | null
   theme?: string | null
   createdAt?: Date | string
-  users?: Prisma.UserUncheckedCreateNestedManyWithoutRestaurantInput
   categories?: Prisma.CategoryUncheckedCreateNestedManyWithoutRestaurantInput
   menuItems?: Prisma.MenuItemUncheckedCreateNestedManyWithoutRestaurantInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutRestaurantInput
   orders?: Prisma.OrderUncheckedCreateNestedManyWithoutRestaurantInput
   receipts?: Prisma.ReceiptUncheckedCreateNestedManyWithoutRestaurantInput
-  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutRestaurantInput
+  users?: Prisma.UserUncheckedCreateNestedManyWithoutRestaurantInput
 }
 
 export type RestaurantCreateOrConnectWithoutTablesInput = {
@@ -615,12 +615,12 @@ export type RestaurantUpdateWithoutTablesInput = {
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   theme?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  users?: Prisma.UserUpdateManyWithoutRestaurantNestedInput
   categories?: Prisma.CategoryUpdateManyWithoutRestaurantNestedInput
   menuItems?: Prisma.MenuItemUpdateManyWithoutRestaurantNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutRestaurantNestedInput
   orders?: Prisma.OrderUpdateManyWithoutRestaurantNestedInput
   receipts?: Prisma.ReceiptUpdateManyWithoutRestaurantNestedInput
-  notifications?: Prisma.NotificationUpdateManyWithoutRestaurantNestedInput
+  users?: Prisma.UserUpdateManyWithoutRestaurantNestedInput
 }
 
 export type RestaurantUncheckedUpdateWithoutTablesInput = {
@@ -630,12 +630,12 @@ export type RestaurantUncheckedUpdateWithoutTablesInput = {
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   theme?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  users?: Prisma.UserUncheckedUpdateManyWithoutRestaurantNestedInput
   categories?: Prisma.CategoryUncheckedUpdateManyWithoutRestaurantNestedInput
   menuItems?: Prisma.MenuItemUncheckedUpdateManyWithoutRestaurantNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutRestaurantNestedInput
   orders?: Prisma.OrderUncheckedUpdateManyWithoutRestaurantNestedInput
   receipts?: Prisma.ReceiptUncheckedUpdateManyWithoutRestaurantNestedInput
-  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutRestaurantNestedInput
+  users?: Prisma.UserUncheckedUpdateManyWithoutRestaurantNestedInput
 }
 
 export type RestaurantCreateWithoutCategoriesInput = {
@@ -645,12 +645,12 @@ export type RestaurantCreateWithoutCategoriesInput = {
   phone?: string | null
   theme?: string | null
   createdAt?: Date | string
-  users?: Prisma.UserCreateNestedManyWithoutRestaurantInput
-  tables?: Prisma.TableCreateNestedManyWithoutRestaurantInput
   menuItems?: Prisma.MenuItemCreateNestedManyWithoutRestaurantInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutRestaurantInput
   orders?: Prisma.OrderCreateNestedManyWithoutRestaurantInput
   receipts?: Prisma.ReceiptCreateNestedManyWithoutRestaurantInput
-  notifications?: Prisma.NotificationCreateNestedManyWithoutRestaurantInput
+  tables?: Prisma.TableCreateNestedManyWithoutRestaurantInput
+  users?: Prisma.UserCreateNestedManyWithoutRestaurantInput
 }
 
 export type RestaurantUncheckedCreateWithoutCategoriesInput = {
@@ -660,12 +660,12 @@ export type RestaurantUncheckedCreateWithoutCategoriesInput = {
   phone?: string | null
   theme?: string | null
   createdAt?: Date | string
-  users?: Prisma.UserUncheckedCreateNestedManyWithoutRestaurantInput
-  tables?: Prisma.TableUncheckedCreateNestedManyWithoutRestaurantInput
   menuItems?: Prisma.MenuItemUncheckedCreateNestedManyWithoutRestaurantInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutRestaurantInput
   orders?: Prisma.OrderUncheckedCreateNestedManyWithoutRestaurantInput
   receipts?: Prisma.ReceiptUncheckedCreateNestedManyWithoutRestaurantInput
-  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutRestaurantInput
+  tables?: Prisma.TableUncheckedCreateNestedManyWithoutRestaurantInput
+  users?: Prisma.UserUncheckedCreateNestedManyWithoutRestaurantInput
 }
 
 export type RestaurantCreateOrConnectWithoutCategoriesInput = {
@@ -691,12 +691,12 @@ export type RestaurantUpdateWithoutCategoriesInput = {
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   theme?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  users?: Prisma.UserUpdateManyWithoutRestaurantNestedInput
-  tables?: Prisma.TableUpdateManyWithoutRestaurantNestedInput
   menuItems?: Prisma.MenuItemUpdateManyWithoutRestaurantNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutRestaurantNestedInput
   orders?: Prisma.OrderUpdateManyWithoutRestaurantNestedInput
   receipts?: Prisma.ReceiptUpdateManyWithoutRestaurantNestedInput
-  notifications?: Prisma.NotificationUpdateManyWithoutRestaurantNestedInput
+  tables?: Prisma.TableUpdateManyWithoutRestaurantNestedInput
+  users?: Prisma.UserUpdateManyWithoutRestaurantNestedInput
 }
 
 export type RestaurantUncheckedUpdateWithoutCategoriesInput = {
@@ -706,12 +706,12 @@ export type RestaurantUncheckedUpdateWithoutCategoriesInput = {
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   theme?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  users?: Prisma.UserUncheckedUpdateManyWithoutRestaurantNestedInput
-  tables?: Prisma.TableUncheckedUpdateManyWithoutRestaurantNestedInput
   menuItems?: Prisma.MenuItemUncheckedUpdateManyWithoutRestaurantNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutRestaurantNestedInput
   orders?: Prisma.OrderUncheckedUpdateManyWithoutRestaurantNestedInput
   receipts?: Prisma.ReceiptUncheckedUpdateManyWithoutRestaurantNestedInput
-  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutRestaurantNestedInput
+  tables?: Prisma.TableUncheckedUpdateManyWithoutRestaurantNestedInput
+  users?: Prisma.UserUncheckedUpdateManyWithoutRestaurantNestedInput
 }
 
 export type RestaurantCreateWithoutMenuItemsInput = {
@@ -721,12 +721,12 @@ export type RestaurantCreateWithoutMenuItemsInput = {
   phone?: string | null
   theme?: string | null
   createdAt?: Date | string
-  users?: Prisma.UserCreateNestedManyWithoutRestaurantInput
-  tables?: Prisma.TableCreateNestedManyWithoutRestaurantInput
   categories?: Prisma.CategoryCreateNestedManyWithoutRestaurantInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutRestaurantInput
   orders?: Prisma.OrderCreateNestedManyWithoutRestaurantInput
   receipts?: Prisma.ReceiptCreateNestedManyWithoutRestaurantInput
-  notifications?: Prisma.NotificationCreateNestedManyWithoutRestaurantInput
+  tables?: Prisma.TableCreateNestedManyWithoutRestaurantInput
+  users?: Prisma.UserCreateNestedManyWithoutRestaurantInput
 }
 
 export type RestaurantUncheckedCreateWithoutMenuItemsInput = {
@@ -736,12 +736,12 @@ export type RestaurantUncheckedCreateWithoutMenuItemsInput = {
   phone?: string | null
   theme?: string | null
   createdAt?: Date | string
-  users?: Prisma.UserUncheckedCreateNestedManyWithoutRestaurantInput
-  tables?: Prisma.TableUncheckedCreateNestedManyWithoutRestaurantInput
   categories?: Prisma.CategoryUncheckedCreateNestedManyWithoutRestaurantInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutRestaurantInput
   orders?: Prisma.OrderUncheckedCreateNestedManyWithoutRestaurantInput
   receipts?: Prisma.ReceiptUncheckedCreateNestedManyWithoutRestaurantInput
-  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutRestaurantInput
+  tables?: Prisma.TableUncheckedCreateNestedManyWithoutRestaurantInput
+  users?: Prisma.UserUncheckedCreateNestedManyWithoutRestaurantInput
 }
 
 export type RestaurantCreateOrConnectWithoutMenuItemsInput = {
@@ -767,12 +767,12 @@ export type RestaurantUpdateWithoutMenuItemsInput = {
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   theme?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  users?: Prisma.UserUpdateManyWithoutRestaurantNestedInput
-  tables?: Prisma.TableUpdateManyWithoutRestaurantNestedInput
   categories?: Prisma.CategoryUpdateManyWithoutRestaurantNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutRestaurantNestedInput
   orders?: Prisma.OrderUpdateManyWithoutRestaurantNestedInput
   receipts?: Prisma.ReceiptUpdateManyWithoutRestaurantNestedInput
-  notifications?: Prisma.NotificationUpdateManyWithoutRestaurantNestedInput
+  tables?: Prisma.TableUpdateManyWithoutRestaurantNestedInput
+  users?: Prisma.UserUpdateManyWithoutRestaurantNestedInput
 }
 
 export type RestaurantUncheckedUpdateWithoutMenuItemsInput = {
@@ -782,12 +782,12 @@ export type RestaurantUncheckedUpdateWithoutMenuItemsInput = {
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   theme?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  users?: Prisma.UserUncheckedUpdateManyWithoutRestaurantNestedInput
-  tables?: Prisma.TableUncheckedUpdateManyWithoutRestaurantNestedInput
   categories?: Prisma.CategoryUncheckedUpdateManyWithoutRestaurantNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutRestaurantNestedInput
   orders?: Prisma.OrderUncheckedUpdateManyWithoutRestaurantNestedInput
   receipts?: Prisma.ReceiptUncheckedUpdateManyWithoutRestaurantNestedInput
-  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutRestaurantNestedInput
+  tables?: Prisma.TableUncheckedUpdateManyWithoutRestaurantNestedInput
+  users?: Prisma.UserUncheckedUpdateManyWithoutRestaurantNestedInput
 }
 
 export type RestaurantCreateWithoutOrdersInput = {
@@ -797,12 +797,12 @@ export type RestaurantCreateWithoutOrdersInput = {
   phone?: string | null
   theme?: string | null
   createdAt?: Date | string
-  users?: Prisma.UserCreateNestedManyWithoutRestaurantInput
-  tables?: Prisma.TableCreateNestedManyWithoutRestaurantInput
   categories?: Prisma.CategoryCreateNestedManyWithoutRestaurantInput
   menuItems?: Prisma.MenuItemCreateNestedManyWithoutRestaurantInput
-  receipts?: Prisma.ReceiptCreateNestedManyWithoutRestaurantInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutRestaurantInput
+  receipts?: Prisma.ReceiptCreateNestedManyWithoutRestaurantInput
+  tables?: Prisma.TableCreateNestedManyWithoutRestaurantInput
+  users?: Prisma.UserCreateNestedManyWithoutRestaurantInput
 }
 
 export type RestaurantUncheckedCreateWithoutOrdersInput = {
@@ -812,12 +812,12 @@ export type RestaurantUncheckedCreateWithoutOrdersInput = {
   phone?: string | null
   theme?: string | null
   createdAt?: Date | string
-  users?: Prisma.UserUncheckedCreateNestedManyWithoutRestaurantInput
-  tables?: Prisma.TableUncheckedCreateNestedManyWithoutRestaurantInput
   categories?: Prisma.CategoryUncheckedCreateNestedManyWithoutRestaurantInput
   menuItems?: Prisma.MenuItemUncheckedCreateNestedManyWithoutRestaurantInput
-  receipts?: Prisma.ReceiptUncheckedCreateNestedManyWithoutRestaurantInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutRestaurantInput
+  receipts?: Prisma.ReceiptUncheckedCreateNestedManyWithoutRestaurantInput
+  tables?: Prisma.TableUncheckedCreateNestedManyWithoutRestaurantInput
+  users?: Prisma.UserUncheckedCreateNestedManyWithoutRestaurantInput
 }
 
 export type RestaurantCreateOrConnectWithoutOrdersInput = {
@@ -843,12 +843,12 @@ export type RestaurantUpdateWithoutOrdersInput = {
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   theme?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  users?: Prisma.UserUpdateManyWithoutRestaurantNestedInput
-  tables?: Prisma.TableUpdateManyWithoutRestaurantNestedInput
   categories?: Prisma.CategoryUpdateManyWithoutRestaurantNestedInput
   menuItems?: Prisma.MenuItemUpdateManyWithoutRestaurantNestedInput
-  receipts?: Prisma.ReceiptUpdateManyWithoutRestaurantNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutRestaurantNestedInput
+  receipts?: Prisma.ReceiptUpdateManyWithoutRestaurantNestedInput
+  tables?: Prisma.TableUpdateManyWithoutRestaurantNestedInput
+  users?: Prisma.UserUpdateManyWithoutRestaurantNestedInput
 }
 
 export type RestaurantUncheckedUpdateWithoutOrdersInput = {
@@ -858,12 +858,12 @@ export type RestaurantUncheckedUpdateWithoutOrdersInput = {
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   theme?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  users?: Prisma.UserUncheckedUpdateManyWithoutRestaurantNestedInput
-  tables?: Prisma.TableUncheckedUpdateManyWithoutRestaurantNestedInput
   categories?: Prisma.CategoryUncheckedUpdateManyWithoutRestaurantNestedInput
   menuItems?: Prisma.MenuItemUncheckedUpdateManyWithoutRestaurantNestedInput
-  receipts?: Prisma.ReceiptUncheckedUpdateManyWithoutRestaurantNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutRestaurantNestedInput
+  receipts?: Prisma.ReceiptUncheckedUpdateManyWithoutRestaurantNestedInput
+  tables?: Prisma.TableUncheckedUpdateManyWithoutRestaurantNestedInput
+  users?: Prisma.UserUncheckedUpdateManyWithoutRestaurantNestedInput
 }
 
 export type RestaurantCreateWithoutReceiptsInput = {
@@ -873,12 +873,12 @@ export type RestaurantCreateWithoutReceiptsInput = {
   phone?: string | null
   theme?: string | null
   createdAt?: Date | string
-  users?: Prisma.UserCreateNestedManyWithoutRestaurantInput
-  tables?: Prisma.TableCreateNestedManyWithoutRestaurantInput
   categories?: Prisma.CategoryCreateNestedManyWithoutRestaurantInput
   menuItems?: Prisma.MenuItemCreateNestedManyWithoutRestaurantInput
-  orders?: Prisma.OrderCreateNestedManyWithoutRestaurantInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutRestaurantInput
+  orders?: Prisma.OrderCreateNestedManyWithoutRestaurantInput
+  tables?: Prisma.TableCreateNestedManyWithoutRestaurantInput
+  users?: Prisma.UserCreateNestedManyWithoutRestaurantInput
 }
 
 export type RestaurantUncheckedCreateWithoutReceiptsInput = {
@@ -888,12 +888,12 @@ export type RestaurantUncheckedCreateWithoutReceiptsInput = {
   phone?: string | null
   theme?: string | null
   createdAt?: Date | string
-  users?: Prisma.UserUncheckedCreateNestedManyWithoutRestaurantInput
-  tables?: Prisma.TableUncheckedCreateNestedManyWithoutRestaurantInput
   categories?: Prisma.CategoryUncheckedCreateNestedManyWithoutRestaurantInput
   menuItems?: Prisma.MenuItemUncheckedCreateNestedManyWithoutRestaurantInput
-  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutRestaurantInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutRestaurantInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutRestaurantInput
+  tables?: Prisma.TableUncheckedCreateNestedManyWithoutRestaurantInput
+  users?: Prisma.UserUncheckedCreateNestedManyWithoutRestaurantInput
 }
 
 export type RestaurantCreateOrConnectWithoutReceiptsInput = {
@@ -919,12 +919,12 @@ export type RestaurantUpdateWithoutReceiptsInput = {
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   theme?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  users?: Prisma.UserUpdateManyWithoutRestaurantNestedInput
-  tables?: Prisma.TableUpdateManyWithoutRestaurantNestedInput
   categories?: Prisma.CategoryUpdateManyWithoutRestaurantNestedInput
   menuItems?: Prisma.MenuItemUpdateManyWithoutRestaurantNestedInput
-  orders?: Prisma.OrderUpdateManyWithoutRestaurantNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutRestaurantNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutRestaurantNestedInput
+  tables?: Prisma.TableUpdateManyWithoutRestaurantNestedInput
+  users?: Prisma.UserUpdateManyWithoutRestaurantNestedInput
 }
 
 export type RestaurantUncheckedUpdateWithoutReceiptsInput = {
@@ -934,12 +934,12 @@ export type RestaurantUncheckedUpdateWithoutReceiptsInput = {
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   theme?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  users?: Prisma.UserUncheckedUpdateManyWithoutRestaurantNestedInput
-  tables?: Prisma.TableUncheckedUpdateManyWithoutRestaurantNestedInput
   categories?: Prisma.CategoryUncheckedUpdateManyWithoutRestaurantNestedInput
   menuItems?: Prisma.MenuItemUncheckedUpdateManyWithoutRestaurantNestedInput
-  orders?: Prisma.OrderUncheckedUpdateManyWithoutRestaurantNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutRestaurantNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutRestaurantNestedInput
+  tables?: Prisma.TableUncheckedUpdateManyWithoutRestaurantNestedInput
+  users?: Prisma.UserUncheckedUpdateManyWithoutRestaurantNestedInput
 }
 
 export type RestaurantCreateWithoutNotificationsInput = {
@@ -949,12 +949,12 @@ export type RestaurantCreateWithoutNotificationsInput = {
   phone?: string | null
   theme?: string | null
   createdAt?: Date | string
-  users?: Prisma.UserCreateNestedManyWithoutRestaurantInput
-  tables?: Prisma.TableCreateNestedManyWithoutRestaurantInput
   categories?: Prisma.CategoryCreateNestedManyWithoutRestaurantInput
   menuItems?: Prisma.MenuItemCreateNestedManyWithoutRestaurantInput
   orders?: Prisma.OrderCreateNestedManyWithoutRestaurantInput
   receipts?: Prisma.ReceiptCreateNestedManyWithoutRestaurantInput
+  tables?: Prisma.TableCreateNestedManyWithoutRestaurantInput
+  users?: Prisma.UserCreateNestedManyWithoutRestaurantInput
 }
 
 export type RestaurantUncheckedCreateWithoutNotificationsInput = {
@@ -964,12 +964,12 @@ export type RestaurantUncheckedCreateWithoutNotificationsInput = {
   phone?: string | null
   theme?: string | null
   createdAt?: Date | string
-  users?: Prisma.UserUncheckedCreateNestedManyWithoutRestaurantInput
-  tables?: Prisma.TableUncheckedCreateNestedManyWithoutRestaurantInput
   categories?: Prisma.CategoryUncheckedCreateNestedManyWithoutRestaurantInput
   menuItems?: Prisma.MenuItemUncheckedCreateNestedManyWithoutRestaurantInput
   orders?: Prisma.OrderUncheckedCreateNestedManyWithoutRestaurantInput
   receipts?: Prisma.ReceiptUncheckedCreateNestedManyWithoutRestaurantInput
+  tables?: Prisma.TableUncheckedCreateNestedManyWithoutRestaurantInput
+  users?: Prisma.UserUncheckedCreateNestedManyWithoutRestaurantInput
 }
 
 export type RestaurantCreateOrConnectWithoutNotificationsInput = {
@@ -995,12 +995,12 @@ export type RestaurantUpdateWithoutNotificationsInput = {
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   theme?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  users?: Prisma.UserUpdateManyWithoutRestaurantNestedInput
-  tables?: Prisma.TableUpdateManyWithoutRestaurantNestedInput
   categories?: Prisma.CategoryUpdateManyWithoutRestaurantNestedInput
   menuItems?: Prisma.MenuItemUpdateManyWithoutRestaurantNestedInput
   orders?: Prisma.OrderUpdateManyWithoutRestaurantNestedInput
   receipts?: Prisma.ReceiptUpdateManyWithoutRestaurantNestedInput
+  tables?: Prisma.TableUpdateManyWithoutRestaurantNestedInput
+  users?: Prisma.UserUpdateManyWithoutRestaurantNestedInput
 }
 
 export type RestaurantUncheckedUpdateWithoutNotificationsInput = {
@@ -1010,12 +1010,12 @@ export type RestaurantUncheckedUpdateWithoutNotificationsInput = {
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   theme?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  users?: Prisma.UserUncheckedUpdateManyWithoutRestaurantNestedInput
-  tables?: Prisma.TableUncheckedUpdateManyWithoutRestaurantNestedInput
   categories?: Prisma.CategoryUncheckedUpdateManyWithoutRestaurantNestedInput
   menuItems?: Prisma.MenuItemUncheckedUpdateManyWithoutRestaurantNestedInput
   orders?: Prisma.OrderUncheckedUpdateManyWithoutRestaurantNestedInput
   receipts?: Prisma.ReceiptUncheckedUpdateManyWithoutRestaurantNestedInput
+  tables?: Prisma.TableUncheckedUpdateManyWithoutRestaurantNestedInput
+  users?: Prisma.UserUncheckedUpdateManyWithoutRestaurantNestedInput
 }
 
 
@@ -1024,23 +1024,23 @@ export type RestaurantUncheckedUpdateWithoutNotificationsInput = {
  */
 
 export type RestaurantCountOutputType = {
-  users: number
-  tables: number
   categories: number
   menuItems: number
+  notifications: number
   orders: number
   receipts: number
-  notifications: number
+  tables: number
+  users: number
 }
 
 export type RestaurantCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  users?: boolean | RestaurantCountOutputTypeCountUsersArgs
-  tables?: boolean | RestaurantCountOutputTypeCountTablesArgs
   categories?: boolean | RestaurantCountOutputTypeCountCategoriesArgs
   menuItems?: boolean | RestaurantCountOutputTypeCountMenuItemsArgs
+  notifications?: boolean | RestaurantCountOutputTypeCountNotificationsArgs
   orders?: boolean | RestaurantCountOutputTypeCountOrdersArgs
   receipts?: boolean | RestaurantCountOutputTypeCountReceiptsArgs
-  notifications?: boolean | RestaurantCountOutputTypeCountNotificationsArgs
+  tables?: boolean | RestaurantCountOutputTypeCountTablesArgs
+  users?: boolean | RestaurantCountOutputTypeCountUsersArgs
 }
 
 /**
@@ -1051,20 +1051,6 @@ export type RestaurantCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.E
    * Select specific fields to fetch from the RestaurantCountOutputType
    */
   select?: Prisma.RestaurantCountOutputTypeSelect<ExtArgs> | null
-}
-
-/**
- * RestaurantCountOutputType without action
- */
-export type RestaurantCountOutputTypeCountUsersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.UserWhereInput
-}
-
-/**
- * RestaurantCountOutputType without action
- */
-export type RestaurantCountOutputTypeCountTablesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.TableWhereInput
 }
 
 /**
@@ -1084,6 +1070,13 @@ export type RestaurantCountOutputTypeCountMenuItemsArgs<ExtArgs extends runtime.
 /**
  * RestaurantCountOutputType without action
  */
+export type RestaurantCountOutputTypeCountNotificationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.NotificationWhereInput
+}
+
+/**
+ * RestaurantCountOutputType without action
+ */
 export type RestaurantCountOutputTypeCountOrdersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.OrderWhereInput
 }
@@ -1098,8 +1091,15 @@ export type RestaurantCountOutputTypeCountReceiptsArgs<ExtArgs extends runtime.T
 /**
  * RestaurantCountOutputType without action
  */
-export type RestaurantCountOutputTypeCountNotificationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.NotificationWhereInput
+export type RestaurantCountOutputTypeCountTablesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.TableWhereInput
+}
+
+/**
+ * RestaurantCountOutputType without action
+ */
+export type RestaurantCountOutputTypeCountUsersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.UserWhereInput
 }
 
 
@@ -1110,13 +1110,13 @@ export type RestaurantSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   phone?: boolean
   theme?: boolean
   createdAt?: boolean
-  users?: boolean | Prisma.Restaurant$usersArgs<ExtArgs>
-  tables?: boolean | Prisma.Restaurant$tablesArgs<ExtArgs>
   categories?: boolean | Prisma.Restaurant$categoriesArgs<ExtArgs>
   menuItems?: boolean | Prisma.Restaurant$menuItemsArgs<ExtArgs>
+  notifications?: boolean | Prisma.Restaurant$notificationsArgs<ExtArgs>
   orders?: boolean | Prisma.Restaurant$ordersArgs<ExtArgs>
   receipts?: boolean | Prisma.Restaurant$receiptsArgs<ExtArgs>
-  notifications?: boolean | Prisma.Restaurant$notificationsArgs<ExtArgs>
+  tables?: boolean | Prisma.Restaurant$tablesArgs<ExtArgs>
+  users?: boolean | Prisma.Restaurant$usersArgs<ExtArgs>
   _count?: boolean | Prisma.RestaurantCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["restaurant"]>
 
@@ -1149,13 +1149,13 @@ export type RestaurantSelectScalar = {
 
 export type RestaurantOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "address" | "phone" | "theme" | "createdAt", ExtArgs["result"]["restaurant"]>
 export type RestaurantInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  users?: boolean | Prisma.Restaurant$usersArgs<ExtArgs>
-  tables?: boolean | Prisma.Restaurant$tablesArgs<ExtArgs>
   categories?: boolean | Prisma.Restaurant$categoriesArgs<ExtArgs>
   menuItems?: boolean | Prisma.Restaurant$menuItemsArgs<ExtArgs>
+  notifications?: boolean | Prisma.Restaurant$notificationsArgs<ExtArgs>
   orders?: boolean | Prisma.Restaurant$ordersArgs<ExtArgs>
   receipts?: boolean | Prisma.Restaurant$receiptsArgs<ExtArgs>
-  notifications?: boolean | Prisma.Restaurant$notificationsArgs<ExtArgs>
+  tables?: boolean | Prisma.Restaurant$tablesArgs<ExtArgs>
+  users?: boolean | Prisma.Restaurant$usersArgs<ExtArgs>
   _count?: boolean | Prisma.RestaurantCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type RestaurantIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -1164,13 +1164,13 @@ export type RestaurantIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.E
 export type $RestaurantPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Restaurant"
   objects: {
-    users: Prisma.$UserPayload<ExtArgs>[]
-    tables: Prisma.$TablePayload<ExtArgs>[]
     categories: Prisma.$CategoryPayload<ExtArgs>[]
     menuItems: Prisma.$MenuItemPayload<ExtArgs>[]
+    notifications: Prisma.$NotificationPayload<ExtArgs>[]
     orders: Prisma.$OrderPayload<ExtArgs>[]
     receipts: Prisma.$ReceiptPayload<ExtArgs>[]
-    notifications: Prisma.$NotificationPayload<ExtArgs>[]
+    tables: Prisma.$TablePayload<ExtArgs>[]
+    users: Prisma.$UserPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1573,13 +1573,13 @@ readonly fields: RestaurantFieldRefs;
  */
 export interface Prisma__RestaurantClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  users<T extends Prisma.Restaurant$usersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Restaurant$usersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  tables<T extends Prisma.Restaurant$tablesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Restaurant$tablesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TablePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   categories<T extends Prisma.Restaurant$categoriesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Restaurant$categoriesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   menuItems<T extends Prisma.Restaurant$menuItemsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Restaurant$menuItemsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MenuItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  notifications<T extends Prisma.Restaurant$notificationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Restaurant$notificationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   orders<T extends Prisma.Restaurant$ordersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Restaurant$ordersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OrderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   receipts<T extends Prisma.Restaurant$receiptsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Restaurant$receiptsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ReceiptPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  notifications<T extends Prisma.Restaurant$notificationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Restaurant$notificationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  tables<T extends Prisma.Restaurant$tablesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Restaurant$tablesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TablePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  users<T extends Prisma.Restaurant$usersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Restaurant$usersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2008,54 +2008,6 @@ export type RestaurantDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.In
 }
 
 /**
- * Restaurant.users
- */
-export type Restaurant$usersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the User
-   */
-  select?: Prisma.UserSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the User
-   */
-  omit?: Prisma.UserOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.UserInclude<ExtArgs> | null
-  where?: Prisma.UserWhereInput
-  orderBy?: Prisma.UserOrderByWithRelationInput | Prisma.UserOrderByWithRelationInput[]
-  cursor?: Prisma.UserWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.UserScalarFieldEnum | Prisma.UserScalarFieldEnum[]
-}
-
-/**
- * Restaurant.tables
- */
-export type Restaurant$tablesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Table
-   */
-  select?: Prisma.TableSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Table
-   */
-  omit?: Prisma.TableOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.TableInclude<ExtArgs> | null
-  where?: Prisma.TableWhereInput
-  orderBy?: Prisma.TableOrderByWithRelationInput | Prisma.TableOrderByWithRelationInput[]
-  cursor?: Prisma.TableWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.TableScalarFieldEnum | Prisma.TableScalarFieldEnum[]
-}
-
-/**
  * Restaurant.categories
  */
 export type Restaurant$categoriesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2101,6 +2053,30 @@ export type Restaurant$menuItemsArgs<ExtArgs extends runtime.Types.Extensions.In
   take?: number
   skip?: number
   distinct?: Prisma.MenuItemScalarFieldEnum | Prisma.MenuItemScalarFieldEnum[]
+}
+
+/**
+ * Restaurant.notifications
+ */
+export type Restaurant$notificationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Notification
+   */
+  select?: Prisma.NotificationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Notification
+   */
+  omit?: Prisma.NotificationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.NotificationInclude<ExtArgs> | null
+  where?: Prisma.NotificationWhereInput
+  orderBy?: Prisma.NotificationOrderByWithRelationInput | Prisma.NotificationOrderByWithRelationInput[]
+  cursor?: Prisma.NotificationWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.NotificationScalarFieldEnum | Prisma.NotificationScalarFieldEnum[]
 }
 
 /**
@@ -2152,27 +2128,51 @@ export type Restaurant$receiptsArgs<ExtArgs extends runtime.Types.Extensions.Int
 }
 
 /**
- * Restaurant.notifications
+ * Restaurant.tables
  */
-export type Restaurant$notificationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Restaurant$tablesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Notification
+   * Select specific fields to fetch from the Table
    */
-  select?: Prisma.NotificationSelect<ExtArgs> | null
+  select?: Prisma.TableSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Notification
+   * Omit specific fields from the Table
    */
-  omit?: Prisma.NotificationOmit<ExtArgs> | null
+  omit?: Prisma.TableOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.NotificationInclude<ExtArgs> | null
-  where?: Prisma.NotificationWhereInput
-  orderBy?: Prisma.NotificationOrderByWithRelationInput | Prisma.NotificationOrderByWithRelationInput[]
-  cursor?: Prisma.NotificationWhereUniqueInput
+  include?: Prisma.TableInclude<ExtArgs> | null
+  where?: Prisma.TableWhereInput
+  orderBy?: Prisma.TableOrderByWithRelationInput | Prisma.TableOrderByWithRelationInput[]
+  cursor?: Prisma.TableWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.NotificationScalarFieldEnum | Prisma.NotificationScalarFieldEnum[]
+  distinct?: Prisma.TableScalarFieldEnum | Prisma.TableScalarFieldEnum[]
+}
+
+/**
+ * Restaurant.users
+ */
+export type Restaurant$usersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the User
+   */
+  select?: Prisma.UserSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the User
+   */
+  omit?: Prisma.UserOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
+  where?: Prisma.UserWhereInput
+  orderBy?: Prisma.UserOrderByWithRelationInput | Prisma.UserOrderByWithRelationInput[]
+  cursor?: Prisma.UserWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.UserScalarFieldEnum | Prisma.UserScalarFieldEnum[]
 }
 
 /**

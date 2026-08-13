@@ -206,11 +206,11 @@ export type UserWhereInput = {
   isActive?: Prisma.BoolFilter<"User"> | boolean
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   restaurantId?: Prisma.StringNullableFilter<"User"> | string | null
-  restaurant?: Prisma.XOR<Prisma.RestaurantNullableScalarRelationFilter, Prisma.RestaurantWhereInput> | null
-  tables?: Prisma.TableListRelationFilter
+  notifications?: Prisma.NotificationListRelationFilter
   orders?: Prisma.OrderListRelationFilter
   receipts?: Prisma.ReceiptListRelationFilter
-  notifications?: Prisma.NotificationListRelationFilter
+  tables?: Prisma.TableListRelationFilter
+  restaurant?: Prisma.XOR<Prisma.RestaurantNullableScalarRelationFilter, Prisma.RestaurantWhereInput> | null
 }
 
 export type UserOrderByWithRelationInput = {
@@ -222,11 +222,11 @@ export type UserOrderByWithRelationInput = {
   isActive?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   restaurantId?: Prisma.SortOrderInput | Prisma.SortOrder
-  restaurant?: Prisma.RestaurantOrderByWithRelationInput
-  tables?: Prisma.TableOrderByRelationAggregateInput
+  notifications?: Prisma.NotificationOrderByRelationAggregateInput
   orders?: Prisma.OrderOrderByRelationAggregateInput
   receipts?: Prisma.ReceiptOrderByRelationAggregateInput
-  notifications?: Prisma.NotificationOrderByRelationAggregateInput
+  tables?: Prisma.TableOrderByRelationAggregateInput
+  restaurant?: Prisma.RestaurantOrderByWithRelationInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -241,11 +241,11 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   isActive?: Prisma.BoolFilter<"User"> | boolean
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   restaurantId?: Prisma.StringNullableFilter<"User"> | string | null
-  restaurant?: Prisma.XOR<Prisma.RestaurantNullableScalarRelationFilter, Prisma.RestaurantWhereInput> | null
-  tables?: Prisma.TableListRelationFilter
+  notifications?: Prisma.NotificationListRelationFilter
   orders?: Prisma.OrderListRelationFilter
   receipts?: Prisma.ReceiptListRelationFilter
-  notifications?: Prisma.NotificationListRelationFilter
+  tables?: Prisma.TableListRelationFilter
+  restaurant?: Prisma.XOR<Prisma.RestaurantNullableScalarRelationFilter, Prisma.RestaurantWhereInput> | null
 }, "id" | "phone">
 
 export type UserOrderByWithAggregationInput = {
@@ -284,11 +284,11 @@ export type UserCreateInput = {
   role: $Enums.Role
   isActive?: boolean
   createdAt?: Date | string
-  restaurant?: Prisma.RestaurantCreateNestedOneWithoutUsersInput
-  tables?: Prisma.TableCreateNestedManyWithoutWaiterInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   orders?: Prisma.OrderCreateNestedManyWithoutWaiterInput
   receipts?: Prisma.ReceiptCreateNestedManyWithoutKitchenInput
-  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  tables?: Prisma.TableCreateNestedManyWithoutWaiterInput
+  restaurant?: Prisma.RestaurantCreateNestedOneWithoutUsersInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -300,10 +300,10 @@ export type UserUncheckedCreateInput = {
   isActive?: boolean
   createdAt?: Date | string
   restaurantId?: string | null
-  tables?: Prisma.TableUncheckedCreateNestedManyWithoutWaiterInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   orders?: Prisma.OrderUncheckedCreateNestedManyWithoutWaiterInput
   receipts?: Prisma.ReceiptUncheckedCreateNestedManyWithoutKitchenInput
-  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  tables?: Prisma.TableUncheckedCreateNestedManyWithoutWaiterInput
 }
 
 export type UserUpdateInput = {
@@ -314,11 +314,11 @@ export type UserUpdateInput = {
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  restaurant?: Prisma.RestaurantUpdateOneWithoutUsersNestedInput
-  tables?: Prisma.TableUpdateManyWithoutWaiterNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   orders?: Prisma.OrderUpdateManyWithoutWaiterNestedInput
   receipts?: Prisma.ReceiptUpdateManyWithoutKitchenNestedInput
-  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  tables?: Prisma.TableUpdateManyWithoutWaiterNestedInput
+  restaurant?: Prisma.RestaurantUpdateOneWithoutUsersNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -330,10 +330,10 @@ export type UserUncheckedUpdateInput = {
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   restaurantId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  tables?: Prisma.TableUncheckedUpdateManyWithoutWaiterNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   orders?: Prisma.OrderUncheckedUpdateManyWithoutWaiterNestedInput
   receipts?: Prisma.ReceiptUncheckedUpdateManyWithoutKitchenNestedInput
-  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  tables?: Prisma.TableUncheckedUpdateManyWithoutWaiterNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -550,10 +550,10 @@ export type UserCreateWithoutRestaurantInput = {
   role: $Enums.Role
   isActive?: boolean
   createdAt?: Date | string
-  tables?: Prisma.TableCreateNestedManyWithoutWaiterInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   orders?: Prisma.OrderCreateNestedManyWithoutWaiterInput
   receipts?: Prisma.ReceiptCreateNestedManyWithoutKitchenInput
-  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  tables?: Prisma.TableCreateNestedManyWithoutWaiterInput
 }
 
 export type UserUncheckedCreateWithoutRestaurantInput = {
@@ -564,10 +564,10 @@ export type UserUncheckedCreateWithoutRestaurantInput = {
   role: $Enums.Role
   isActive?: boolean
   createdAt?: Date | string
-  tables?: Prisma.TableUncheckedCreateNestedManyWithoutWaiterInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   orders?: Prisma.OrderUncheckedCreateNestedManyWithoutWaiterInput
   receipts?: Prisma.ReceiptUncheckedCreateNestedManyWithoutKitchenInput
-  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  tables?: Prisma.TableUncheckedCreateNestedManyWithoutWaiterInput
 }
 
 export type UserCreateOrConnectWithoutRestaurantInput = {
@@ -618,10 +618,10 @@ export type UserCreateWithoutTablesInput = {
   role: $Enums.Role
   isActive?: boolean
   createdAt?: Date | string
-  restaurant?: Prisma.RestaurantCreateNestedOneWithoutUsersInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   orders?: Prisma.OrderCreateNestedManyWithoutWaiterInput
   receipts?: Prisma.ReceiptCreateNestedManyWithoutKitchenInput
-  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  restaurant?: Prisma.RestaurantCreateNestedOneWithoutUsersInput
 }
 
 export type UserUncheckedCreateWithoutTablesInput = {
@@ -633,9 +633,9 @@ export type UserUncheckedCreateWithoutTablesInput = {
   isActive?: boolean
   createdAt?: Date | string
   restaurantId?: string | null
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   orders?: Prisma.OrderUncheckedCreateNestedManyWithoutWaiterInput
   receipts?: Prisma.ReceiptUncheckedCreateNestedManyWithoutKitchenInput
-  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutTablesInput = {
@@ -662,10 +662,10 @@ export type UserUpdateWithoutTablesInput = {
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  restaurant?: Prisma.RestaurantUpdateOneWithoutUsersNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   orders?: Prisma.OrderUpdateManyWithoutWaiterNestedInput
   receipts?: Prisma.ReceiptUpdateManyWithoutKitchenNestedInput
-  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  restaurant?: Prisma.RestaurantUpdateOneWithoutUsersNestedInput
 }
 
 export type UserUncheckedUpdateWithoutTablesInput = {
@@ -677,9 +677,9 @@ export type UserUncheckedUpdateWithoutTablesInput = {
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   restaurantId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   orders?: Prisma.OrderUncheckedUpdateManyWithoutWaiterNestedInput
   receipts?: Prisma.ReceiptUncheckedUpdateManyWithoutKitchenNestedInput
-  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutOrdersInput = {
@@ -690,10 +690,10 @@ export type UserCreateWithoutOrdersInput = {
   role: $Enums.Role
   isActive?: boolean
   createdAt?: Date | string
-  restaurant?: Prisma.RestaurantCreateNestedOneWithoutUsersInput
-  tables?: Prisma.TableCreateNestedManyWithoutWaiterInput
-  receipts?: Prisma.ReceiptCreateNestedManyWithoutKitchenInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  receipts?: Prisma.ReceiptCreateNestedManyWithoutKitchenInput
+  tables?: Prisma.TableCreateNestedManyWithoutWaiterInput
+  restaurant?: Prisma.RestaurantCreateNestedOneWithoutUsersInput
 }
 
 export type UserUncheckedCreateWithoutOrdersInput = {
@@ -705,9 +705,9 @@ export type UserUncheckedCreateWithoutOrdersInput = {
   isActive?: boolean
   createdAt?: Date | string
   restaurantId?: string | null
-  tables?: Prisma.TableUncheckedCreateNestedManyWithoutWaiterInput
-  receipts?: Prisma.ReceiptUncheckedCreateNestedManyWithoutKitchenInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  receipts?: Prisma.ReceiptUncheckedCreateNestedManyWithoutKitchenInput
+  tables?: Prisma.TableUncheckedCreateNestedManyWithoutWaiterInput
 }
 
 export type UserCreateOrConnectWithoutOrdersInput = {
@@ -734,10 +734,10 @@ export type UserUpdateWithoutOrdersInput = {
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  restaurant?: Prisma.RestaurantUpdateOneWithoutUsersNestedInput
-  tables?: Prisma.TableUpdateManyWithoutWaiterNestedInput
-  receipts?: Prisma.ReceiptUpdateManyWithoutKitchenNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  receipts?: Prisma.ReceiptUpdateManyWithoutKitchenNestedInput
+  tables?: Prisma.TableUpdateManyWithoutWaiterNestedInput
+  restaurant?: Prisma.RestaurantUpdateOneWithoutUsersNestedInput
 }
 
 export type UserUncheckedUpdateWithoutOrdersInput = {
@@ -749,9 +749,9 @@ export type UserUncheckedUpdateWithoutOrdersInput = {
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   restaurantId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  tables?: Prisma.TableUncheckedUpdateManyWithoutWaiterNestedInput
-  receipts?: Prisma.ReceiptUncheckedUpdateManyWithoutKitchenNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  receipts?: Prisma.ReceiptUncheckedUpdateManyWithoutKitchenNestedInput
+  tables?: Prisma.TableUncheckedUpdateManyWithoutWaiterNestedInput
 }
 
 export type UserCreateWithoutReceiptsInput = {
@@ -762,10 +762,10 @@ export type UserCreateWithoutReceiptsInput = {
   role: $Enums.Role
   isActive?: boolean
   createdAt?: Date | string
-  restaurant?: Prisma.RestaurantCreateNestedOneWithoutUsersInput
-  tables?: Prisma.TableCreateNestedManyWithoutWaiterInput
-  orders?: Prisma.OrderCreateNestedManyWithoutWaiterInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  orders?: Prisma.OrderCreateNestedManyWithoutWaiterInput
+  tables?: Prisma.TableCreateNestedManyWithoutWaiterInput
+  restaurant?: Prisma.RestaurantCreateNestedOneWithoutUsersInput
 }
 
 export type UserUncheckedCreateWithoutReceiptsInput = {
@@ -777,9 +777,9 @@ export type UserUncheckedCreateWithoutReceiptsInput = {
   isActive?: boolean
   createdAt?: Date | string
   restaurantId?: string | null
-  tables?: Prisma.TableUncheckedCreateNestedManyWithoutWaiterInput
-  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutWaiterInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutWaiterInput
+  tables?: Prisma.TableUncheckedCreateNestedManyWithoutWaiterInput
 }
 
 export type UserCreateOrConnectWithoutReceiptsInput = {
@@ -806,10 +806,10 @@ export type UserUpdateWithoutReceiptsInput = {
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  restaurant?: Prisma.RestaurantUpdateOneWithoutUsersNestedInput
-  tables?: Prisma.TableUpdateManyWithoutWaiterNestedInput
-  orders?: Prisma.OrderUpdateManyWithoutWaiterNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutWaiterNestedInput
+  tables?: Prisma.TableUpdateManyWithoutWaiterNestedInput
+  restaurant?: Prisma.RestaurantUpdateOneWithoutUsersNestedInput
 }
 
 export type UserUncheckedUpdateWithoutReceiptsInput = {
@@ -821,9 +821,9 @@ export type UserUncheckedUpdateWithoutReceiptsInput = {
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   restaurantId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  tables?: Prisma.TableUncheckedUpdateManyWithoutWaiterNestedInput
-  orders?: Prisma.OrderUncheckedUpdateManyWithoutWaiterNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutWaiterNestedInput
+  tables?: Prisma.TableUncheckedUpdateManyWithoutWaiterNestedInput
 }
 
 export type UserCreateWithoutNotificationsInput = {
@@ -834,10 +834,10 @@ export type UserCreateWithoutNotificationsInput = {
   role: $Enums.Role
   isActive?: boolean
   createdAt?: Date | string
-  restaurant?: Prisma.RestaurantCreateNestedOneWithoutUsersInput
-  tables?: Prisma.TableCreateNestedManyWithoutWaiterInput
   orders?: Prisma.OrderCreateNestedManyWithoutWaiterInput
   receipts?: Prisma.ReceiptCreateNestedManyWithoutKitchenInput
+  tables?: Prisma.TableCreateNestedManyWithoutWaiterInput
+  restaurant?: Prisma.RestaurantCreateNestedOneWithoutUsersInput
 }
 
 export type UserUncheckedCreateWithoutNotificationsInput = {
@@ -849,9 +849,9 @@ export type UserUncheckedCreateWithoutNotificationsInput = {
   isActive?: boolean
   createdAt?: Date | string
   restaurantId?: string | null
-  tables?: Prisma.TableUncheckedCreateNestedManyWithoutWaiterInput
   orders?: Prisma.OrderUncheckedCreateNestedManyWithoutWaiterInput
   receipts?: Prisma.ReceiptUncheckedCreateNestedManyWithoutKitchenInput
+  tables?: Prisma.TableUncheckedCreateNestedManyWithoutWaiterInput
 }
 
 export type UserCreateOrConnectWithoutNotificationsInput = {
@@ -878,10 +878,10 @@ export type UserUpdateWithoutNotificationsInput = {
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  restaurant?: Prisma.RestaurantUpdateOneWithoutUsersNestedInput
-  tables?: Prisma.TableUpdateManyWithoutWaiterNestedInput
   orders?: Prisma.OrderUpdateManyWithoutWaiterNestedInput
   receipts?: Prisma.ReceiptUpdateManyWithoutKitchenNestedInput
+  tables?: Prisma.TableUpdateManyWithoutWaiterNestedInput
+  restaurant?: Prisma.RestaurantUpdateOneWithoutUsersNestedInput
 }
 
 export type UserUncheckedUpdateWithoutNotificationsInput = {
@@ -893,9 +893,9 @@ export type UserUncheckedUpdateWithoutNotificationsInput = {
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   restaurantId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  tables?: Prisma.TableUncheckedUpdateManyWithoutWaiterNestedInput
   orders?: Prisma.OrderUncheckedUpdateManyWithoutWaiterNestedInput
   receipts?: Prisma.ReceiptUncheckedUpdateManyWithoutKitchenNestedInput
+  tables?: Prisma.TableUncheckedUpdateManyWithoutWaiterNestedInput
 }
 
 export type UserCreateManyRestaurantInput = {
@@ -916,10 +916,10 @@ export type UserUpdateWithoutRestaurantInput = {
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  tables?: Prisma.TableUpdateManyWithoutWaiterNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   orders?: Prisma.OrderUpdateManyWithoutWaiterNestedInput
   receipts?: Prisma.ReceiptUpdateManyWithoutKitchenNestedInput
-  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  tables?: Prisma.TableUpdateManyWithoutWaiterNestedInput
 }
 
 export type UserUncheckedUpdateWithoutRestaurantInput = {
@@ -930,10 +930,10 @@ export type UserUncheckedUpdateWithoutRestaurantInput = {
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  tables?: Prisma.TableUncheckedUpdateManyWithoutWaiterNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   orders?: Prisma.OrderUncheckedUpdateManyWithoutWaiterNestedInput
   receipts?: Prisma.ReceiptUncheckedUpdateManyWithoutKitchenNestedInput
-  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  tables?: Prisma.TableUncheckedUpdateManyWithoutWaiterNestedInput
 }
 
 export type UserUncheckedUpdateManyWithoutRestaurantInput = {
@@ -952,17 +952,17 @@ export type UserUncheckedUpdateManyWithoutRestaurantInput = {
  */
 
 export type UserCountOutputType = {
-  tables: number
+  notifications: number
   orders: number
   receipts: number
-  notifications: number
+  tables: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  tables?: boolean | UserCountOutputTypeCountTablesArgs
+  notifications?: boolean | UserCountOutputTypeCountNotificationsArgs
   orders?: boolean | UserCountOutputTypeCountOrdersArgs
   receipts?: boolean | UserCountOutputTypeCountReceiptsArgs
-  notifications?: boolean | UserCountOutputTypeCountNotificationsArgs
+  tables?: boolean | UserCountOutputTypeCountTablesArgs
 }
 
 /**
@@ -978,8 +978,8 @@ export type UserCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensi
 /**
  * UserCountOutputType without action
  */
-export type UserCountOutputTypeCountTablesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.TableWhereInput
+export type UserCountOutputTypeCountNotificationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.NotificationWhereInput
 }
 
 /**
@@ -999,8 +999,8 @@ export type UserCountOutputTypeCountReceiptsArgs<ExtArgs extends runtime.Types.E
 /**
  * UserCountOutputType without action
  */
-export type UserCountOutputTypeCountNotificationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.NotificationWhereInput
+export type UserCountOutputTypeCountTablesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.TableWhereInput
 }
 
 
@@ -1013,11 +1013,11 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   isActive?: boolean
   createdAt?: boolean
   restaurantId?: boolean
-  restaurant?: boolean | Prisma.User$restaurantArgs<ExtArgs>
-  tables?: boolean | Prisma.User$tablesArgs<ExtArgs>
+  notifications?: boolean | Prisma.User$notificationsArgs<ExtArgs>
   orders?: boolean | Prisma.User$ordersArgs<ExtArgs>
   receipts?: boolean | Prisma.User$receiptsArgs<ExtArgs>
-  notifications?: boolean | Prisma.User$notificationsArgs<ExtArgs>
+  tables?: boolean | Prisma.User$tablesArgs<ExtArgs>
+  restaurant?: boolean | Prisma.User$restaurantArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -1058,11 +1058,11 @@ export type UserSelectScalar = {
 
 export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "phone" | "passwordHash" | "role" | "isActive" | "createdAt" | "restaurantId", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  restaurant?: boolean | Prisma.User$restaurantArgs<ExtArgs>
-  tables?: boolean | Prisma.User$tablesArgs<ExtArgs>
+  notifications?: boolean | Prisma.User$notificationsArgs<ExtArgs>
   orders?: boolean | Prisma.User$ordersArgs<ExtArgs>
   receipts?: boolean | Prisma.User$receiptsArgs<ExtArgs>
-  notifications?: boolean | Prisma.User$notificationsArgs<ExtArgs>
+  tables?: boolean | Prisma.User$tablesArgs<ExtArgs>
+  restaurant?: boolean | Prisma.User$restaurantArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1075,11 +1075,11 @@ export type UserIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
 export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "User"
   objects: {
-    restaurant: Prisma.$RestaurantPayload<ExtArgs> | null
-    tables: Prisma.$TablePayload<ExtArgs>[]
+    notifications: Prisma.$NotificationPayload<ExtArgs>[]
     orders: Prisma.$OrderPayload<ExtArgs>[]
     receipts: Prisma.$ReceiptPayload<ExtArgs>[]
-    notifications: Prisma.$NotificationPayload<ExtArgs>[]
+    tables: Prisma.$TablePayload<ExtArgs>[]
+    restaurant: Prisma.$RestaurantPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1484,11 +1484,11 @@ readonly fields: UserFieldRefs;
  */
 export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  restaurant<T extends Prisma.User$restaurantArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$restaurantArgs<ExtArgs>>): Prisma.Prisma__RestaurantClient<runtime.Types.Result.GetResult<Prisma.$RestaurantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  tables<T extends Prisma.User$tablesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$tablesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TablePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  notifications<T extends Prisma.User$notificationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$notificationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   orders<T extends Prisma.User$ordersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$ordersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OrderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   receipts<T extends Prisma.User$receiptsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$receiptsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ReceiptPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  notifications<T extends Prisma.User$notificationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$notificationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  tables<T extends Prisma.User$tablesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$tablesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TablePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  restaurant<T extends Prisma.User$restaurantArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$restaurantArgs<ExtArgs>>): Prisma.Prisma__RestaurantClient<runtime.Types.Result.GetResult<Prisma.$RestaurantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1927,46 +1927,27 @@ export type UserDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Internal
 }
 
 /**
- * User.restaurant
+ * User.notifications
  */
-export type User$restaurantArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type User$notificationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Restaurant
+   * Select specific fields to fetch from the Notification
    */
-  select?: Prisma.RestaurantSelect<ExtArgs> | null
+  select?: Prisma.NotificationSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Restaurant
+   * Omit specific fields from the Notification
    */
-  omit?: Prisma.RestaurantOmit<ExtArgs> | null
+  omit?: Prisma.NotificationOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.RestaurantInclude<ExtArgs> | null
-  where?: Prisma.RestaurantWhereInput
-}
-
-/**
- * User.tables
- */
-export type User$tablesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Table
-   */
-  select?: Prisma.TableSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Table
-   */
-  omit?: Prisma.TableOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.TableInclude<ExtArgs> | null
-  where?: Prisma.TableWhereInput
-  orderBy?: Prisma.TableOrderByWithRelationInput | Prisma.TableOrderByWithRelationInput[]
-  cursor?: Prisma.TableWhereUniqueInput
+  include?: Prisma.NotificationInclude<ExtArgs> | null
+  where?: Prisma.NotificationWhereInput
+  orderBy?: Prisma.NotificationOrderByWithRelationInput | Prisma.NotificationOrderByWithRelationInput[]
+  cursor?: Prisma.NotificationWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.TableScalarFieldEnum | Prisma.TableScalarFieldEnum[]
+  distinct?: Prisma.NotificationScalarFieldEnum | Prisma.NotificationScalarFieldEnum[]
 }
 
 /**
@@ -2018,27 +1999,46 @@ export type User$receiptsArgs<ExtArgs extends runtime.Types.Extensions.InternalA
 }
 
 /**
- * User.notifications
+ * User.tables
  */
-export type User$notificationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type User$tablesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Notification
+   * Select specific fields to fetch from the Table
    */
-  select?: Prisma.NotificationSelect<ExtArgs> | null
+  select?: Prisma.TableSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Notification
+   * Omit specific fields from the Table
    */
-  omit?: Prisma.NotificationOmit<ExtArgs> | null
+  omit?: Prisma.TableOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.NotificationInclude<ExtArgs> | null
-  where?: Prisma.NotificationWhereInput
-  orderBy?: Prisma.NotificationOrderByWithRelationInput | Prisma.NotificationOrderByWithRelationInput[]
-  cursor?: Prisma.NotificationWhereUniqueInput
+  include?: Prisma.TableInclude<ExtArgs> | null
+  where?: Prisma.TableWhereInput
+  orderBy?: Prisma.TableOrderByWithRelationInput | Prisma.TableOrderByWithRelationInput[]
+  cursor?: Prisma.TableWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.NotificationScalarFieldEnum | Prisma.NotificationScalarFieldEnum[]
+  distinct?: Prisma.TableScalarFieldEnum | Prisma.TableScalarFieldEnum[]
+}
+
+/**
+ * User.restaurant
+ */
+export type User$restaurantArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Restaurant
+   */
+  select?: Prisma.RestaurantSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Restaurant
+   */
+  omit?: Prisma.RestaurantOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.RestaurantInclude<ExtArgs> | null
+  where?: Prisma.RestaurantWhereInput
 }
 
 /**

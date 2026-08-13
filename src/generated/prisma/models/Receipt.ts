@@ -256,8 +256,8 @@ export type ReceiptWhereInput = {
   kitchenId?: Prisma.StringNullableFilter<"Receipt"> | string | null
   restaurantId?: Prisma.StringFilter<"Receipt"> | string
   generatedAt?: Prisma.DateTimeFilter<"Receipt"> | Date | string
-  order?: Prisma.XOR<Prisma.OrderScalarRelationFilter, Prisma.OrderWhereInput>
   kitchen?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
+  order?: Prisma.XOR<Prisma.OrderScalarRelationFilter, Prisma.OrderWhereInput>
   restaurant?: Prisma.XOR<Prisma.RestaurantScalarRelationFilter, Prisma.RestaurantWhereInput>
 }
 
@@ -271,8 +271,8 @@ export type ReceiptOrderByWithRelationInput = {
   kitchenId?: Prisma.SortOrderInput | Prisma.SortOrder
   restaurantId?: Prisma.SortOrder
   generatedAt?: Prisma.SortOrder
-  order?: Prisma.OrderOrderByWithRelationInput
   kitchen?: Prisma.UserOrderByWithRelationInput
+  order?: Prisma.OrderOrderByWithRelationInput
   restaurant?: Prisma.RestaurantOrderByWithRelationInput
 }
 
@@ -289,8 +289,8 @@ export type ReceiptWhereUniqueInput = Prisma.AtLeast<{
   kitchenId?: Prisma.StringNullableFilter<"Receipt"> | string | null
   restaurantId?: Prisma.StringFilter<"Receipt"> | string
   generatedAt?: Prisma.DateTimeFilter<"Receipt"> | Date | string
-  order?: Prisma.XOR<Prisma.OrderScalarRelationFilter, Prisma.OrderWhereInput>
   kitchen?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
+  order?: Prisma.XOR<Prisma.OrderScalarRelationFilter, Prisma.OrderWhereInput>
   restaurant?: Prisma.XOR<Prisma.RestaurantScalarRelationFilter, Prisma.RestaurantWhereInput>
 }, "id" | "orderId">
 
@@ -333,8 +333,8 @@ export type ReceiptCreateInput = {
   tax: number
   total: number
   generatedAt?: Date | string
-  order: Prisma.OrderCreateNestedOneWithoutReceiptInput
   kitchen?: Prisma.UserCreateNestedOneWithoutReceiptsInput
+  order: Prisma.OrderCreateNestedOneWithoutReceiptInput
   restaurant: Prisma.RestaurantCreateNestedOneWithoutReceiptsInput
 }
 
@@ -357,8 +357,8 @@ export type ReceiptUpdateInput = {
   tax?: Prisma.FloatFieldUpdateOperationsInput | number
   total?: Prisma.FloatFieldUpdateOperationsInput | number
   generatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  order?: Prisma.OrderUpdateOneRequiredWithoutReceiptNestedInput
   kitchen?: Prisma.UserUpdateOneWithoutReceiptsNestedInput
+  order?: Prisma.OrderUpdateOneRequiredWithoutReceiptNestedInput
   restaurant?: Prisma.RestaurantUpdateOneRequiredWithoutReceiptsNestedInput
 }
 
@@ -656,8 +656,8 @@ export type ReceiptCreateWithoutRestaurantInput = {
   tax: number
   total: number
   generatedAt?: Date | string
-  order: Prisma.OrderCreateNestedOneWithoutReceiptInput
   kitchen?: Prisma.UserCreateNestedOneWithoutReceiptsInput
+  order: Prisma.OrderCreateNestedOneWithoutReceiptInput
 }
 
 export type ReceiptUncheckedCreateWithoutRestaurantInput = {
@@ -819,8 +819,8 @@ export type ReceiptUpdateWithoutRestaurantInput = {
   tax?: Prisma.FloatFieldUpdateOperationsInput | number
   total?: Prisma.FloatFieldUpdateOperationsInput | number
   generatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  order?: Prisma.OrderUpdateOneRequiredWithoutReceiptNestedInput
   kitchen?: Prisma.UserUpdateOneWithoutReceiptsNestedInput
+  order?: Prisma.OrderUpdateOneRequiredWithoutReceiptNestedInput
 }
 
 export type ReceiptUncheckedUpdateWithoutRestaurantInput = {
@@ -857,8 +857,8 @@ export type ReceiptSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   kitchenId?: boolean
   restaurantId?: boolean
   generatedAt?: boolean
-  order?: boolean | Prisma.OrderDefaultArgs<ExtArgs>
   kitchen?: boolean | Prisma.Receipt$kitchenArgs<ExtArgs>
+  order?: boolean | Prisma.OrderDefaultArgs<ExtArgs>
   restaurant?: boolean | Prisma.RestaurantDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["receipt"]>
 
@@ -872,8 +872,8 @@ export type ReceiptSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   kitchenId?: boolean
   restaurantId?: boolean
   generatedAt?: boolean
-  order?: boolean | Prisma.OrderDefaultArgs<ExtArgs>
   kitchen?: boolean | Prisma.Receipt$kitchenArgs<ExtArgs>
+  order?: boolean | Prisma.OrderDefaultArgs<ExtArgs>
   restaurant?: boolean | Prisma.RestaurantDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["receipt"]>
 
@@ -887,8 +887,8 @@ export type ReceiptSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   kitchenId?: boolean
   restaurantId?: boolean
   generatedAt?: boolean
-  order?: boolean | Prisma.OrderDefaultArgs<ExtArgs>
   kitchen?: boolean | Prisma.Receipt$kitchenArgs<ExtArgs>
+  order?: boolean | Prisma.OrderDefaultArgs<ExtArgs>
   restaurant?: boolean | Prisma.RestaurantDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["receipt"]>
 
@@ -906,26 +906,26 @@ export type ReceiptSelectScalar = {
 
 export type ReceiptOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "orderId" | "items" | "subtotal" | "tax" | "total" | "kitchenId" | "restaurantId" | "generatedAt", ExtArgs["result"]["receipt"]>
 export type ReceiptInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  order?: boolean | Prisma.OrderDefaultArgs<ExtArgs>
   kitchen?: boolean | Prisma.Receipt$kitchenArgs<ExtArgs>
+  order?: boolean | Prisma.OrderDefaultArgs<ExtArgs>
   restaurant?: boolean | Prisma.RestaurantDefaultArgs<ExtArgs>
 }
 export type ReceiptIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  order?: boolean | Prisma.OrderDefaultArgs<ExtArgs>
   kitchen?: boolean | Prisma.Receipt$kitchenArgs<ExtArgs>
+  order?: boolean | Prisma.OrderDefaultArgs<ExtArgs>
   restaurant?: boolean | Prisma.RestaurantDefaultArgs<ExtArgs>
 }
 export type ReceiptIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  order?: boolean | Prisma.OrderDefaultArgs<ExtArgs>
   kitchen?: boolean | Prisma.Receipt$kitchenArgs<ExtArgs>
+  order?: boolean | Prisma.OrderDefaultArgs<ExtArgs>
   restaurant?: boolean | Prisma.RestaurantDefaultArgs<ExtArgs>
 }
 
 export type $ReceiptPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Receipt"
   objects: {
-    order: Prisma.$OrderPayload<ExtArgs>
     kitchen: Prisma.$UserPayload<ExtArgs> | null
+    order: Prisma.$OrderPayload<ExtArgs>
     restaurant: Prisma.$RestaurantPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
@@ -1332,8 +1332,8 @@ readonly fields: ReceiptFieldRefs;
  */
 export interface Prisma__ReceiptClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  order<T extends Prisma.OrderDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.OrderDefaultArgs<ExtArgs>>): Prisma.Prisma__OrderClient<runtime.Types.Result.GetResult<Prisma.$OrderPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   kitchen<T extends Prisma.Receipt$kitchenArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Receipt$kitchenArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  order<T extends Prisma.OrderDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.OrderDefaultArgs<ExtArgs>>): Prisma.Prisma__OrderClient<runtime.Types.Result.GetResult<Prisma.$OrderPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   restaurant<T extends Prisma.RestaurantDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.RestaurantDefaultArgs<ExtArgs>>): Prisma.Prisma__RestaurantClient<runtime.Types.Result.GetResult<Prisma.$RestaurantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.

@@ -224,10 +224,10 @@ export type TableWhereInput = {
   status?: Prisma.StringFilter<"Table"> | string
   restaurantId?: Prisma.StringFilter<"Table"> | string
   waiterId?: Prisma.StringNullableFilter<"Table"> | string | null
+  bellCalls?: Prisma.BellCallListRelationFilter
+  orders?: Prisma.OrderListRelationFilter
   restaurant?: Prisma.XOR<Prisma.RestaurantScalarRelationFilter, Prisma.RestaurantWhereInput>
   waiter?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
-  orders?: Prisma.OrderListRelationFilter
-  bellCalls?: Prisma.BellCallListRelationFilter
 }
 
 export type TableOrderByWithRelationInput = {
@@ -237,10 +237,10 @@ export type TableOrderByWithRelationInput = {
   status?: Prisma.SortOrder
   restaurantId?: Prisma.SortOrder
   waiterId?: Prisma.SortOrderInput | Prisma.SortOrder
+  bellCalls?: Prisma.BellCallOrderByRelationAggregateInput
+  orders?: Prisma.OrderOrderByRelationAggregateInput
   restaurant?: Prisma.RestaurantOrderByWithRelationInput
   waiter?: Prisma.UserOrderByWithRelationInput
-  orders?: Prisma.OrderOrderByRelationAggregateInput
-  bellCalls?: Prisma.BellCallOrderByRelationAggregateInput
 }
 
 export type TableWhereUniqueInput = Prisma.AtLeast<{
@@ -254,10 +254,10 @@ export type TableWhereUniqueInput = Prisma.AtLeast<{
   status?: Prisma.StringFilter<"Table"> | string
   restaurantId?: Prisma.StringFilter<"Table"> | string
   waiterId?: Prisma.StringNullableFilter<"Table"> | string | null
+  bellCalls?: Prisma.BellCallListRelationFilter
+  orders?: Prisma.OrderListRelationFilter
   restaurant?: Prisma.XOR<Prisma.RestaurantScalarRelationFilter, Prisma.RestaurantWhereInput>
   waiter?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
-  orders?: Prisma.OrderListRelationFilter
-  bellCalls?: Prisma.BellCallListRelationFilter
 }, "id" | "code" | "restaurantId_number">
 
 export type TableOrderByWithAggregationInput = {
@@ -291,10 +291,10 @@ export type TableCreateInput = {
   number: number
   code: string
   status?: string
+  bellCalls?: Prisma.BellCallCreateNestedManyWithoutTableInput
+  orders?: Prisma.OrderCreateNestedManyWithoutTableInput
   restaurant: Prisma.RestaurantCreateNestedOneWithoutTablesInput
   waiter?: Prisma.UserCreateNestedOneWithoutTablesInput
-  orders?: Prisma.OrderCreateNestedManyWithoutTableInput
-  bellCalls?: Prisma.BellCallCreateNestedManyWithoutTableInput
 }
 
 export type TableUncheckedCreateInput = {
@@ -304,8 +304,8 @@ export type TableUncheckedCreateInput = {
   status?: string
   restaurantId: string
   waiterId?: string | null
-  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutTableInput
   bellCalls?: Prisma.BellCallUncheckedCreateNestedManyWithoutTableInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutTableInput
 }
 
 export type TableUpdateInput = {
@@ -313,10 +313,10 @@ export type TableUpdateInput = {
   number?: Prisma.IntFieldUpdateOperationsInput | number
   code?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.StringFieldUpdateOperationsInput | string
+  bellCalls?: Prisma.BellCallUpdateManyWithoutTableNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutTableNestedInput
   restaurant?: Prisma.RestaurantUpdateOneRequiredWithoutTablesNestedInput
   waiter?: Prisma.UserUpdateOneWithoutTablesNestedInput
-  orders?: Prisma.OrderUpdateManyWithoutTableNestedInput
-  bellCalls?: Prisma.BellCallUpdateManyWithoutTableNestedInput
 }
 
 export type TableUncheckedUpdateInput = {
@@ -326,8 +326,8 @@ export type TableUncheckedUpdateInput = {
   status?: Prisma.StringFieldUpdateOperationsInput | string
   restaurantId?: Prisma.StringFieldUpdateOperationsInput | string
   waiterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  orders?: Prisma.OrderUncheckedUpdateManyWithoutTableNestedInput
   bellCalls?: Prisma.BellCallUncheckedUpdateManyWithoutTableNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutTableNestedInput
 }
 
 export type TableCreateManyInput = {
@@ -542,9 +542,9 @@ export type TableCreateWithoutWaiterInput = {
   number: number
   code: string
   status?: string
-  restaurant: Prisma.RestaurantCreateNestedOneWithoutTablesInput
-  orders?: Prisma.OrderCreateNestedManyWithoutTableInput
   bellCalls?: Prisma.BellCallCreateNestedManyWithoutTableInput
+  orders?: Prisma.OrderCreateNestedManyWithoutTableInput
+  restaurant: Prisma.RestaurantCreateNestedOneWithoutTablesInput
 }
 
 export type TableUncheckedCreateWithoutWaiterInput = {
@@ -553,8 +553,8 @@ export type TableUncheckedCreateWithoutWaiterInput = {
   code: string
   status?: string
   restaurantId: string
-  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutTableInput
   bellCalls?: Prisma.BellCallUncheckedCreateNestedManyWithoutTableInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutTableInput
 }
 
 export type TableCreateOrConnectWithoutWaiterInput = {
@@ -600,9 +600,9 @@ export type TableCreateWithoutRestaurantInput = {
   number: number
   code: string
   status?: string
-  waiter?: Prisma.UserCreateNestedOneWithoutTablesInput
-  orders?: Prisma.OrderCreateNestedManyWithoutTableInput
   bellCalls?: Prisma.BellCallCreateNestedManyWithoutTableInput
+  orders?: Prisma.OrderCreateNestedManyWithoutTableInput
+  waiter?: Prisma.UserCreateNestedOneWithoutTablesInput
 }
 
 export type TableUncheckedCreateWithoutRestaurantInput = {
@@ -611,8 +611,8 @@ export type TableUncheckedCreateWithoutRestaurantInput = {
   code: string
   status?: string
   waiterId?: string | null
-  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutTableInput
   bellCalls?: Prisma.BellCallUncheckedCreateNestedManyWithoutTableInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutTableInput
 }
 
 export type TableCreateOrConnectWithoutRestaurantInput = {
@@ -646,9 +646,9 @@ export type TableCreateWithoutOrdersInput = {
   number: number
   code: string
   status?: string
+  bellCalls?: Prisma.BellCallCreateNestedManyWithoutTableInput
   restaurant: Prisma.RestaurantCreateNestedOneWithoutTablesInput
   waiter?: Prisma.UserCreateNestedOneWithoutTablesInput
-  bellCalls?: Prisma.BellCallCreateNestedManyWithoutTableInput
 }
 
 export type TableUncheckedCreateWithoutOrdersInput = {
@@ -682,9 +682,9 @@ export type TableUpdateWithoutOrdersInput = {
   number?: Prisma.IntFieldUpdateOperationsInput | number
   code?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.StringFieldUpdateOperationsInput | string
+  bellCalls?: Prisma.BellCallUpdateManyWithoutTableNestedInput
   restaurant?: Prisma.RestaurantUpdateOneRequiredWithoutTablesNestedInput
   waiter?: Prisma.UserUpdateOneWithoutTablesNestedInput
-  bellCalls?: Prisma.BellCallUpdateManyWithoutTableNestedInput
 }
 
 export type TableUncheckedUpdateWithoutOrdersInput = {
@@ -702,9 +702,9 @@ export type TableCreateWithoutBellCallsInput = {
   number: number
   code: string
   status?: string
+  orders?: Prisma.OrderCreateNestedManyWithoutTableInput
   restaurant: Prisma.RestaurantCreateNestedOneWithoutTablesInput
   waiter?: Prisma.UserCreateNestedOneWithoutTablesInput
-  orders?: Prisma.OrderCreateNestedManyWithoutTableInput
 }
 
 export type TableUncheckedCreateWithoutBellCallsInput = {
@@ -738,9 +738,9 @@ export type TableUpdateWithoutBellCallsInput = {
   number?: Prisma.IntFieldUpdateOperationsInput | number
   code?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.StringFieldUpdateOperationsInput | string
+  orders?: Prisma.OrderUpdateManyWithoutTableNestedInput
   restaurant?: Prisma.RestaurantUpdateOneRequiredWithoutTablesNestedInput
   waiter?: Prisma.UserUpdateOneWithoutTablesNestedInput
-  orders?: Prisma.OrderUpdateManyWithoutTableNestedInput
 }
 
 export type TableUncheckedUpdateWithoutBellCallsInput = {
@@ -766,9 +766,9 @@ export type TableUpdateWithoutWaiterInput = {
   number?: Prisma.IntFieldUpdateOperationsInput | number
   code?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.StringFieldUpdateOperationsInput | string
-  restaurant?: Prisma.RestaurantUpdateOneRequiredWithoutTablesNestedInput
-  orders?: Prisma.OrderUpdateManyWithoutTableNestedInput
   bellCalls?: Prisma.BellCallUpdateManyWithoutTableNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutTableNestedInput
+  restaurant?: Prisma.RestaurantUpdateOneRequiredWithoutTablesNestedInput
 }
 
 export type TableUncheckedUpdateWithoutWaiterInput = {
@@ -777,8 +777,8 @@ export type TableUncheckedUpdateWithoutWaiterInput = {
   code?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.StringFieldUpdateOperationsInput | string
   restaurantId?: Prisma.StringFieldUpdateOperationsInput | string
-  orders?: Prisma.OrderUncheckedUpdateManyWithoutTableNestedInput
   bellCalls?: Prisma.BellCallUncheckedUpdateManyWithoutTableNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutTableNestedInput
 }
 
 export type TableUncheckedUpdateManyWithoutWaiterInput = {
@@ -802,9 +802,9 @@ export type TableUpdateWithoutRestaurantInput = {
   number?: Prisma.IntFieldUpdateOperationsInput | number
   code?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.StringFieldUpdateOperationsInput | string
-  waiter?: Prisma.UserUpdateOneWithoutTablesNestedInput
-  orders?: Prisma.OrderUpdateManyWithoutTableNestedInput
   bellCalls?: Prisma.BellCallUpdateManyWithoutTableNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutTableNestedInput
+  waiter?: Prisma.UserUpdateOneWithoutTablesNestedInput
 }
 
 export type TableUncheckedUpdateWithoutRestaurantInput = {
@@ -813,8 +813,8 @@ export type TableUncheckedUpdateWithoutRestaurantInput = {
   code?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.StringFieldUpdateOperationsInput | string
   waiterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  orders?: Prisma.OrderUncheckedUpdateManyWithoutTableNestedInput
   bellCalls?: Prisma.BellCallUncheckedUpdateManyWithoutTableNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutTableNestedInput
 }
 
 export type TableUncheckedUpdateManyWithoutRestaurantInput = {
@@ -831,13 +831,13 @@ export type TableUncheckedUpdateManyWithoutRestaurantInput = {
  */
 
 export type TableCountOutputType = {
-  orders: number
   bellCalls: number
+  orders: number
 }
 
 export type TableCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  orders?: boolean | TableCountOutputTypeCountOrdersArgs
   bellCalls?: boolean | TableCountOutputTypeCountBellCallsArgs
+  orders?: boolean | TableCountOutputTypeCountOrdersArgs
 }
 
 /**
@@ -853,15 +853,15 @@ export type TableCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extens
 /**
  * TableCountOutputType without action
  */
-export type TableCountOutputTypeCountOrdersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.OrderWhereInput
+export type TableCountOutputTypeCountBellCallsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.BellCallWhereInput
 }
 
 /**
  * TableCountOutputType without action
  */
-export type TableCountOutputTypeCountBellCallsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.BellCallWhereInput
+export type TableCountOutputTypeCountOrdersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.OrderWhereInput
 }
 
 
@@ -872,10 +872,10 @@ export type TableSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   status?: boolean
   restaurantId?: boolean
   waiterId?: boolean
+  bellCalls?: boolean | Prisma.Table$bellCallsArgs<ExtArgs>
+  orders?: boolean | Prisma.Table$ordersArgs<ExtArgs>
   restaurant?: boolean | Prisma.RestaurantDefaultArgs<ExtArgs>
   waiter?: boolean | Prisma.Table$waiterArgs<ExtArgs>
-  orders?: boolean | Prisma.Table$ordersArgs<ExtArgs>
-  bellCalls?: boolean | Prisma.Table$bellCallsArgs<ExtArgs>
   _count?: boolean | Prisma.TableCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["table"]>
 
@@ -912,10 +912,10 @@ export type TableSelectScalar = {
 
 export type TableOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "number" | "code" | "status" | "restaurantId" | "waiterId", ExtArgs["result"]["table"]>
 export type TableInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  bellCalls?: boolean | Prisma.Table$bellCallsArgs<ExtArgs>
+  orders?: boolean | Prisma.Table$ordersArgs<ExtArgs>
   restaurant?: boolean | Prisma.RestaurantDefaultArgs<ExtArgs>
   waiter?: boolean | Prisma.Table$waiterArgs<ExtArgs>
-  orders?: boolean | Prisma.Table$ordersArgs<ExtArgs>
-  bellCalls?: boolean | Prisma.Table$bellCallsArgs<ExtArgs>
   _count?: boolean | Prisma.TableCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type TableIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -930,10 +930,10 @@ export type TableIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
 export type $TablePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Table"
   objects: {
+    bellCalls: Prisma.$BellCallPayload<ExtArgs>[]
+    orders: Prisma.$OrderPayload<ExtArgs>[]
     restaurant: Prisma.$RestaurantPayload<ExtArgs>
     waiter: Prisma.$UserPayload<ExtArgs> | null
-    orders: Prisma.$OrderPayload<ExtArgs>[]
-    bellCalls: Prisma.$BellCallPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1336,10 +1336,10 @@ readonly fields: TableFieldRefs;
  */
 export interface Prisma__TableClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  bellCalls<T extends Prisma.Table$bellCallsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Table$bellCallsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BellCallPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  orders<T extends Prisma.Table$ordersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Table$ordersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OrderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   restaurant<T extends Prisma.RestaurantDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.RestaurantDefaultArgs<ExtArgs>>): Prisma.Prisma__RestaurantClient<runtime.Types.Result.GetResult<Prisma.$RestaurantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   waiter<T extends Prisma.Table$waiterArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Table$waiterArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  orders<T extends Prisma.Table$ordersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Table$ordersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OrderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  bellCalls<T extends Prisma.Table$bellCallsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Table$bellCallsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BellCallPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1776,22 +1776,27 @@ export type TableDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Interna
 }
 
 /**
- * Table.waiter
+ * Table.bellCalls
  */
-export type Table$waiterArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Table$bellCallsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the User
+   * Select specific fields to fetch from the BellCall
    */
-  select?: Prisma.UserSelect<ExtArgs> | null
+  select?: Prisma.BellCallSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the User
+   * Omit specific fields from the BellCall
    */
-  omit?: Prisma.UserOmit<ExtArgs> | null
+  omit?: Prisma.BellCallOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.UserInclude<ExtArgs> | null
-  where?: Prisma.UserWhereInput
+  include?: Prisma.BellCallInclude<ExtArgs> | null
+  where?: Prisma.BellCallWhereInput
+  orderBy?: Prisma.BellCallOrderByWithRelationInput | Prisma.BellCallOrderByWithRelationInput[]
+  cursor?: Prisma.BellCallWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.BellCallScalarFieldEnum | Prisma.BellCallScalarFieldEnum[]
 }
 
 /**
@@ -1819,27 +1824,22 @@ export type Table$ordersArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
 }
 
 /**
- * Table.bellCalls
+ * Table.waiter
  */
-export type Table$bellCallsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Table$waiterArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the BellCall
+   * Select specific fields to fetch from the User
    */
-  select?: Prisma.BellCallSelect<ExtArgs> | null
+  select?: Prisma.UserSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the BellCall
+   * Omit specific fields from the User
    */
-  omit?: Prisma.BellCallOmit<ExtArgs> | null
+  omit?: Prisma.UserOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.BellCallInclude<ExtArgs> | null
-  where?: Prisma.BellCallWhereInput
-  orderBy?: Prisma.BellCallOrderByWithRelationInput | Prisma.BellCallOrderByWithRelationInput[]
-  cursor?: Prisma.BellCallWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.BellCallScalarFieldEnum | Prisma.BellCallScalarFieldEnum[]
+  include?: Prisma.UserInclude<ExtArgs> | null
+  where?: Prisma.UserWhereInput
 }
 
 /**
