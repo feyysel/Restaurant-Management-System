@@ -82,7 +82,7 @@ export default function LoginPage() {
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
                   className="pl-10"
-                  placeholder="09171234567"
+                  placeholder="0982101908"
                 />
               </div>
             </div>
@@ -136,12 +136,12 @@ export default function LoginPage() {
               <button
                 type="button"
                 onClick={() => {
-                  setPhone("09171234567");
+                  setPhone("0982101908");
                   setPassword("admin123");
                 }}
                 className="flex items-center justify-between rounded-lg px-2 py-1.5 text-left transition-colors hover:bg-white/5 hover:text-gold-light"
               >
-                <span>Admin</span> <span className="text-zinc-500">09171234567</span>
+                <span>Admin</span> <span className="text-zinc-500">0982101908</span>
               </button>
               <button
                 type="button"

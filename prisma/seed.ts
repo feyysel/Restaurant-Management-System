@@ -12,11 +12,11 @@ async function main() {
   console.log("Seeding database...");
 
   const admin = await prisma.user.upsert({
-    where: { phone: "09171234567" },
+    where: { phone: "0982101908" },
     update: {},
     create: {
-      name: "Alex Rivera",
-      phone: "09171234567",
+      name: "Feysel Awel",
+      phone: "0982101908",
       passwordHash: await hash("admin123", 10),
       role: "ADMIN",
     },
@@ -151,7 +151,7 @@ async function main() {
 
   console.log("Seed complete.");
   console.log("Logins:");
-  console.log("  09171234567        / admin123");
+  console.log("  0982101908        / admin123");
   console.log("  09171234568        / manager123");
   console.log("  09171234569        / waiter123");
   console.log("  09171234571        / kitchen123");

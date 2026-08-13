@@ -157,7 +157,7 @@ export default function ManagerEmployees() {
             </div>
             <div>
               <Label htmlFor="e-phone">Phone number</Label>
-              <Input id="e-phone" type="tel" inputMode="tel" required value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="09171234567" />
+              <Input id="e-phone" type="tel" inputMode="tel" required value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="0982101908" />
             </div>
           </div>
           <div>

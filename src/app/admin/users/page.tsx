@@ -218,7 +218,7 @@ export default function AdminUsers() {
             </div>
             <div>
               <Label htmlFor="u-phone">Phone number</Label>
-              <Input id="u-phone" type="tel" inputMode="tel" required value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="09171234567" />
+              <Input id="u-phone" type="tel" inputMode="tel" required value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="0982101908" />
             </div>
           </div>
           <div>
