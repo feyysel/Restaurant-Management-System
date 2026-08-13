@@ -1,11 +1,11 @@
 import type { Role } from "@/generated/prisma/client";
 import { prisma } from "@/lib/prisma";
-import { persistEvent } from "@/lib/realtime";
+import { persistEvent, type Channel } from "@/lib/realtime";
 
 type NotifyInput = {
   userId?: string;
   role?: Role;
-  restaurantId: string;
+  restaurantId?: string | null;
   type: string;
   title: string;
   body: string;
@@ -20,24 +20,28 @@ export async function notify(input: NotifyInput) {
     data: {
       userId: userId ?? null,
       role: role ?? null,
-      restaurantId,
+      restaurantId: restaurantId ?? null,
       ...rest,
     },
   });
 
-  const channel = userId
-    ? ({ scope: "user", userId } as const)
-    : ({ scope: "restaurant", restaurantId } as const);
+  const channel: Channel | null = userId
+    ? { scope: "user", userId }
+    : restaurantId
+      ? { scope: "restaurant", restaurantId }
+      : null;
 
-  await persistEvent(channel, input.type, {
-    id: notif.id,
-    title: notif.title,
-    body: notif.body,
-    type: notif.type,
-    orderId: notif.orderId ?? null,
-    tableId: notif.tableId ?? null,
-    createdAt: notif.createdAt.toISOString(),
-  });
+  if (channel) {
+    await persistEvent(channel, input.type, {
+      id: notif.id,
+      title: notif.title,
+      body: notif.body,
+      type: notif.type,
+      orderId: notif.orderId ?? null,
+      tableId: notif.tableId ?? null,
+      createdAt: notif.createdAt.toISOString(),
+    });
+  }
 
   return notif;
 }

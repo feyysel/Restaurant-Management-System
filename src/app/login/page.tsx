@@ -63,7 +63,7 @@ export default function LoginPage() {
             Welcome back
           </h1>
           <p className="mt-2 text-sm text-zinc-400">
-            Sign in to your workspace — <span className="gold-gradient-text font-medium">Plateform</span>
+            Sign in to your workspace — <span className="gold-gradient-text font-medium">Platform</span>
           </p>
         </div>
 

@@ -9,7 +9,6 @@ export function useFetch<T>(url: string | null, deps: unknown[] = []) {
   const refresh = React.useCallback(async () => {
     if (!url) return;
     try {
-      setLoading(true);
       const res = await fetch(url);
       if (!res.ok) {
         const d = await res.json().catch(() => null);

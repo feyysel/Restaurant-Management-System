@@ -33,6 +33,11 @@ export async function persistEvent(
         ...(payload == null ? {} : { payload: payload as object }),
       },
     });
+
+    if (Math.random() < 0.002) {
+      const cutoff = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
+      await prisma.eventLog.deleteMany({ where: { createdAt: { lt: cutoff } } });
+    }
   } catch (err) {
     console.error("persistEvent failed", err);
   }

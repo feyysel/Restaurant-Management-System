@@ -80,6 +80,8 @@ export function useRealtime(
     let since = new Date(Date.now() - 1000).toISOString();
     const seen = new Set<string>();
 
+    let interval: ReturnType<typeof setInterval> | undefined;
+
     async function poll() {
       try {
         params.set("since", since);
@@ -113,11 +115,34 @@ export function useRealtime(
       }
     }
 
-    poll();
-    const interval = setInterval(poll, POLL_INTERVAL);
+    function start() {
+      if (interval) return;
+      poll();
+      interval = setInterval(poll, POLL_INTERVAL);
+    }
+
+    function stop() {
+      if (interval) {
+        clearInterval(interval);
+        interval = undefined;
+      }
+    }
+
+    function onVisibility() {
+      if (document.hidden) {
+        stop();
+      } else {
+        start();
+      }
+    }
+
+    document.addEventListener("visibilitychange", onVisibility);
+    if (!document.hidden) start();
+
     return () => {
       cancelled = true;
-      clearInterval(interval);
+      stop();
+      document.removeEventListener("visibilitychange", onVisibility);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [channelKey]);

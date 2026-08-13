@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { requireRoles } from "@/lib/guard";
-import { emitAdmin } from "@/lib/notify";
+import { notify, emitAdmin } from "@/lib/notify";
 
 export const runtime = "nodejs";
 
@@ -46,6 +46,22 @@ export async function POST(req: Request) {
       id: request.id,
       name: request.name,
     });
+
+    const admins = await prisma.user.findMany({
+      where: { role: "ADMIN" },
+      select: { id: true },
+    });
+    await Promise.all(
+      admins.map((admin) =>
+        notify({
+          userId: admin.id,
+          restaurantId: null,
+          type: "BRANCH_REQUEST_NEW",
+          title: "New branch request",
+          body: `${session.name} requested a new branch "${request.name}".`,
+        })
+      )
+    );
 
     return NextResponse.json({ request }, { status: 201 });
   } catch (err) {

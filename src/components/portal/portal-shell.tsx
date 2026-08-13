@@ -68,6 +68,7 @@ const NOTIFY_TOAST: Record<string, { title: string; tone: "default" | "success" 
   MENU_UPDATE: { title: "Menu updated", tone: "default" },
   BRANCH_APPROVED: { title: "Branch approved", tone: "success" },
   BRANCH_REJECTED: { title: "Branch request declined", tone: "error" },
+  BRANCH_REQUEST_NEW: { title: "New branch request", tone: "default" },
 };
 
 export function PortalShell({

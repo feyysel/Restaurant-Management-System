@@ -166,22 +166,22 @@ model BellCall {
 }
 
 model Notification {
-  id           String     @id @default(cuid())
+  id           String       @id @default(cuid())
   userId       String?
   role         Role?
-  restaurantId String
+  restaurantId String?
   type         String
   title        String
   body         String
-  read         Boolean    @default(false)
+  read         Boolean      @default(false)
   orderId      String?
   tableId      String?
-  createdAt    DateTime   @default(now())
-  restaurant   Restaurant @relation(fields: [restaurantId], references: [id], onDelete: Cascade)
-  user         User?      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt    DateTime     @default(now())
+  restaurant   Restaurant?  @relation(fields: [restaurantId], references: [id], onDelete: Cascade)
+  user         User?        @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([restaurantId, createdAt])
-  @@index([userId])
+  @@index([userId, createdAt])
 }
 
 model EventLog {

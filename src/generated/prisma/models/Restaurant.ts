@@ -584,10 +584,12 @@ export type RestaurantCreateNestedOneWithoutNotificationsInput = {
   connect?: Prisma.RestaurantWhereUniqueInput
 }
 
-export type RestaurantUpdateOneRequiredWithoutNotificationsNestedInput = {
+export type RestaurantUpdateOneWithoutNotificationsNestedInput = {
   create?: Prisma.XOR<Prisma.RestaurantCreateWithoutNotificationsInput, Prisma.RestaurantUncheckedCreateWithoutNotificationsInput>
   connectOrCreate?: Prisma.RestaurantCreateOrConnectWithoutNotificationsInput
   upsert?: Prisma.RestaurantUpsertWithoutNotificationsInput
+  disconnect?: Prisma.RestaurantWhereInput | boolean
+  delete?: Prisma.RestaurantWhereInput | boolean
   connect?: Prisma.RestaurantWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.RestaurantUpdateToOneWithWhereWithoutNotificationsInput, Prisma.RestaurantUpdateWithoutNotificationsInput>, Prisma.RestaurantUncheckedUpdateWithoutNotificationsInput>
 }
