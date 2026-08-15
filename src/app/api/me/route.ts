@@ -16,7 +16,7 @@ export async function GET(req: Request) {
       phone: true,
       role: true,
       restaurantId: true,
-      restaurant: { select: { id: true, name: true, theme: true } },
+      restaurant: { select: { id: true, name: true, theme: true, logoUrl: true } },
     },
   });
 

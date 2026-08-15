@@ -10,6 +10,7 @@ const NAV: NavItem[] = [
   { label: "Employees", href: "/manager/employees", icon: "Users" },
   { label: "Menu", href: "/manager/menu", icon: "UtensilsCrossed" },
   { label: "Tables", href: "/manager/tables", icon: "Grid3X3" },
+  { label: "Settings", href: "/manager/settings", icon: "Settings" },
 ];
 
 export default async function ManagerLayout({ children }: LayoutProps<"/manager">) {
@@ -18,12 +19,14 @@ export default async function ManagerLayout({ children }: LayoutProps<"/manager"
   if (session.role !== "MANAGER") redirect(ROLE_HOME[session.role] ?? "/login");
 
   let restaurantName: string | null = null;
+  let restaurantLogo: string | null = null;
   if (session.restaurantId) {
     const restaurant = await prisma.restaurant.findUnique({
       where: { id: session.restaurantId },
-      select: { name: true },
+      select: { name: true, logoUrl: true },
     });
     restaurantName = restaurant?.name ?? null;
+    restaurantLogo = restaurant?.logoUrl ?? null;
   }
 
   return (
@@ -36,6 +39,7 @@ export default async function ManagerLayout({ children }: LayoutProps<"/manager"
         restaurantId: session.restaurantId,
       }}
       restaurantName={restaurantName}
+      restaurantLogo={restaurantLogo}
       nav={NAV}
     >
       {children}

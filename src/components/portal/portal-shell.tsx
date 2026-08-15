@@ -18,6 +18,7 @@ import {
   Menu,
   Radio,
   ReceiptText,
+  Settings,
   Store,
   Users,
   UtensilsCrossed,
@@ -45,6 +46,7 @@ export const NAV_ICONS = {
   Grid3X3,
   Wallet,
   Coins,
+  Settings,
 } as const;
 
 export type NavItem = {
@@ -59,6 +61,35 @@ const ROLE_ICON: Record<string, React.ComponentType<{ className?: string }>> = {
   KITCHEN: ChefHat,
   WAITER: UtensilsCrossed,
 };
+
+function RestaurantLogo({
+  logoUrl,
+  size = "md",
+}: {
+  logoUrl?: string | null;
+  size?: "sm" | "md";
+}) {
+  const wrap = size === "sm" ? "h-8 w-8 rounded-xl" : "h-11 w-11 rounded-2xl";
+  const icon = size === "sm" ? "h-4 w-4" : "h-5 w-5";
+  const shadow = "shadow-[0_8px_30px_-8px_rgba(212,163,75,0.6)]";
+  if (logoUrl) {
+    return (
+      // eslint-disable-next-line @next/next/no-img-element
+      <img
+        src={logoUrl}
+        alt="Restaurant logo"
+        className={`${wrap} shrink-0 border border-white/10 object-cover ${shadow}`}
+      />
+    );
+  }
+  return (
+    <div
+      className={`${wrap} flex shrink-0 items-center justify-center bg-gradient-to-br from-gold to-gold-dark ${shadow}`}
+    >
+      <UtensilsCrossed className={`${icon} text-zinc-950`} />
+    </div>
+  );
+}
 
 const NOTIFY_TOAST: Record<string, { title: string; tone: "default" | "success" | "error" }> = {
   ORDER_NEW: { title: "New order", tone: "success" },
@@ -75,6 +106,7 @@ const NOTIFY_TOAST: Record<string, { title: string; tone: "default" | "success" 
 export function PortalShell({
   user,
   restaurantName,
+  restaurantLogo,
   nav,
   children,
 }: {
@@ -86,6 +118,7 @@ export function PortalShell({
     restaurantId: string | null;
   };
   restaurantName: string | null;
+  restaurantLogo?: string | null;
   nav: NavItem[];
   children: React.ReactNode;
 }) {
@@ -159,9 +192,7 @@ export function PortalShell({
   const sidebar = (
     <div className="flex h-full flex-col">
       <div className="flex items-center gap-3 px-6 pb-6 pt-7">
-        <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-gold to-gold-dark shadow-[0_8px_30px_-8px_rgba(212,163,75,0.6)]">
-          <UtensilsCrossed className="h-5 w-5 text-zinc-950" />
-        </div>
+        <RestaurantLogo logoUrl={restaurantLogo} />
         <div>
           <p className="font-display text-lg font-semibold leading-none tracking-tight">
             <span className="gold-gradient-text">Plateform</span>
@@ -270,9 +301,7 @@ export function PortalShell({
         </button>
 
         <div className="flex items-center gap-2.5 lg:hidden">
-          <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-gradient-to-br from-gold to-gold-dark">
-            <UtensilsCrossed className="h-4 w-4 text-zinc-950" />
-          </div>
+          <RestaurantLogo logoUrl={restaurantLogo} size="sm" />
           <p className="font-display text-base font-semibold">
             <span className="gold-gradient-text">Plateform</span>
           </p>
@@ -364,7 +393,11 @@ export function PortalShell({
           </div>
 
           <div className="hidden items-center gap-2.5 sm:flex">
-            <Avatar name={user.name} className="h-8 w-8 text-xs" />
+            {restaurantLogo ? (
+              <RestaurantLogo logoUrl={restaurantLogo} size="sm" />
+            ) : (
+              <Avatar name={user.name} className="h-8 w-8 text-xs" />
+            )}
             <div className="leading-tight">
               <p className="text-sm font-medium text-zinc-100">{user.name}</p>
               <p className="text-[11px] capitalize text-zinc-500">{user.role.toLowerCase()}</p>

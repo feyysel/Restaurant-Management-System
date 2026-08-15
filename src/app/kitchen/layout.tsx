@@ -15,12 +15,14 @@ export default async function KitchenLayout({ children }: LayoutProps<"/kitchen"
   if (session.role !== "KITCHEN") redirect(ROLE_HOME[session.role] ?? "/login");
 
   let restaurantName: string | null = null;
+  let restaurantLogo: string | null = null;
   if (session.restaurantId) {
     const restaurant = await prisma.restaurant.findUnique({
       where: { id: session.restaurantId },
-      select: { name: true },
+      select: { name: true, logoUrl: true },
     });
     restaurantName = restaurant?.name ?? null;
+    restaurantLogo = restaurant?.logoUrl ?? null;
   }
 
   return (
@@ -33,6 +35,7 @@ export default async function KitchenLayout({ children }: LayoutProps<"/kitchen"
         restaurantId: session.restaurantId,
       }}
       restaurantName={restaurantName}
+      restaurantLogo={restaurantLogo}
       nav={NAV}
     >
       {children}

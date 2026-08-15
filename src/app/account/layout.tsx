@@ -15,12 +15,14 @@ export default async function AccountLayout({ children }: { children: React.Reac
   const nav = NAV.map((item) => ({ ...item, href: home }));
 
   let restaurantName: string | null = null;
+  let restaurantLogo: string | null = null;
   if (session.restaurantId) {
     const restaurant = await prisma.restaurant.findUnique({
       where: { id: session.restaurantId },
-      select: { name: true },
+      select: { name: true, logoUrl: true },
     });
     restaurantName = restaurant?.name ?? null;
+    restaurantLogo = restaurant?.logoUrl ?? null;
   }
 
   return (
@@ -34,6 +36,7 @@ export default async function AccountLayout({ children }: { children: React.Reac
           restaurantId: session.restaurantId,
         }}
         restaurantName={restaurantName}
+        restaurantLogo={restaurantLogo}
         nav={nav}
       >
         {children}

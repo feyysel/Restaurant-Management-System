@@ -31,6 +31,7 @@ model Restaurant {
   address       String?
   phone         String?
   theme         String?
+  logoUrl       String?
   parentId      String?
   parent        Restaurant?      @relation("RestaurantBranches", fields: [parentId], references: [id], onDelete: SetNull)
   branches      Restaurant[]     @relation("RestaurantBranches")

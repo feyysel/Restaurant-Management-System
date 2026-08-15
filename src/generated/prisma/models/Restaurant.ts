@@ -30,6 +30,7 @@ export type RestaurantMinAggregateOutputType = {
   address: string | null
   phone: string | null
   theme: string | null
+  logoUrl: string | null
   parentId: string | null
   createdAt: Date | null
 }
@@ -40,6 +41,7 @@ export type RestaurantMaxAggregateOutputType = {
   address: string | null
   phone: string | null
   theme: string | null
+  logoUrl: string | null
   parentId: string | null
   createdAt: Date | null
 }
@@ -50,6 +52,7 @@ export type RestaurantCountAggregateOutputType = {
   address: number
   phone: number
   theme: number
+  logoUrl: number
   parentId: number
   createdAt: number
   _all: number
@@ -62,6 +65,7 @@ export type RestaurantMinAggregateInputType = {
   address?: true
   phone?: true
   theme?: true
+  logoUrl?: true
   parentId?: true
   createdAt?: true
 }
@@ -72,6 +76,7 @@ export type RestaurantMaxAggregateInputType = {
   address?: true
   phone?: true
   theme?: true
+  logoUrl?: true
   parentId?: true
   createdAt?: true
 }
@@ -82,6 +87,7 @@ export type RestaurantCountAggregateInputType = {
   address?: true
   phone?: true
   theme?: true
+  logoUrl?: true
   parentId?: true
   createdAt?: true
   _all?: true
@@ -165,6 +171,7 @@ export type RestaurantGroupByOutputType = {
   address: string | null
   phone: string | null
   theme: string | null
+  logoUrl: string | null
   parentId: string | null
   createdAt: Date
   _count: RestaurantCountAggregateOutputType | null
@@ -196,6 +203,7 @@ export type RestaurantWhereInput = {
   address?: Prisma.StringNullableFilter<"Restaurant"> | string | null
   phone?: Prisma.StringNullableFilter<"Restaurant"> | string | null
   theme?: Prisma.StringNullableFilter<"Restaurant"> | string | null
+  logoUrl?: Prisma.StringNullableFilter<"Restaurant"> | string | null
   parentId?: Prisma.StringNullableFilter<"Restaurant"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Restaurant"> | Date | string
   parent?: Prisma.XOR<Prisma.RestaurantNullableScalarRelationFilter, Prisma.RestaurantWhereInput> | null
@@ -216,6 +224,7 @@ export type RestaurantOrderByWithRelationInput = {
   address?: Prisma.SortOrderInput | Prisma.SortOrder
   phone?: Prisma.SortOrderInput | Prisma.SortOrder
   theme?: Prisma.SortOrderInput | Prisma.SortOrder
+  logoUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   parentId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   parent?: Prisma.RestaurantOrderByWithRelationInput
@@ -239,6 +248,7 @@ export type RestaurantWhereUniqueInput = Prisma.AtLeast<{
   address?: Prisma.StringNullableFilter<"Restaurant"> | string | null
   phone?: Prisma.StringNullableFilter<"Restaurant"> | string | null
   theme?: Prisma.StringNullableFilter<"Restaurant"> | string | null
+  logoUrl?: Prisma.StringNullableFilter<"Restaurant"> | string | null
   parentId?: Prisma.StringNullableFilter<"Restaurant"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Restaurant"> | Date | string
   parent?: Prisma.XOR<Prisma.RestaurantNullableScalarRelationFilter, Prisma.RestaurantWhereInput> | null
@@ -259,6 +269,7 @@ export type RestaurantOrderByWithAggregationInput = {
   address?: Prisma.SortOrderInput | Prisma.SortOrder
   phone?: Prisma.SortOrderInput | Prisma.SortOrder
   theme?: Prisma.SortOrderInput | Prisma.SortOrder
+  logoUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   parentId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   _count?: Prisma.RestaurantCountOrderByAggregateInput
@@ -275,6 +286,7 @@ export type RestaurantScalarWhereWithAggregatesInput = {
   address?: Prisma.StringNullableWithAggregatesFilter<"Restaurant"> | string | null
   phone?: Prisma.StringNullableWithAggregatesFilter<"Restaurant"> | string | null
   theme?: Prisma.StringNullableWithAggregatesFilter<"Restaurant"> | string | null
+  logoUrl?: Prisma.StringNullableWithAggregatesFilter<"Restaurant"> | string | null
   parentId?: Prisma.StringNullableWithAggregatesFilter<"Restaurant"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Restaurant"> | Date | string
 }
@@ -285,6 +297,7 @@ export type RestaurantCreateInput = {
   address?: string | null
   phone?: string | null
   theme?: string | null
+  logoUrl?: string | null
   createdAt?: Date | string
   parent?: Prisma.RestaurantCreateNestedOneWithoutBranchesInput
   branches?: Prisma.RestaurantCreateNestedManyWithoutParentInput
@@ -304,6 +317,7 @@ export type RestaurantUncheckedCreateInput = {
   address?: string | null
   phone?: string | null
   theme?: string | null
+  logoUrl?: string | null
   parentId?: string | null
   createdAt?: Date | string
   branches?: Prisma.RestaurantUncheckedCreateNestedManyWithoutParentInput
@@ -323,6 +337,7 @@ export type RestaurantUpdateInput = {
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   theme?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   parent?: Prisma.RestaurantUpdateOneWithoutBranchesNestedInput
   branches?: Prisma.RestaurantUpdateManyWithoutParentNestedInput
@@ -342,6 +357,7 @@ export type RestaurantUncheckedUpdateInput = {
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   theme?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   branches?: Prisma.RestaurantUncheckedUpdateManyWithoutParentNestedInput
@@ -361,6 +377,7 @@ export type RestaurantCreateManyInput = {
   address?: string | null
   phone?: string | null
   theme?: string | null
+  logoUrl?: string | null
   parentId?: string | null
   createdAt?: Date | string
 }
@@ -371,6 +388,7 @@ export type RestaurantUpdateManyMutationInput = {
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   theme?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -380,6 +398,7 @@ export type RestaurantUncheckedUpdateManyInput = {
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   theme?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -405,6 +424,7 @@ export type RestaurantCountOrderByAggregateInput = {
   address?: Prisma.SortOrder
   phone?: Prisma.SortOrder
   theme?: Prisma.SortOrder
+  logoUrl?: Prisma.SortOrder
   parentId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
@@ -415,6 +435,7 @@ export type RestaurantMaxOrderByAggregateInput = {
   address?: Prisma.SortOrder
   phone?: Prisma.SortOrder
   theme?: Prisma.SortOrder
+  logoUrl?: Prisma.SortOrder
   parentId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
@@ -425,6 +446,7 @@ export type RestaurantMinOrderByAggregateInput = {
   address?: Prisma.SortOrder
   phone?: Prisma.SortOrder
   theme?: Prisma.SortOrder
+  logoUrl?: Prisma.SortOrder
   parentId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
@@ -614,6 +636,7 @@ export type RestaurantCreateWithoutUsersInput = {
   address?: string | null
   phone?: string | null
   theme?: string | null
+  logoUrl?: string | null
   createdAt?: Date | string
   parent?: Prisma.RestaurantCreateNestedOneWithoutBranchesInput
   branches?: Prisma.RestaurantCreateNestedManyWithoutParentInput
@@ -632,6 +655,7 @@ export type RestaurantUncheckedCreateWithoutUsersInput = {
   address?: string | null
   phone?: string | null
   theme?: string | null
+  logoUrl?: string | null
   parentId?: string | null
   createdAt?: Date | string
   branches?: Prisma.RestaurantUncheckedCreateNestedManyWithoutParentInput
@@ -666,6 +690,7 @@ export type RestaurantUpdateWithoutUsersInput = {
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   theme?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   parent?: Prisma.RestaurantUpdateOneWithoutBranchesNestedInput
   branches?: Prisma.RestaurantUpdateManyWithoutParentNestedInput
@@ -684,6 +709,7 @@ export type RestaurantUncheckedUpdateWithoutUsersInput = {
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   theme?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   branches?: Prisma.RestaurantUncheckedUpdateManyWithoutParentNestedInput
@@ -702,6 +728,7 @@ export type RestaurantCreateWithoutBranchesInput = {
   address?: string | null
   phone?: string | null
   theme?: string | null
+  logoUrl?: string | null
   createdAt?: Date | string
   parent?: Prisma.RestaurantCreateNestedOneWithoutBranchesInput
   branchRequests?: Prisma.BranchRequestCreateNestedManyWithoutParentRestaurantInput
@@ -720,6 +747,7 @@ export type RestaurantUncheckedCreateWithoutBranchesInput = {
   address?: string | null
   phone?: string | null
   theme?: string | null
+  logoUrl?: string | null
   parentId?: string | null
   createdAt?: Date | string
   branchRequests?: Prisma.BranchRequestUncheckedCreateNestedManyWithoutParentRestaurantInput
@@ -743,6 +771,7 @@ export type RestaurantCreateWithoutParentInput = {
   address?: string | null
   phone?: string | null
   theme?: string | null
+  logoUrl?: string | null
   createdAt?: Date | string
   branches?: Prisma.RestaurantCreateNestedManyWithoutParentInput
   branchRequests?: Prisma.BranchRequestCreateNestedManyWithoutParentRestaurantInput
@@ -761,6 +790,7 @@ export type RestaurantUncheckedCreateWithoutParentInput = {
   address?: string | null
   phone?: string | null
   theme?: string | null
+  logoUrl?: string | null
   createdAt?: Date | string
   branches?: Prisma.RestaurantUncheckedCreateNestedManyWithoutParentInput
   branchRequests?: Prisma.BranchRequestUncheckedCreateNestedManyWithoutParentRestaurantInput
@@ -800,6 +830,7 @@ export type RestaurantUpdateWithoutBranchesInput = {
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   theme?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   parent?: Prisma.RestaurantUpdateOneWithoutBranchesNestedInput
   branchRequests?: Prisma.BranchRequestUpdateManyWithoutParentRestaurantNestedInput
@@ -818,6 +849,7 @@ export type RestaurantUncheckedUpdateWithoutBranchesInput = {
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   theme?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   branchRequests?: Prisma.BranchRequestUncheckedUpdateManyWithoutParentRestaurantNestedInput
@@ -855,6 +887,7 @@ export type RestaurantScalarWhereInput = {
   address?: Prisma.StringNullableFilter<"Restaurant"> | string | null
   phone?: Prisma.StringNullableFilter<"Restaurant"> | string | null
   theme?: Prisma.StringNullableFilter<"Restaurant"> | string | null
+  logoUrl?: Prisma.StringNullableFilter<"Restaurant"> | string | null
   parentId?: Prisma.StringNullableFilter<"Restaurant"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Restaurant"> | Date | string
 }
@@ -865,6 +898,7 @@ export type RestaurantCreateWithoutTablesInput = {
   address?: string | null
   phone?: string | null
   theme?: string | null
+  logoUrl?: string | null
   createdAt?: Date | string
   parent?: Prisma.RestaurantCreateNestedOneWithoutBranchesInput
   branches?: Prisma.RestaurantCreateNestedManyWithoutParentInput
@@ -883,6 +917,7 @@ export type RestaurantUncheckedCreateWithoutTablesInput = {
   address?: string | null
   phone?: string | null
   theme?: string | null
+  logoUrl?: string | null
   parentId?: string | null
   createdAt?: Date | string
   branches?: Prisma.RestaurantUncheckedCreateNestedManyWithoutParentInput
@@ -917,6 +952,7 @@ export type RestaurantUpdateWithoutTablesInput = {
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   theme?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   parent?: Prisma.RestaurantUpdateOneWithoutBranchesNestedInput
   branches?: Prisma.RestaurantUpdateManyWithoutParentNestedInput
@@ -935,6 +971,7 @@ export type RestaurantUncheckedUpdateWithoutTablesInput = {
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   theme?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   branches?: Prisma.RestaurantUncheckedUpdateManyWithoutParentNestedInput
@@ -953,6 +990,7 @@ export type RestaurantCreateWithoutCategoriesInput = {
   address?: string | null
   phone?: string | null
   theme?: string | null
+  logoUrl?: string | null
   createdAt?: Date | string
   parent?: Prisma.RestaurantCreateNestedOneWithoutBranchesInput
   branches?: Prisma.RestaurantCreateNestedManyWithoutParentInput
@@ -971,6 +1009,7 @@ export type RestaurantUncheckedCreateWithoutCategoriesInput = {
   address?: string | null
   phone?: string | null
   theme?: string | null
+  logoUrl?: string | null
   parentId?: string | null
   createdAt?: Date | string
   branches?: Prisma.RestaurantUncheckedCreateNestedManyWithoutParentInput
@@ -1005,6 +1044,7 @@ export type RestaurantUpdateWithoutCategoriesInput = {
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   theme?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   parent?: Prisma.RestaurantUpdateOneWithoutBranchesNestedInput
   branches?: Prisma.RestaurantUpdateManyWithoutParentNestedInput
@@ -1023,6 +1063,7 @@ export type RestaurantUncheckedUpdateWithoutCategoriesInput = {
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   theme?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   branches?: Prisma.RestaurantUncheckedUpdateManyWithoutParentNestedInput
@@ -1041,6 +1082,7 @@ export type RestaurantCreateWithoutMenuItemsInput = {
   address?: string | null
   phone?: string | null
   theme?: string | null
+  logoUrl?: string | null
   createdAt?: Date | string
   parent?: Prisma.RestaurantCreateNestedOneWithoutBranchesInput
   branches?: Prisma.RestaurantCreateNestedManyWithoutParentInput
@@ -1059,6 +1101,7 @@ export type RestaurantUncheckedCreateWithoutMenuItemsInput = {
   address?: string | null
   phone?: string | null
   theme?: string | null
+  logoUrl?: string | null
   parentId?: string | null
   createdAt?: Date | string
   branches?: Prisma.RestaurantUncheckedCreateNestedManyWithoutParentInput
@@ -1093,6 +1136,7 @@ export type RestaurantUpdateWithoutMenuItemsInput = {
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   theme?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   parent?: Prisma.RestaurantUpdateOneWithoutBranchesNestedInput
   branches?: Prisma.RestaurantUpdateManyWithoutParentNestedInput
@@ -1111,6 +1155,7 @@ export type RestaurantUncheckedUpdateWithoutMenuItemsInput = {
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   theme?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   branches?: Prisma.RestaurantUncheckedUpdateManyWithoutParentNestedInput
@@ -1129,6 +1174,7 @@ export type RestaurantCreateWithoutOrdersInput = {
   address?: string | null
   phone?: string | null
   theme?: string | null
+  logoUrl?: string | null
   createdAt?: Date | string
   parent?: Prisma.RestaurantCreateNestedOneWithoutBranchesInput
   branches?: Prisma.RestaurantCreateNestedManyWithoutParentInput
@@ -1147,6 +1193,7 @@ export type RestaurantUncheckedCreateWithoutOrdersInput = {
   address?: string | null
   phone?: string | null
   theme?: string | null
+  logoUrl?: string | null
   parentId?: string | null
   createdAt?: Date | string
   branches?: Prisma.RestaurantUncheckedCreateNestedManyWithoutParentInput
@@ -1181,6 +1228,7 @@ export type RestaurantUpdateWithoutOrdersInput = {
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   theme?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   parent?: Prisma.RestaurantUpdateOneWithoutBranchesNestedInput
   branches?: Prisma.RestaurantUpdateManyWithoutParentNestedInput
@@ -1199,6 +1247,7 @@ export type RestaurantUncheckedUpdateWithoutOrdersInput = {
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   theme?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   branches?: Prisma.RestaurantUncheckedUpdateManyWithoutParentNestedInput
@@ -1217,6 +1266,7 @@ export type RestaurantCreateWithoutReceiptsInput = {
   address?: string | null
   phone?: string | null
   theme?: string | null
+  logoUrl?: string | null
   createdAt?: Date | string
   parent?: Prisma.RestaurantCreateNestedOneWithoutBranchesInput
   branches?: Prisma.RestaurantCreateNestedManyWithoutParentInput
@@ -1235,6 +1285,7 @@ export type RestaurantUncheckedCreateWithoutReceiptsInput = {
   address?: string | null
   phone?: string | null
   theme?: string | null
+  logoUrl?: string | null
   parentId?: string | null
   createdAt?: Date | string
   branches?: Prisma.RestaurantUncheckedCreateNestedManyWithoutParentInput
@@ -1269,6 +1320,7 @@ export type RestaurantUpdateWithoutReceiptsInput = {
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   theme?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   parent?: Prisma.RestaurantUpdateOneWithoutBranchesNestedInput
   branches?: Prisma.RestaurantUpdateManyWithoutParentNestedInput
@@ -1287,6 +1339,7 @@ export type RestaurantUncheckedUpdateWithoutReceiptsInput = {
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   theme?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   branches?: Prisma.RestaurantUncheckedUpdateManyWithoutParentNestedInput
@@ -1305,6 +1358,7 @@ export type RestaurantCreateWithoutNotificationsInput = {
   address?: string | null
   phone?: string | null
   theme?: string | null
+  logoUrl?: string | null
   createdAt?: Date | string
   parent?: Prisma.RestaurantCreateNestedOneWithoutBranchesInput
   branches?: Prisma.RestaurantCreateNestedManyWithoutParentInput
@@ -1323,6 +1377,7 @@ export type RestaurantUncheckedCreateWithoutNotificationsInput = {
   address?: string | null
   phone?: string | null
   theme?: string | null
+  logoUrl?: string | null
   parentId?: string | null
   createdAt?: Date | string
   branches?: Prisma.RestaurantUncheckedCreateNestedManyWithoutParentInput
@@ -1357,6 +1412,7 @@ export type RestaurantUpdateWithoutNotificationsInput = {
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   theme?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   parent?: Prisma.RestaurantUpdateOneWithoutBranchesNestedInput
   branches?: Prisma.RestaurantUpdateManyWithoutParentNestedInput
@@ -1375,6 +1431,7 @@ export type RestaurantUncheckedUpdateWithoutNotificationsInput = {
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   theme?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   branches?: Prisma.RestaurantUncheckedUpdateManyWithoutParentNestedInput
@@ -1393,6 +1450,7 @@ export type RestaurantCreateWithoutBranchRequestsInput = {
   address?: string | null
   phone?: string | null
   theme?: string | null
+  logoUrl?: string | null
   createdAt?: Date | string
   parent?: Prisma.RestaurantCreateNestedOneWithoutBranchesInput
   branches?: Prisma.RestaurantCreateNestedManyWithoutParentInput
@@ -1411,6 +1469,7 @@ export type RestaurantUncheckedCreateWithoutBranchRequestsInput = {
   address?: string | null
   phone?: string | null
   theme?: string | null
+  logoUrl?: string | null
   parentId?: string | null
   createdAt?: Date | string
   branches?: Prisma.RestaurantUncheckedCreateNestedManyWithoutParentInput
@@ -1445,6 +1504,7 @@ export type RestaurantUpdateWithoutBranchRequestsInput = {
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   theme?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   parent?: Prisma.RestaurantUpdateOneWithoutBranchesNestedInput
   branches?: Prisma.RestaurantUpdateManyWithoutParentNestedInput
@@ -1463,6 +1523,7 @@ export type RestaurantUncheckedUpdateWithoutBranchRequestsInput = {
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   theme?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   branches?: Prisma.RestaurantUncheckedUpdateManyWithoutParentNestedInput
@@ -1481,6 +1542,7 @@ export type RestaurantCreateManyParentInput = {
   address?: string | null
   phone?: string | null
   theme?: string | null
+  logoUrl?: string | null
   createdAt?: Date | string
 }
 
@@ -1490,6 +1552,7 @@ export type RestaurantUpdateWithoutParentInput = {
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   theme?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   branches?: Prisma.RestaurantUpdateManyWithoutParentNestedInput
   branchRequests?: Prisma.BranchRequestUpdateManyWithoutParentRestaurantNestedInput
@@ -1508,6 +1571,7 @@ export type RestaurantUncheckedUpdateWithoutParentInput = {
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   theme?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   branches?: Prisma.RestaurantUncheckedUpdateManyWithoutParentNestedInput
   branchRequests?: Prisma.BranchRequestUncheckedUpdateManyWithoutParentRestaurantNestedInput
@@ -1526,6 +1590,7 @@ export type RestaurantUncheckedUpdateManyWithoutParentInput = {
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   theme?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -1638,6 +1703,7 @@ export type RestaurantSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   address?: boolean
   phone?: boolean
   theme?: boolean
+  logoUrl?: boolean
   parentId?: boolean
   createdAt?: boolean
   parent?: boolean | Prisma.Restaurant$parentArgs<ExtArgs>
@@ -1659,6 +1725,7 @@ export type RestaurantSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ex
   address?: boolean
   phone?: boolean
   theme?: boolean
+  logoUrl?: boolean
   parentId?: boolean
   createdAt?: boolean
   parent?: boolean | Prisma.Restaurant$parentArgs<ExtArgs>
@@ -1670,6 +1737,7 @@ export type RestaurantSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ex
   address?: boolean
   phone?: boolean
   theme?: boolean
+  logoUrl?: boolean
   parentId?: boolean
   createdAt?: boolean
   parent?: boolean | Prisma.Restaurant$parentArgs<ExtArgs>
@@ -1681,11 +1749,12 @@ export type RestaurantSelectScalar = {
   address?: boolean
   phone?: boolean
   theme?: boolean
+  logoUrl?: boolean
   parentId?: boolean
   createdAt?: boolean
 }
 
-export type RestaurantOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "address" | "phone" | "theme" | "parentId" | "createdAt", ExtArgs["result"]["restaurant"]>
+export type RestaurantOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "address" | "phone" | "theme" | "logoUrl" | "parentId" | "createdAt", ExtArgs["result"]["restaurant"]>
 export type RestaurantInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   parent?: boolean | Prisma.Restaurant$parentArgs<ExtArgs>
   branches?: boolean | Prisma.Restaurant$branchesArgs<ExtArgs>
@@ -1726,6 +1795,7 @@ export type $RestaurantPayload<ExtArgs extends runtime.Types.Extensions.Internal
     address: string | null
     phone: string | null
     theme: string | null
+    logoUrl: string | null
     parentId: string | null
     createdAt: Date
   }, ExtArgs["result"]["restaurant"]>
@@ -2166,6 +2236,7 @@ export interface RestaurantFieldRefs {
   readonly address: Prisma.FieldRef<"Restaurant", 'String'>
   readonly phone: Prisma.FieldRef<"Restaurant", 'String'>
   readonly theme: Prisma.FieldRef<"Restaurant", 'String'>
+  readonly logoUrl: Prisma.FieldRef<"Restaurant", 'String'>
   readonly parentId: Prisma.FieldRef<"Restaurant", 'String'>
   readonly createdAt: Prisma.FieldRef<"Restaurant", 'DateTime'>
 }

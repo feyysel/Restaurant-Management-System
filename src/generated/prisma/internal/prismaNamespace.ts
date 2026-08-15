@@ -1375,6 +1375,7 @@ export const RestaurantScalarFieldEnum = {
   address: 'address',
   phone: 'phone',
   theme: 'theme',
+  logoUrl: 'logoUrl',
   parentId: 'parentId',
   createdAt: 'createdAt'
 } as const
