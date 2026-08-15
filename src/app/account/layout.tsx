@@ -3,6 +3,7 @@ import { getSession } from "@/lib/session";
 import { prisma } from "@/lib/prisma";
 import { ROLE_HOME } from "@/lib/constants";
 import { PortalShell, type NavItem } from "@/components/portal/portal-shell";
+import { HomeProvider } from "./home-context";
 
 const NAV: NavItem[] = [{ label: "My workspace", href: "/", icon: "LayoutDashboard" }];
 
@@ -10,10 +11,8 @@ export default async function AccountLayout({ children }: { children: React.Reac
   const session = await getSession();
   if (!session) redirect("/login");
 
-  const nav = NAV.map((item) => ({
-    ...item,
-    href: ROLE_HOME[session.role] ?? item.href,
-  }));
+  const home = ROLE_HOME[session.role] ?? "/";
+  const nav = NAV.map((item) => ({ ...item, href: home }));
 
   let restaurantName: string | null = null;
   if (session.restaurantId) {
@@ -25,18 +24,20 @@ export default async function AccountLayout({ children }: { children: React.Reac
   }
 
   return (
-    <PortalShell
-      user={{
-        id: session.id,
-        name: session.name,
-        phone: session.phone,
-        role: session.role,
-        restaurantId: session.restaurantId,
-      }}
-      restaurantName={restaurantName}
-      nav={nav}
-    >
-      {children}
-    </PortalShell>
+    <HomeProvider home={home}>
+      <PortalShell
+        user={{
+          id: session.id,
+          name: session.name,
+          phone: session.phone,
+          role: session.role,
+          restaurantId: session.restaurantId,
+        }}
+        restaurantName={restaurantName}
+        nav={nav}
+      >
+        {children}
+      </PortalShell>
+    </HomeProvider>
   );
 }

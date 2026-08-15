@@ -88,9 +88,8 @@ export default function WaiterDashboard() {
   const [paymentOrder, setPaymentOrder] = React.useState<WaiterOrder | null>(null);
 
   async function refreshNow() {
-    const q = me?.id ? `?assignedTo=${encodeURIComponent(me.id)}` : "";
     const [tRes, oRes] = await Promise.all([
-      fetch(`/api/tables${q}`),
+      fetch("/api/tables"),
       fetch("/api/waiter/orders"),
     ]);
     if (tRes.ok) {
@@ -114,20 +113,24 @@ export default function WaiterDashboard() {
   );
 
   React.useEffect(() => {
-    fetch("/api/me")
-      .then((r) => r.json())
-      .then((d) => {
-        setMe(d.user ? { id: d.user.id, name: d.user.name } : null);
-        setRestaurantId(d.user?.restaurantId ?? null);
-        if (d.user?.id) refresh();
+    let active = true;
+    Promise.all([
+      fetch("/api/me").then((r) => r.json()),
+      fetch("/api/tables").then((r) => r.json()),
+      fetch("/api/waiter/orders").then((r) => r.json()),
+    ])
+      .then(([me, tData, oData]) => {
+        if (!active) return;
+        setMe(me.user ? { id: me.user.id, name: me.user.name } : null);
+        setRestaurantId(me.user?.restaurantId ?? null);
+        setTables(tData.tables ?? []);
+        setOrders(oData.orders ?? []);
+        setLoading(false);
       })
       .catch(() => {});
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  React.useEffect(() => {
-    refresh();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    return () => {
+      active = false;
+    };
   }, []);
 
   const myTables = tables.filter((t) => t.waiter?.id === me?.id);
@@ -179,10 +182,10 @@ export default function WaiterDashboard() {
       />
 
       <div className="mb-5 grid grid-cols-2 gap-3 lg:grid-cols-4">
-        <Stat label="My tables" value={myTables.length} icon={Grid3X3} tone="text-sky-300 bg-sky-500/10" pulse={false} />
-        <Stat label="Tables occupied" value={occupied} icon={UtensilsCrossed} tone="text-amber-300 bg-amber-500/10" pulse={false} />
-        <Stat label="In progress" value={inProgress.length} icon={ChefHat} tone="text-violet-300 bg-violet-500/10" pulse={inProgress.length > 0} />
-        <Stat label="Ready to serve" value={ready.length} icon={Package} tone="text-emerald-300 bg-emerald-500/10" pulse={ready.length > 0} />
+        <Stat label="My tables" value={myTables.length} icon={Grid3X3} tone="text-sky-300 bg-sky-500/10" pulse={false} loading={loading} />
+        <Stat label="Tables occupied" value={occupied} icon={UtensilsCrossed} tone="text-amber-300 bg-amber-500/10" pulse={false} loading={loading} />
+        <Stat label="In progress" value={inProgress.length} icon={ChefHat} tone="text-violet-300 bg-violet-500/10" pulse={inProgress.length > 0} loading={loading} />
+        <Stat label="Ready to serve" value={ready.length} icon={Package} tone="text-emerald-300 bg-emerald-500/10" pulse={ready.length > 0} loading={loading} />
       </div>
 
       {bells.length > 0 && (
@@ -361,18 +364,24 @@ function Stat({
   icon: Icon,
   tone,
   pulse,
+  loading,
 }: {
   label: string;
   value: number;
   icon: React.ComponentType<{ className?: string }>;
   tone: string;
   pulse: boolean;
+  loading?: boolean;
 }) {
   return (
     <Card className="flex items-center justify-between p-4">
       <div>
         <p className="text-xs uppercase tracking-wider text-zinc-500">{label}</p>
-        <p className="mt-1 font-display text-3xl font-semibold text-zinc-50">{value}</p>
+        {loading ? (
+          <Skeleton className="mt-2 h-8 w-10" />
+        ) : (
+          <p className="mt-1 font-display text-3xl font-semibold text-zinc-50">{value}</p>
+        )}
       </div>
       <div className={cn("flex h-10 w-10 items-center justify-center rounded-2xl", tone)}>
         <Icon className={cn("h-5 w-5", pulse && "animate-pulse-soft")} />

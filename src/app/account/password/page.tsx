@@ -8,9 +8,11 @@ import { PageHeader } from "@/components/ui/stat-card";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input, Label } from "@/components/ui/input";
+import { useHome } from "../home-context";
 
 export default function ChangePasswordPage() {
   const router = useRouter();
+  const home = useHome();
   const [currentPassword, setCurrentPassword] = React.useState("");
   const [newPassword, setNewPassword] = React.useState("");
   const [confirmPassword, setConfirmPassword] = React.useState("");
@@ -86,7 +88,7 @@ export default function ChangePasswordPage() {
               <Button variant="outline" onClick={() => setDone(false)}>
                 Change again
               </Button>
-              <Button onClick={() => router.push("/")}>Back to workspace</Button>
+              <Button onClick={() => router.push(home)}>Back to workspace</Button>
             </div>
           </div>
         ) : (
@@ -159,7 +161,7 @@ export default function ChangePasswordPage() {
               <Button
                 type="button"
                 variant="ghost"
-                onClick={() => router.push("/")}
+                onClick={() => router.push(home)}
                 disabled={submitting}
               >
                 Cancel

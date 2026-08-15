@@ -14,8 +14,10 @@ export async function GET(req: Request) {
 
   const assignedTo = new URL(req.url).searchParams.get("assignedTo");
   const waiterFilter =
-    assignedTo && session.role === "WAITER"
-      ? { waiterId: assignedTo === session.id ? session.id : "__none__" }
+    session.role === "WAITER"
+      ? assignedTo === null
+        ? { waiterId: session.id }
+        : { waiterId: assignedTo === session.id ? session.id : "__none__" }
       : {};
 
   const tables = await prisma.table.findMany({

@@ -34,7 +34,6 @@ export default function LoginPage() {
         return;
       }
       router.push(ROLE_HOME[data.user.role] ?? "/");
-      router.refresh();
     } catch {
       setError("Something went wrong");
     } finally {

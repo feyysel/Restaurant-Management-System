@@ -1,6 +1,7 @@
 import { motion } from "motion/react";
 import { cn } from "@/lib/utils";
 import { Card } from "@/components/ui/card";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export function StatCard({
   label,
@@ -9,6 +10,7 @@ export function StatCard({
   icon,
   tone = "gold",
   delay = 0,
+  loading = false,
 }: {
   label: string;
   value: string | number;
@@ -16,6 +18,7 @@ export function StatCard({
   icon: React.ComponentType<{ className?: string }>;
   tone?: "gold" | "emerald" | "sky" | "violet" | "rose";
   delay?: number;
+  loading?: boolean;
 }) {
   const tones: Record<string, string> = {
     gold: "bg-gold/10 text-gold-light ring-gold/25",
@@ -36,10 +39,14 @@ export function StatCard({
           <p className="text-xs font-medium uppercase tracking-wider text-zinc-500">
             {label}
           </p>
-          <p className="mt-2 font-display text-3xl font-semibold text-zinc-50">
-            {value}
-          </p>
-          {sub && <p className="mt-1 text-xs text-zinc-500">{sub}</p>}
+          {loading ? (
+            <Skeleton className="mt-2.5 h-8 w-28" />
+          ) : (
+            <p className="mt-2 font-display text-3xl font-semibold text-zinc-50">
+              {value}
+            </p>
+          )}
+          {!loading && sub && <p className="mt-1 text-xs text-zinc-500">{sub}</p>}
         </div>
         <div
           className={cn(

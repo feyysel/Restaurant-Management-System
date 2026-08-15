@@ -18,6 +18,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Modal } from "@/components/ui/modal";
 import { Card } from "@/components/ui/card";
+import { Skeleton } from "@/components/ui/skeleton";
 import { formatCurrency, formatTime } from "@/lib/utils";
 import { useRealtime } from "@/components/realtime/use-realtime";
 import { useDebouncedCallback } from "@/lib/use-debounced";
@@ -126,7 +127,11 @@ export default function KitchenPage() {
           <Card key={s.label} className="flex items-center justify-between p-4">
             <div>
               <p className="text-xs uppercase tracking-wider text-zinc-500">{s.label}</p>
-              <p className="mt-1 font-display text-3xl font-semibold text-zinc-50">{s.value}</p>
+              {data ? (
+                <p className="mt-1 font-display text-3xl font-semibold text-zinc-50">{s.value}</p>
+              ) : (
+                <Skeleton className="mt-2 h-8 w-10" />
+              )}
             </div>
             <span className={`h-3 w-3 rounded-full ${s.tone} ${s.pulse ? "animate-pulse-soft" : ""}`} />
           </Card>
@@ -150,7 +155,7 @@ export default function KitchenPage() {
       </AnimatePresence>
 
       <div className="space-y-4">
-        {queue.length === 0 && (
+        {data && queue.length === 0 && (
           <Card className="flex flex-col items-center justify-center py-20 text-center">
             <ChefHat className="mb-4 h-12 w-12 text-zinc-700" />
             <p className="font-display text-xl font-semibold text-zinc-200">Kitchen is clear</p>
@@ -160,89 +165,99 @@ export default function KitchenPage() {
           </Card>
         )}
 
-        {pending.length > 0 && (
-          <section>
-            <h2 className="mb-3 flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-amber-300">
-              <Bell className="h-4 w-4" /> Waiting · accept to start
-            </h2>
-            <div className="grid gap-4 lg:grid-cols-2 xl:grid-cols-3">
-              {pending.map((o) => (
-                <OrderCard key={o.id} order={o} highlight={o.id === newOrderId}>
-                  <div className="flex gap-2">
-                    <Button onClick={() => act(o.id, "accept")} className="flex-1">
-                      <Check className="h-4 w-4" /> Accept order
-                    </Button>
-                  </div>
-                </OrderCard>
-              ))}
-            </div>
-          </section>
-        )}
+        {!data ? (
+          <div className="grid gap-4 lg:grid-cols-2 xl:grid-cols-3">
+            {Array.from({ length: 3 }).map((_, i) => (
+              <Skeleton key={i} className="h-56" />
+            ))}
+          </div>
+        ) : (
+          <>
+            {pending.length > 0 && (
+              <section>
+                <h2 className="mb-3 flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-amber-300">
+                  <Bell className="h-4 w-4" /> Waiting · accept to start
+                </h2>
+                <div className="grid gap-4 lg:grid-cols-2 xl:grid-cols-3">
+                  {pending.map((o) => (
+                    <OrderCard key={o.id} order={o} highlight={o.id === newOrderId}>
+                      <div className="flex gap-2">
+                        <Button onClick={() => act(o.id, "accept")} className="flex-1">
+                          <Check className="h-4 w-4" /> Accept order
+                        </Button>
+                      </div>
+                    </OrderCard>
+                  ))}
+                </div>
+              </section>
+            )}
 
-        {accepted.length > 0 && (
-          <section>
-            <h2 className="mb-3 flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-sky-300">
-              <Clock className="h-4 w-4" /> Accepted
-            </h2>
-            <div className="grid gap-4 lg:grid-cols-2 xl:grid-cols-3">
-              {accepted.map((o) => (
-                <OrderCard key={o.id} order={o}>
-                  <Button variant="success" onClick={() => act(o.id, "cook")} className="flex-1">
-                    <CookingPot className="h-4 w-4" /> Start cooking
-                  </Button>
-                </OrderCard>
-              ))}
-            </div>
-          </section>
-        )}
+            {accepted.length > 0 && (
+              <section>
+                <h2 className="mb-3 flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-sky-300">
+                  <Clock className="h-4 w-4" /> Accepted
+                </h2>
+                <div className="grid gap-4 lg:grid-cols-2 xl:grid-cols-3">
+                  {accepted.map((o) => (
+                    <OrderCard key={o.id} order={o}>
+                      <Button variant="success" onClick={() => act(o.id, "cook")} className="flex-1">
+                        <CookingPot className="h-4 w-4" /> Start cooking
+                      </Button>
+                    </OrderCard>
+                  ))}
+                </div>
+              </section>
+            )}
 
-        {cooking.length > 0 && (
-          <section>
-            <h2 className="mb-3 flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-violet-300">
-              <Flame className="h-4 w-4" /> On the stove
-            </h2>
-            <div className="grid gap-4 lg:grid-cols-2 xl:grid-cols-3">
-              {cooking.map((o) => (
-                <OrderCard key={o.id} order={o} cooking>
-                  <Button variant="success" onClick={() => act(o.id, "ready")} className="flex-1">
-                    <Check className="h-4 w-4" /> Done — generate receipt
-                  </Button>
-                </OrderCard>
-              ))}
-            </div>
-          </section>
-        )}
+            {cooking.length > 0 && (
+              <section>
+                <h2 className="mb-3 flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-violet-300">
+                  <Flame className="h-4 w-4" /> On the stove
+                </h2>
+                <div className="grid gap-4 lg:grid-cols-2 xl:grid-cols-3">
+                  {cooking.map((o) => (
+                    <OrderCard key={o.id} order={o} cooking>
+                      <Button variant="success" onClick={() => act(o.id, "ready")} className="flex-1">
+                        <Check className="h-4 w-4" /> Done — generate receipt
+                      </Button>
+                    </OrderCard>
+                  ))}
+                </div>
+              </section>
+            )}
 
-        {ready.length > 0 && (
-          <section>
-            <h2 className="mb-3 flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-emerald-300">
-              <Package className="h-4 w-4" /> Ready for pickup
-            </h2>
-            <div className="grid gap-4 lg:grid-cols-2 xl:grid-cols-3">
-              {ready.map((o) => (
-                <OrderCard key={o.id} order={o}>
-                  <Button variant="outline" onClick={() => setReceiptFor(o)} className="flex-1">
-                    <ReceiptText className="h-4 w-4" /> View receipt
-                  </Button>
-                </OrderCard>
-              ))}
-            </div>
-          </section>
-        )}
+            {ready.length > 0 && (
+              <section>
+                <h2 className="mb-3 flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-emerald-300">
+                  <Package className="h-4 w-4" /> Ready for pickup
+                </h2>
+                <div className="grid gap-4 lg:grid-cols-2 xl:grid-cols-3">
+                  {ready.map((o) => (
+                    <OrderCard key={o.id} order={o}>
+                      <Button variant="outline" onClick={() => setReceiptFor(o)} className="flex-1">
+                        <ReceiptText className="h-4 w-4" /> View receipt
+                      </Button>
+                    </OrderCard>
+                  ))}
+                </div>
+              </section>
+            )}
 
-        {recent.length > 0 && (
-          <section className="pt-2">
-            <h2 className="mb-3 text-sm font-semibold uppercase tracking-wider text-zinc-500">
-              Recently completed
-            </h2>
-            <div className="flex flex-wrap gap-2">
-              {recent.map((o) => (
-                <Badge key={o.id} tone={o.status === "COMPLETED" ? "zinc" : "teal"}>
-                  #{o.orderNumber} · {o.tableLabel}
-                </Badge>
-              ))}
-            </div>
-          </section>
+            {recent.length > 0 && (
+              <section className="pt-2">
+                <h2 className="mb-3 text-sm font-semibold uppercase tracking-wider text-zinc-500">
+                  Recently completed
+                </h2>
+                <div className="flex flex-wrap gap-2">
+                  {recent.map((o) => (
+                    <Badge key={o.id} tone={o.status === "COMPLETED" ? "zinc" : "teal"}>
+                      #{o.orderNumber} · {o.tableLabel}
+                    </Badge>
+                  ))}
+                </div>
+              </section>
+            )}
+          </>
         )}
       </div>
 

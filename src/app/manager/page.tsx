@@ -48,7 +48,7 @@ type ManagerStats = {
 };
 
 export default function ManagerOverview() {
-  const { data, loading, refresh } = useFetch<ManagerStats>(
+  const { data, refresh } = useFetch<ManagerStats>(
     "/api/stats"
   );
   const [restaurantId, setRestaurantId] = React.useState<string | null>(null);
@@ -66,19 +66,7 @@ export default function ManagerOverview() {
       .catch(() => {});
   }, []);
 
-  if (loading || !data) {
-    return (
-      <div className="space-y-4">
-        <Skeleton className="h-10 w-72" />
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {Array.from({ length: 4 }).map((_, i) => (
-            <Skeleton key={i} className="h-32" />
-          ))}
-        </div>
-        <Skeleton className="h-72" />
-      </div>
-    );
-  }
+  const d = data;
 
   return (
     <div>
@@ -88,20 +76,28 @@ export default function ManagerOverview() {
       />
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        <StatCard label="Revenue today" value={formatCurrency(data.stats.revenueToday)} sub="excl. cancelled" icon={Banknote} tone="emerald" delay={0} />
-        <StatCard label="Orders today" value={data.stats.ordersToday} sub={`${data.stats.openOrders} active now`} icon={ShoppingBag} tone="gold" delay={0.06} />
-        <StatCard label="Tables in use" value={data.stats.activeTables} sub="occupied right now" icon={Grid3X3} tone="sky" delay={0.12} />
-        <StatCard label="Team & menu" value={data.stats.employeeCount} sub={`${data.stats.menuCount} items live`} icon={Users} tone="violet" delay={0.18} />
+        <StatCard label="Revenue today" value={formatCurrency(d?.stats.revenueToday ?? 0)} sub="excl. cancelled" icon={Banknote} tone="emerald" delay={0} loading={!d} />
+        <StatCard label="Orders today" value={d?.stats.ordersToday ?? 0} sub={d ? `${d.stats.openOrders} active now` : undefined} icon={ShoppingBag} tone="gold" delay={0.06} loading={!d} />
+        <StatCard label="Tables in use" value={d?.stats.activeTables ?? 0} sub="occupied right now" icon={Grid3X3} tone="sky" delay={0.12} loading={!d} />
+        <StatCard label="Team & menu" value={d?.stats.employeeCount ?? 0} sub={d ? `${d.stats.menuCount} items live` : undefined} icon={Users} tone="violet" delay={0.18} loading={!d} />
       </div>
 
       <div className="mt-4 grid gap-4 lg:grid-cols-3">
         <div className="lg:col-span-2">
-          <TrendChart labels={data.trend.labels} values={data.trend.revenue} />
+          {d ? (
+            <TrendChart labels={d.trend.labels} values={d.trend.revenue} />
+          ) : (
+            <ChartPlaceholder />
+          )}
         </div>
-        <StatusBreakdown
-          data={data.ordersByStatus.map((d) => ({ status: d.status, count: d._count }))}
-          title="Today's order flow"
-        />
+        {d ? (
+          <StatusBreakdown
+            data={d.ordersByStatus.map((x) => ({ status: x.status, count: x._count }))}
+            title="Today's order flow"
+          />
+        ) : (
+          <ChartPlaceholder />
+        )}
       </div>
 
       <div className="mt-4 grid gap-4 lg:grid-cols-2">
@@ -113,16 +109,20 @@ export default function ManagerOverview() {
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-3">
-            {data.topItems.map((item, i) => (
-              <div key={item.name} className="flex items-center gap-3">
-                <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-gold/10 text-xs font-bold text-gold-light ring-1 ring-gold/20">
-                  {i + 1}
-                </span>
-                <p className="flex-1 truncate text-sm text-zinc-200">{item.name}</p>
-                <Badge tone="amber">{item.qty} sold</Badge>
-              </div>
-            ))}
-            {data.topItems.length === 0 && (
+            {!d
+              ? Array.from({ length: 4 }).map((_, i) => (
+                  <Skeleton key={i} className="h-8" />
+                ))
+              : d.topItems.map((item, i) => (
+                  <div key={item.name} className="flex items-center gap-3">
+                    <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-gold/10 text-xs font-bold text-gold-light ring-1 ring-gold/20">
+                      {i + 1}
+                    </span>
+                    <p className="flex-1 truncate text-sm text-zinc-200">{item.name}</p>
+                    <Badge tone="amber">{item.qty} sold</Badge>
+                  </div>
+                ))}
+            {d && d.topItems.length === 0 && (
               <p className="py-6 text-center text-sm text-zinc-500">No sales yet</p>
             )}
           </CardContent>
@@ -139,30 +139,49 @@ export default function ManagerOverview() {
             </Link>
           </CardHeader>
           <CardContent className="space-y-1">
-            {data.recentOrders.map((o) => (
-              <div key={o.id} className="flex items-center gap-3 rounded-xl px-2 py-2.5 hover:bg-white/[0.03]">
-                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-gold/10 font-display text-xs font-semibold text-gold-light ring-1 ring-gold/20">
-                  #{o.orderNumber}
-                </div>
-                <div className="min-w-0 flex-1">
-                  <p className="truncate text-sm font-medium text-zinc-100">{o.tableLabel}</p>
-                  <p className="truncate text-xs text-zinc-500">
-                    {o.waiter?.name ?? "Customer"} · {timeAgo(o.createdAt)}
-                  </p>
-                </div>
-                <div className="text-right">
-                  <p className="text-sm font-semibold text-zinc-100">{formatCurrency(o.total)}</p>
-                  <Badge tone={toneFor(o.status)}>{o.status}</Badge>
-                </div>
-              </div>
-            ))}
-            {data.recentOrders.length === 0 && (
+            {!d
+              ? Array.from({ length: 4 }).map((_, i) => (
+                  <Skeleton key={i} className="h-12" />
+                ))
+              : d.recentOrders.map((o) => (
+                  <div key={o.id} className="flex items-center gap-3 rounded-xl px-2 py-2.5 hover:bg-white/[0.03]">
+                    <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-gold/10 font-display text-xs font-semibold text-gold-light ring-1 ring-gold/20">
+                      #{o.orderNumber}
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <p className="truncate text-sm font-medium text-zinc-100">{o.tableLabel}</p>
+                      <p className="truncate text-xs text-zinc-500">
+                        {o.waiter?.name ?? "Customer"} · {timeAgo(o.createdAt)}
+                      </p>
+                    </div>
+                    <div className="text-right">
+                      <p className="text-sm font-semibold text-zinc-100">{formatCurrency(o.total)}</p>
+                      <Badge tone={toneFor(o.status)}>{o.status}</Badge>
+                    </div>
+                  </div>
+                ))}
+            {d && d.recentOrders.length === 0 && (
               <p className="py-6 text-center text-sm text-zinc-500">No orders yet</p>
             )}
           </CardContent>
         </Card>
       </div>
     </div>
+  );
+}
+
+function ChartPlaceholder() {
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle className="text-base">Loading…</CardTitle>
+      </CardHeader>
+      <div className="flex h-44 items-end gap-2 sm:gap-3">
+        {Array.from({ length: 7 }).map((_, i) => (
+          <Skeleton key={i} className="flex-1 rounded-t-lg" style={{ height: `${40 + (i % 3) * 25}%` }} />
+        ))}
+      </div>
+    </Card>
   );
 }
 
