@@ -11,6 +11,7 @@ import {
   ChefHat,
   Coins,
   Grid3X3,
+  KeyRound,
   LayoutDashboard,
   ListChecks,
   LogOut,
@@ -200,7 +201,16 @@ export function PortalShell({
         })}
       </nav>
 
-      <div className="px-4 pb-5">
+      <div className="space-y-2 px-4 pb-5">
+        <Link
+          href="/account/password"
+          onClick={() => setDrawerOpen(false)}
+          className="flex items-center gap-3 rounded-xl px-3.5 py-2.5 text-sm font-medium text-zinc-400 transition-colors hover:bg-white/5 hover:text-zinc-100"
+        >
+          <KeyRound className="h-[18px] w-[18px]" />
+          Change password
+        </Link>
+
         <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-3">
           <div className="flex items-center gap-3">
             <Avatar name={user.name} className="h-9 w-9 text-xs" />
